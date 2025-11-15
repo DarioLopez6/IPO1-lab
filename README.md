@@ -11,6 +11,6 @@ Productos
 Pedidos
 
 ---
-<img width="1369" height="880" alt="image" src="https://github.com/user-attachments/assets/24e36207-0d34-4e64-af1b-c6d02a471556" />
+<img width="1369" height="880" alt="image" src="https://github.com/user-attachments/assets/b384bb53-91c5-41a1-94c0-baaeb8958f31" />
 Clientes
 
