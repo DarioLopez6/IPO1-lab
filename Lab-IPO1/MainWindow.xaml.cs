@@ -31,7 +31,7 @@ public partial class MainWindow : Window
 
         // Pedidos
         ImgPedidos.Source = new BitmapImage(new Uri(
-            TabPedidos.IsSelected ? "/imagenes/menuPedidosOn.png" : "//menuPedidosOff.png",
+            TabPedidos.IsSelected ? "/imagenes/menuPedidosOn.png" : "/imagenes/menuPedidosOff.png",
             UriKind.Relative));
 
         // Clientes

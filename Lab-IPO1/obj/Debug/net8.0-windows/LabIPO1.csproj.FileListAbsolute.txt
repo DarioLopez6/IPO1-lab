@@ -17,3 +17,25 @@ C:\Users\Darío López\source\repos\Lab-IPO1\Lab-IPO1\obj\Debug\net8.0-windows\r
 C:\Users\Darío López\source\repos\Lab-IPO1\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.pdb
 C:\Users\Darío López\source\repos\Lab-IPO1\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.genruntimeconfig.cache
 C:\Users\Darío López\source\repos\Lab-IPO1\Lab-IPO1\obj\Debug\net8.0-windows\ref\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.exe
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.deps.json
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.runtimeconfig.json
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.pdb
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1_MarkupCompile.cache
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.g.resources
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.AssemblyInfoInputs.cache
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.AssemblyInfo.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.csproj.CoreCompileInputs.cache
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.sourcelink.json
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\refint\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.pdb
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.genruntimeconfig.cache
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\ref\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.baml

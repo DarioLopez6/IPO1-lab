@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="imagenes\cobrarIcon.png" />
     <None Remove="imagenes\help.png" />
+    <None Remove="imagenes\iconoTPV.png" />
     <None Remove="imagenes\logo.png" />
     <None Remove="imagenes\logout.png" />
     <None Remove="imagenes\menuCLientesOff.png" />
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\iconoTPV.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\logo.png">

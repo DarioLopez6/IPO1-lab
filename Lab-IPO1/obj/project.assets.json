@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Darío López\\source\\repos\\Lab-IPO1\\Lab-IPO1\\LabIPO1.csproj",
+      "projectUniqueName": "C:\\Users\\Darío López\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\LabIPO1.csproj",
       "projectName": "LabIPO1",
-      "projectPath": "C:\\Users\\Darío López\\source\\repos\\Lab-IPO1\\Lab-IPO1\\LabIPO1.csproj",
+      "projectPath": "C:\\Users\\Darío López\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\LabIPO1.csproj",
       "packagesPath": "C:\\Users\\Darío López\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Darío López\\source\\repos\\Lab-IPO1\\Lab-IPO1\\obj\\",
+      "outputPath": "C:\\Users\\Darío López\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
