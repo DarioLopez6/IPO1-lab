@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Dar\u00EDo L\u00F3pez\\source\\repos\\Lab-IPO1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\Lab-IPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\source\\repos\\lab-ipo1\\lab-ipo1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\Lab-IPO1.csproj|solutionrelative:lab-ipo1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\Lab-IPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\source\\repos\\lab-ipo1\\lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\Lab-IPO1.csproj|solutionrelative:lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 282,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\source\\repos\\Lab-IPO1\\Lab-IPO1\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\source\\repos\\Lab-IPO1\\Lab-IPO1\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAawCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T22:56:44.589Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\source\\repos\\Lab-IPO1\\Lab-IPO1\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\source\\repos\\Lab-IPO1\\Lab-IPO1\\MainWindow.xaml",
+              "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-20T16:54:49.373Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+﻿<Window x:Class="Lab_IPO1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HomeMade TPV" Height="733" Width="1200">
+    <Window.Resources>
+
+        <!-- TARJETA DE PRODUCTO -->
+        <Style x:Key="ProductoCardStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <!-- RADIOBUTTON COMO BOTÓN -->
+        <Style x:Key="RadioButtonButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Border"
+                            CornerRadius="10"
+                            BorderThickness="1"
+                            BorderBrush="#CCCCCC"
+                            Background="LightGray"
+                            Padding="8"
+                            Margin="2">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <!-- SELECCIONADO -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFFF6B35"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#CC5500"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+
+                            <!-- HOVER -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFE6E6E6"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel Background="LightGray">
+
+        <!-- ─────────────────────────────── -->
+        <!-- BARRA SUPERIOR                 -->
+        <!-- ─────────────────────────────── -->
+        <Border DockPanel.Dock="Top"
+        Background="#FFFFFF"
+        Padding="12"
+        BorderBrush="#CCCCCC"
+        BorderThickness="0,0,0,1">
+
+            <DockPanel>
+
+                <!-- LOGO IZQUIERDA -->
+                <Button DockPanel.Dock="Left"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Cursor="Hand"
+                Padding="0"
+                Margin="5 0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/imagenes/logo.png" Height="30" Margin="0 0 8 0"/>
+                        <TextBlock Text="HomeMade TPV"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Foreground="#2D2D2D"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- BOTONES DERECHA -->
+                <StackPanel DockPanel.Dock="Right"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right">
+
+                    <!-- BOTÓN AYUDA -->
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#F0F0F0" 
+                                BorderBrush="LightGray" 
+                                BorderThickness="2" 
+                                CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="imagenes/help.png" Height="18" Margin="0 0 6 0"/>
+                            <TextBlock Text="Ayuda" VerticalAlignment="Center" Foreground="#333"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- BOTÓN NUEVO PEDIDO -->
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="126">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#FFFF6B35" 
+                                    BorderBrush="LightGray" 
+                                    BorderThickness="2" 
+                                    CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="imagenes/nuevoPedido.png" Height="18" Margin="0 0 6 0"/>
+                            <TextBlock Text="Nuevo Pedido" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- BOTÓN PERFIL -->
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="226">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#E8E8E8" 
+                                BorderBrush="LightGray" 
+                                BorderThickness="2" 
+                                CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="214" Height="37">
+                            <Border CornerRadius="50" Width="30" Height="30" ClipToBounds="True" Margin="0 0 8 0">
+                                <Image Source="imagenes/perfil.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            </Border>
+                            <StackPanel>
+                                <TextBlock Text="Juan Pérez" FontSize="14" Foreground="#222" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Último acceso: 18/02/2025 14:32" FontSize="11" Foreground="#555" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- BOTÓN CERRAR SESIÓN -->
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="106">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#FFFFFF" 
+                                BorderBrush="LightGray" 
+                                BorderThickness="2" 
+                                CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="imagenes/logout.png" Height="18" Margin="0 0 6 0"/>
+                            <TextBlock Text="Cerrar sesión" VerticalAlignment="Center" Foreground="#333"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+            </DockPanel>
+
+        </Border>
+
+
+
+        <!-- ─────────────────────────────── -->
+        <!-- PANEL DERECHO: PEDIDO ACTUAL   -->
+        <!-- ─────────────────────────────── -->
+        <!-- PANEL DERECHO: PEDIDO ACTUAL -->
+        <Border DockPanel.Dock="Right"
+        Width="371"
+        Background="#FFFFFF"
+        BorderBrush="#CCCCCC"
+        BorderThickness="1"
+        Padding="15">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" >
+
+                <!-- TITULO -->
+                <TextBlock Text="Pedido Actual" FontSize="20" FontWeight="Bold" Margin="0 0 0 15"/>
+
+                <!-- ────────── CAJA PRINCIPAL CON 4 APARTADOS ────────── -->
+                <Border Background="#F2F2F2" CornerRadius="10" Padding="10" Margin="0 0 0 15">
+                    <Grid Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- ESPACIO 1: Tipo de pedido -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+                            <TextBlock Text="Tipo de pedido" FontWeight="Bold" FontSize="13"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 5 0 10" Cursor="Hand">
+                                <RadioButton Style="{StaticResource RadioButtonButtonStyle}"
+                 Content="En local"
+                 GroupName="TipoPedido"
+                 Width="72" Height="39"/>
+
+                                <RadioButton Style="{StaticResource RadioButtonButtonStyle}"
+                 Content="Teléfono"
+                 GroupName="TipoPedido"
+                 Width="67"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <!-- ESPACIO 2: Hora de recogida/entrega -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
+                            <TextBlock Text="Hora recogida/entrega" FontWeight="Bold" FontSize="13" Width="141" Height="20"/>
+                            <Button Height="30" Margin="0 5 0 0" Cursor="Pen">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <TextBox TextWrapping="Wrap" Width="120" Background="Transparent" BorderBrush="#00ABADB3"/>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- ESPACIO 3: Entrega a domicilio -->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
+                            <TextBlock Text="Entrega a domicilio" FontWeight="Bold" FontSize="13"/>
+                            <Button Height="30" Margin="0 5 0 0" Cursor="Pen">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button" >
+                                        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <TextBox TextWrapping="Wrap" Width="120" Background="Transparent" BorderBrush="#00ABADB3"/>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- ESPACIO 4: Cliente -->
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+                            <TextBlock Text="Cliente" FontWeight="Bold" FontSize="13"/>
+                            <Button Height="30" Margin="0 5 0 0" Cursor="Pen">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <TextBox TextWrapping="Wrap" Width="120" Background="Transparent" BorderBrush="#00ABADB3"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ────────── LISTA DE PRODUCTOS SCROLLEABLE ────────── -->
+                <Border Background="#F9F9F9" CornerRadius="10" Padding="10" Margin="0 0 0 10" Height="184">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+
+                            <!-- PRODUCTO 1 -->
+                            <Border Style="{StaticResource ProductoCardStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Pizza Margarita" FontSize="15" VerticalAlignment="Center"/>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="x1" FontSize="14"/>
+                                        <TextBlock Text="12.00€" FontWeight="Bold" FontSize="14" Width="58"/>
+
+                                        <!-- Botón eliminar -->
+                                        <Button Width="22" Height="22" Cursor="Hand">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
+                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Foreground="DarkRed" FontWeight="Bold"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- PRODUCTO 2 -->
+                            <Border Style="{StaticResource ProductoCardStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Coca Cola" FontSize="15" VerticalAlignment="Center"/>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="x2" FontSize="14"/>
+                                        <TextBlock Text="6.00€" FontWeight="Bold" FontSize="14" Width="48"/>
+
+                                        <Button Width="22" Height="22" Cursor="Hand">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
+                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Foreground="DarkRed" FontWeight="Bold"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- PRODUCTO 3 -->
+                            <Border Style="{StaticResource ProductoCardStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Tiramisú" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <TextBlock Text="x1" FontSize="14"/>
+                                        <TextBlock Text="5.00€" FontWeight="Bold" FontSize="14" Width="48"/>
+
+                                        <Button Width="22" Height="22" Cursor="Hand" HorizontalAlignment="Right">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
+                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Foreground="DarkRed" FontWeight="Bold"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Border>
+
+                <!-- Separador visual -->
+                <Rectangle Height="1" Fill="#CCCCCC" Margin="0 0 0 10" HorizontalAlignment="Stretch" Width="275"/>
+
+                <!-- Total y pago -->
+                <Grid Margin="0 0 0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Total:" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBlock Text="21.50$" Grid.Column="1" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                </Grid>
+
+                <TextBlock Text="Forma de pago:" FontWeight="Bold" FontSize="13" Margin="0 0 0 5"/>
+
+                <!-- Botones de pago -->
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Left" Cursor="Hand">
+                    <RadioButton Style="{StaticResource RadioButtonButtonStyle}"
+                 Content="Tarjeta"
+                 GroupName="MetodoPago"
+                 Width="80" HorizontalAlignment="Left"/>
+
+                    <RadioButton Style="{StaticResource RadioButtonButtonStyle}"
+                 Content="Efectivo"
+                 GroupName="MetodoPago"
+                 Width="80" HorizontalAlignment="Left"/>
+
+                    <RadioButton Style="{StaticResource RadioButtonButtonStyle}"
+                 Content="Bizum"
+                 GroupName="MetodoPago"
+                 Width="80" HorizontalAlignment="Left"/>
+                </StackPanel>
+
+
+                <!-- Texto informativo -->
+                <TextBlock Text="Pedidos >20$ acumulan 3 puntos. Puede canjearlos por envío gratis." FontSize="11" Foreground="Gray" TextWrapping="Wrap" Margin="0 0 0 10"/>
+
+                <!-- Barra inferior: Limpiar a la izquierda, Autoría+Cobrar a la derecha -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Botón Limpiar -->
+                    <Button Height="30" Width="70" HorizontalAlignment="Left" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="Limpiar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Autoría y versión" Foreground="Black" FontWeight="Bold" TextDecorations="Underline" Margin="0 0 5 0" Cursor="Hand" Height="17"/>
+                        <Button Height="30" Width="100" Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="#FF6B35" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                            <!-- CONTENIDO: ICONO + TEXTO -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0">
+                                <Image Source="/imagenes/cobrarIcon.png" Width="26" Height="22" Margin="0 0 5 0"/>
+                                <TextBlock Text="Cobrar" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+
+
+        <!-- ─────────────────────────────── -->
+        <!-- TABCONTROL OCUPA EL RESTO      -->
+        <!-- ─────────────────────────────── -->
+        <TabControl x:Name="MainTabControl" TabStripPlacement="Left" Background="#FFFFFF" BorderThickness="1"
+            SelectionChanged="MainTabControl_SelectionChanged" >
+
+            <!-- TAB PRODUCTOS -->
+            <TabItem x:Name="TabProductos" Background="Transparent" BorderBrush="Transparent" >
+                <TabItem.Header>
+                    <StackPanel x:Name="HeaderProductos" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="ImgProductos" Source="/imagenes/menuProductosOn.png" Height="64"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#FFFFFF" Margin="0,0,-12,0"/>
+            </TabItem>
+
+            <!-- TAB PEDIDOS -->
+            <TabItem x:Name="TabPedidos" Background="Transparent" BorderBrush="Transparent">
+                <TabItem.Header>
+                    <StackPanel x:Name="HeaderPedidos" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="ImgPedidos" Source="/imagenes/menuPedidosOff.png" Height="64"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#FFFFFF"/>
+            </TabItem>
+
+            <!-- TAB CLIENTES -->
+            <TabItem x:Name="TabClientes" Background="Transparent" BorderBrush="Transparent">
+                <TabItem.Header>
+                    <StackPanel x:Name="HeaderClientes" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="ImgClientes" Source="/imagenes/menuClientesOff.png" Height="64"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="#FFFFFF"/>
+            </TabItem>
+
+        </TabControl>
+
+
+    </DockPanel>
+</Window>

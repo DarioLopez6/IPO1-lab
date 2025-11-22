@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Lab_IPO1</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="imagenes\cobrarIcon.png" />
+    <None Remove="imagenes\help.png" />
+    <None Remove="imagenes\logo.png" />
+    <None Remove="imagenes\logout.png" />
+    <None Remove="imagenes\menuCLientesOff.png" />
+    <None Remove="imagenes\menuClientesOn.png" />
+    <None Remove="imagenes\menuPedidosOff.png" />
+    <None Remove="imagenes\menuPedidosOn.png" />
+    <None Remove="imagenes\menuProductosOff.png" />
+    <None Remove="imagenes\menuProductosOn.png" />
+    <None Remove="imagenes\nuevoPedido.png" />
+    <None Remove="imagenes\perfil.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imagenes\cobrarIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\logout.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuCLientesOff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuClientesOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuPedidosOff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuPedidosOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuProductosOff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\menuProductosOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\nuevoPedido.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\perfil.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
