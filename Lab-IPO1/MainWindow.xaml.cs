@@ -40,7 +40,12 @@ public partial class MainWindow : Window
             UriKind.Relative));
     }
 
-
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        LoginWindow main = new LoginWindow();
+        main.Show();
+        this.Close();
+    }
 }
 
 

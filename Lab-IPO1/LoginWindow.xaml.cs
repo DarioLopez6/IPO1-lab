@@ -12,12 +12,12 @@ namespace Lab_IPO1
         private string usuario = "admin";
         private string password = "ipo1";
 
-        private BitmapImage tick = new BitmapImage(new Uri("/imagenes/iconoTPV.png", UriKind.Relative));
-        private BitmapImage cross = new BitmapImage(new Uri("/imagenes/help.png", UriKind.Relative));
-        private BitmapImage iconUser = new BitmapImage(new Uri("/imagenes/logo.png", UriKind.Relative));
-        private BitmapImage iconPass = new BitmapImage(new Uri("/imagenes/logo.png", UriKind.Relative));
-        private BitmapImage eyeOpen = new BitmapImage(new Uri("/imagenes/iconoTPV.png", UriKind.Relative));
-        private BitmapImage eyeClosed = new BitmapImage(new Uri("/imagenes/help.png", UriKind.Relative));
+        private BitmapImage tick = new BitmapImage(new Uri("/imagenes/tick.png", UriKind.Relative));
+        private BitmapImage cross = new BitmapImage(new Uri("/imagenes/cross.png", UriKind.Relative));
+        private BitmapImage iconUser = new BitmapImage(new Uri("/imagenes/usuarioIcono.png", UriKind.Relative));
+        private BitmapImage iconPass = new BitmapImage(new Uri("/imagenes/contrasenaIcono.png", UriKind.Relative));
+        private BitmapImage eyeOpen = new BitmapImage(new Uri("/imagenes/ojoOn.png", UriKind.Relative));
+        private BitmapImage eyeClosed = new BitmapImage(new Uri("/imagenes/ojoOff.png", UriKind.Relative));
 
         private bool passwordVisible = false;
 

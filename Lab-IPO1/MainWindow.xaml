@@ -151,7 +151,7 @@
                     </Button>
 
                     <!-- BOTÓN CERRAR SESIÓN -->
-                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="106">
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="106" Click="Button_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="#FFFFFF" 

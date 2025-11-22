@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <None Remove="imagenes\cobrarIcon.png" />
+    <None Remove="imagenes\contrasenaIcono.png" />
+    <None Remove="imagenes\cross.png" />
     <None Remove="imagenes\help.png" />
     <None Remove="imagenes\iconoTPV.png" />
     <None Remove="imagenes\logo.png" />
@@ -22,11 +24,21 @@
     <None Remove="imagenes\menuProductosOff.png" />
     <None Remove="imagenes\menuProductosOn.png" />
     <None Remove="imagenes\nuevoPedido.png" />
+    <None Remove="imagenes\ojoOff.png" />
+    <None Remove="imagenes\ojoOn.png" />
     <None Remove="imagenes\perfil.png" />
+    <None Remove="imagenes\tick.png" />
+    <None Remove="imagenes\usuarioIcono.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="imagenes\cobrarIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\contrasenaIcono.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\cross.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\help.png">
@@ -62,7 +74,19 @@
     <Resource Include="imagenes\nuevoPedido.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="imagenes\ojoOff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\ojoOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="imagenes\perfil.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\tick.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\usuarioIcono.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
