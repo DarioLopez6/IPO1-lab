@@ -16,6 +16,11 @@ namespace Lab_IPO1;
 /// </summary>
 public partial class MainWindow : Window
 {
+    List<Pedido> pendientesDePago = new List<Pedido>();
+    List<Pedido> enElaboracion = new List<Pedido>();
+    List<Pedido> listosParaEntregar = new List<Pedido>();
+    List<Pedido> historial = new List<Pedido>();
+
     public MainWindow()
     {
         InitializeComponent();
@@ -59,6 +64,68 @@ public partial class MainWindow : Window
         help.Owner = this;
         help.ShowDialog();
     }
+
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+        btnenLocal.IsChecked = false;
+        btntelfono.IsChecked = false;
+        btnbizum.IsChecked = false;
+        btnefectivo.IsChecked = false;
+        btntarjeta.IsChecked = false;
+        txtcliente.Text = "";
+        txtdomicilio.Text = "";
+        txthora.Text = "";
+    }
+
+    private void Button_Click_3(object sender, RoutedEventArgs e)
+    {
+        Button_Click_2(sender, e);
+    }
+    private void Btnautoria_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void Button_Click_4(object sender, RoutedEventArgs e)
+    {
+        bool local = false;
+        if (btnenLocal.IsChecked == true) local = true;
+        string hora = txthora.Text;
+        string domicilio = txtdomicilio.Text;
+        string cliente = txtcliente.Text;
+        List<Producto> productos = new List<Producto>();
+        double total = double.Parse(txttotal.Text.Substring(0, txttotal.Text.Length-1));
+        int pago = 0;    // Forma de pago: 1=Tarjeta, 2=Efectivo, 3=Bizum
+        if (btntarjeta.IsChecked == true) pago = 1;
+        else if (btnefectivo.IsChecked == true) pago = 2;
+        else if (btnbizum.IsChecked == true) pago = 3;
+        int estado = 1;  // Estado inicial: pendiente de pago = 1
+        string puntos = "";
+        if (total > 20)
+        {
+            puntos = "+3";
+        }
+
+        if ((btnenLocal.IsChecked == btntelfono.IsChecked) ||
+            (btntarjeta.IsChecked == btnefectivo.IsChecked &&
+            btntarjeta.IsChecked == btnbizum.IsChecked) ||
+            (total == 0) || hora == "")
+        {
+            MessageBox.Show("Faltan datos obligatorios o hay datos incorrectos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        else
+        {
+
+            pendientesDePago.Add(new Pedido(local, hora, domicilio, cliente, productos, total, pago, estado, puntos));
+
+            Button_Click_2(sender, e);
+
+            txtlogo.Text = local + " " + hora + " " + domicilio + " " + cliente + " " + productos + " " + total + " " + pago + " " + estado + " " + puntos;
+        }
+
+    }
+
 }
 
 
