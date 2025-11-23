@@ -96,8 +96,9 @@
                     HorizontalAlignment="Right">
 
                     <!-- BOTÓN AYUDA -->
-                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81">
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81" Click="Button_Click_1" >
                         <Button.Template>
+                            
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="#F0F0F0" 
                                 BorderBrush="LightGray" 

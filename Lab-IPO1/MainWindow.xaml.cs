@@ -46,6 +46,19 @@ public partial class MainWindow : Window
         main.Show();
         this.Close();
     }
+    private void BtnAyuda_Click(object sender, RoutedEventArgs e)
+    {
+        HelpWindow help = new HelpWindow();
+        help.Owner = this;
+        help.ShowDialog();
+    }
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        HelpWindow help = new HelpWindow();
+        help.Owner = this;
+        help.ShowDialog();
+    }
 }
 
 

@@ -1,0 +1,57 @@
+﻿<Window x:Class="Lab_IPO1.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_IPO1"
+        mc:Ignorable="d"
+        Title="Centro de Ayuda"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Height="400" Width="500"
+        WindowStyle="ToolWindow">
+    <Grid Background="White" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- TÍTULO -->
+        <TextBlock Text="Centro de Ayuda"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Margin="0 0 0 10"/>
+
+        <!-- TEXTO -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Bienvenido a la ayuda de HomeMade."
+                           FontSize="14"
+                           TextWrapping="Wrap" Margin="0 0 0 10"/>
+
+                <TextBlock Text="• Inicio de Sesión:"
+                           FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="Introduce tu usuario y contraseña proporcionados por el administrador del TPV."
+                           TextWrapping="Wrap" Margin="0 0 0 10"/>
+
+                <TextBlock Text="• Uso de la aplicación:"
+                           FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="Desde el menú principal podrás gestionar pedidos, productos y clientes."
+                           TextWrapping="Wrap" Margin="0 0 0 10"/>
+
+                <TextBlock Text="• Soporte técnico:"
+                           FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="Para asistencia, contacta con: soporte@homemade.com"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- BOTÓN CERRAR -->
+        <Button Grid.Row="2" Content="Cerrar"
+                HorizontalAlignment="Right"
+                Width="90" Height="32"
+                Margin="0 10 0 0"
+                Click="Button_Cerrar_Click"/>
+    </Grid>
+</Window>
