@@ -61,3 +61,6 @@ C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\refin
 C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.pdb
 C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.genruntimeconfig.cache
 C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\ref\LabIPO1.dll
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\HelpWindow.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1_MarkupCompile.lref
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\HelpWindow.baml

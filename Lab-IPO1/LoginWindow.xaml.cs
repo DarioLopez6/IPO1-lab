@@ -158,5 +158,16 @@ namespace Lab_IPO1
                 this.Close();
             }
         }
+
+        private void BtnAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow help = new HelpWindow();
+            help.Owner = this;
+            help.ShowDialog();
+        }
+        private void BtnRecuperar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("La contraseña para el usuario 'admin' es 'ipo1'.", "Recuperar Contraseña", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
