@@ -39,3 +39,25 @@ C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Vis
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\ref\LabIPO1.dll
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.g.cs
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.baml
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.exe
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.deps.json
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.runtimeconfig.json
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.dll
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\LabIPO1.pdb
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.baml
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LoginWindow.g.cs
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1_MarkupCompile.cache
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.g.resources
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.AssemblyInfoInputs.cache
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.AssemblyInfo.cs
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.csproj.CoreCompileInputs.cache
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.sourcelink.json
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.dll
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\refint\LabIPO1.dll
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.pdb
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\LabIPO1.genruntimeconfig.cache
+C:\Users\rugar\Documents\GitHub\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\ref\LabIPO1.dll

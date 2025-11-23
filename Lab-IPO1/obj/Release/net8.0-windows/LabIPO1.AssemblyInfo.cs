@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LabIPO1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+775fed83789b7cd373b8f762793111eb2b2728e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e349e26485f5611f7553b3d42059d4943de92c42")]
 [assembly: System.Reflection.AssemblyProductAttribute("LabIPO1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LabIPO1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

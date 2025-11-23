@@ -455,7 +455,27 @@
                         <Image x:Name="ImgProductos" Source="/imagenes/menuProductosOn.png" Height="64"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Background="#FFFFFF" Margin="0,0,-12,0"/>
+                <Grid Background="#FFFFFF" Margin="0,0,-12,0">
+                    <DockPanel LastChildFill="False">
+
+                    </DockPanel>
+                    <Button Cursor="Hand" Margin="10,0,680,605">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="#FF6B35" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <!-- CONTENIDO: ICONO + TEXTO -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0">
+                            <Image Source="/imagenes/cobrarIcon.png" Width="26" Height="22" Margin="0 0 5 0"/>
+                            <TextBlock Text="Entrantes" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                
             </TabItem>
 
             <!-- TAB PEDIDOS -->
