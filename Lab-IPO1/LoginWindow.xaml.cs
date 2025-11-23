@@ -169,5 +169,10 @@ namespace Lab_IPO1
         {
             MessageBox.Show("La contraseña para el usuario 'admin' es 'ipo1'.", "Recuperar Contraseña", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void Btnautoria_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
