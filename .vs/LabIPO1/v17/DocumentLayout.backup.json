@@ -49,10 +49,11 @@
               "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml.cs",
               "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAswH4AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAYwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T15:40:26.724Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -70,9 +71,10 @@
               "RelativeDocumentMoniker": "Lab-IPO1\\Pedido.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Pedido.cs",
               "RelativeToolTip": "Lab-IPO1\\Pedido.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T18:24:37.971Z"
+              "WhenOpened": "2025-11-23T18:24:37.971Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -82,9 +84,10 @@
               "RelativeDocumentMoniker": "Lab-IPO1\\Producto.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Producto.cs",
               "RelativeToolTip": "Lab-IPO1\\Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T19:04:57.595Z"
+              "WhenOpened": "2025-11-23T19:04:57.595Z",
+              "EditorCaption": ""
             }
           ]
         }

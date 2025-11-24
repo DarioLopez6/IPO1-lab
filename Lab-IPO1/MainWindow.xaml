@@ -97,7 +97,7 @@
                     <!-- BOTÓN AYUDA -->
                     <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81" Click="Button_Click_1" >
                         <Button.Template>
-                            
+
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="#F0F0F0" 
                                 BorderBrush="LightGray" 
@@ -274,97 +274,61 @@
                 <!-- ────────── LISTA DE PRODUCTOS SCROLLEABLE ────────── -->
                 <Border Background="#F9F9F9" CornerRadius="10" Padding="10" Margin="0 0 0 10" Height="184">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
 
-                            <!-- PRODUCTO 1 -->
-                            <Border Style="{StaticResource ProductoCardStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                        <!-- LISTA DINÁMICA DE PRODUCTOS -->
+                        <ItemsControl x:Name="listaProductos">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
 
-                                    <TextBlock Text="Pizza Margarita" FontSize="15" VerticalAlignment="Center"/>
+                                    <!-- La tarjeta de producto mantiene tu mismo estilo -->
+                                    <Border Style="{StaticResource ProductoCardStyle}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
 
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="x1" FontSize="14"/>
-                                        <TextBlock Text="12.00€" FontWeight="Bold" FontSize="14" Width="58"/>
+                                            <!-- Nombre del producto -->
+                                            <TextBlock Text="{Binding Nombre}" FontSize="15" VerticalAlignment="Center"/>
 
-                                        <!-- Botón eliminar -->
-                                        <Button Width="22" Height="22" Cursor="Hand">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
-                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               Foreground="DarkRed" FontWeight="Bold"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                                            <!-- Cantidad, precio y botón eliminar -->
+                                            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
 
-                            <!-- PRODUCTO 2 -->
-                            <Border Style="{StaticResource ProductoCardStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                                <!-- Cantidad -->
+                                                <TextBlock Text="x{Binding Cantidad}" FontSize="14"/>
 
-                                    <TextBlock Text="Coca Cola" FontSize="15" VerticalAlignment="Center"/>
+                                                <!-- Precio -->
+                                                <TextBlock Text="{Binding PrecioTexto}" 
+                                           FontWeight="Bold" FontSize="14" Width="58"/>
 
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="x2" FontSize="14"/>
-                                        <TextBlock Text="6.00€" FontWeight="Bold" FontSize="14" Width="48"/>
+                                                <!-- Botón eliminar -->
+                                                <Button Width="22" Height="22" Cursor="Hand"
+                                        Click="EliminarProducto_Click">
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Background="#FFCCCC" CornerRadius="5"
+                                                    BorderBrush="#AA0000" BorderThickness="1">
+                                                                <TextBlock Text="✕" 
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="DarkRed"
+                                                           FontWeight="Bold"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
 
-                                        <Button Width="22" Height="22" Cursor="Hand">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
-                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               Foreground="DarkRed" FontWeight="Bold"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
 
-                            <!-- PRODUCTO 3 -->
-                            <Border Style="{StaticResource ProductoCardStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                                    <TextBlock Text="Tiramisú" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                        <TextBlock Text="x1" FontSize="14"/>
-                                        <TextBlock Text="5.00€" FontWeight="Bold" FontSize="14" Width="48"/>
-
-                                        <Button Width="22" Height="22" Cursor="Hand" HorizontalAlignment="Right">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Background="#FFCCCC" CornerRadius="5" BorderBrush="#AA0000" BorderThickness="1">
-                                                        <TextBlock Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               Foreground="DarkRed" FontWeight="Bold"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-
-                        </StackPanel>
                     </ScrollViewer>
-
                 </Border>
+
 
                 <!-- Separador visual -->
                 <Rectangle Height="1" Fill="#CCCCCC" Margin="0 0 0 10" HorizontalAlignment="Stretch" Width="275"/>
@@ -616,13 +580,7 @@
                             <!-- ========================== -->
                             <!--   FASE: PENDIENTES DE PAGO -->
                             <!-- ========================== -->
-                            <Border Background="#FAFAFA"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0 0 20 0"
-                    Width="320"
-                    BorderBrush="#CCCCCC"
-                    BorderThickness="1">
+                            <Border Background="#FAFAFA" CornerRadius="12" Padding="12" Margin="0 0 20 0" Width="320" BorderBrush="#CCCCCC" BorderThickness="1">
                                 <StackPanel>
                                     <Grid Margin="0 0 0 10">
                                         <Grid.ColumnDefinitions>
@@ -630,65 +588,14 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="Pendientes de pago"
-                                   FontSize="18"
-                                   FontWeight="Bold"/>
-                                        <Border Grid.Column="1"
-                                Background="#FF6B35"
-                                CornerRadius="10"
-                                Padding="8 2">
-                                            <TextBlock Text="2"
-                                       Foreground="White"
-                                       FontWeight="Bold"/>
+                                        <TextBlock Text="Pendientes de pago" FontSize="18" FontWeight="Bold"/>
+                                        <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8 2">
+                                            <TextBlock x:Name="txtNumPendientes" Text="0" Foreground="White" FontWeight="Bold"/>
                                         </Border>
                                     </Grid>
 
-                                    <!-- Lista de pedidos -->
-                                    <StackPanel>
-
-                                        <!-- Pedido comprimido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="ID: 101 - Juan Pérez" FontWeight="Bold"/>
-                                                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                    <TextBlock Text="Local" Margin="0 0 10 0"/>
-                                                    <TextBlock Text="12,50€" FontWeight="Bold"/>
-                                                    <TextBlock Text="▼" Margin="5,0,0,0"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- Pedido extendido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Text="ID: 102 - Ana López" FontWeight="Bold"/>
-                                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                        <TextBlock Text="Teléfono" Margin="0 0 10 0"/>
-                                                        <TextBlock Text="18,00€" FontWeight="Bold"/>
-                                                        <TextBlock Text="▲" Margin="5,0,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-
-                                                <!-- Detalle desplegado -->
-                                                <StackPanel Margin="0 8 0 0">
-                                                    <TextBlock Text="Hora entrega: 15:30"/>
-                                                    <TextBlock Text="Dirección: C/ Mayor 12"/>
-                                                    <TextBlock Text="Productos: Pizza x1, Coca Cola x2"/>
-                                                    <TextBlock Text="Forma pago: Efectivo"/>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Border>
-
-                                    </StackPanel>
+                                    <!-- Aqui se añadirán los pedidos en runtime -->
+                                    <StackPanel x:Name="listaPendientesPago" />
                                 </StackPanel>
                             </Border>
 
@@ -696,78 +603,27 @@
                             <!--   FASE: EN ELABORACIÓN     -->
                             <!-- ========================== -->
                             <Border Background="#FAFAFA"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0 0 20 0"
-                    Width="320"
-                    BorderBrush="#CCCCCC"
-                    BorderThickness="1">
+                                      CornerRadius="12"
+                                      Padding="12"
+                                      Margin="0 0 20 0"
+                                      Width="320"
+                                      BorderBrush="#CCCCCC"
+                                      BorderThickness="1">
                                 <StackPanel>
                                     <Grid Margin="0 0 0 10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Text="En elaboración"
-                                   FontSize="18"
-                                   FontWeight="Bold"/>
-                                        <Border Grid.Column="1"
-                                Background="#FF6B35"
-                                CornerRadius="10"
-                                Padding="8 2">
-                                            <TextBlock Text="1"
-                                       Foreground="White"
-                                       FontWeight="Bold"/>
+                                        <TextBlock Text="En elaboración" 
+                                             FontSize="18"
+                                             FontWeight="Bold"/>
+                                        <Border 
+                                              Background="#FF6B35"
+                                              CornerRadius="10"
+                                              Padding="8 2" Margin="270,0,0,0">
+                                            <TextBlock x:Name="txtNumEnElaboracion" Text="0"
+                                                     Foreground="White"
+                                                     FontWeight="Bold"/>
                                         </Border>
                                     </Grid>
-
-                                    <!-- Lista de pedidos -->
-                                    <StackPanel>
-
-                                        <!-- Pedido extendido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Text="ID: 201 - Luis Gómez" FontWeight="Bold"/>
-                                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                        <TextBlock Text="Local" Margin="0 0 10 0"/>
-                                                        <TextBlock Text="22,00€" FontWeight="Bold"/>
-                                                        <TextBlock Text="▲" Margin="5,0,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-
-                                                <!-- Detalle desplegado -->
-                                                <StackPanel Margin="0 8 0 0">
-                                                    <TextBlock Text="Hora entrega: 16:00"/>
-                                                    <TextBlock Text="Dirección: ---"/>
-                                                    <TextBlock Text="Productos: Pizza x2"/>
-                                                    <TextBlock Text="Forma pago: Tarjeta"/>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <!-- Pedido comprimido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="ID: 202 - Marta Ruiz" FontWeight="Bold"/>
-                                                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                    <TextBlock Text="Teléfono" Margin="0 0 10 0"/>
-                                                    <TextBlock Text="10,00€" FontWeight="Bold"/>
-                                                    <TextBlock Text="▼" Margin="5,0,0,0"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                    </StackPanel>
+                                    <StackPanel x:Name="listaEnElaboracion" />
                                 </StackPanel>
                             </Border>
 
@@ -775,52 +631,24 @@
                             <!--   FASE: LISTOS PARA ENTREGAR -->
                             <!-- ========================== -->
                             <Border Background="#FAFAFA"
-                    CornerRadius="12"
-                    Padding="12"
-                    Margin="0 0 20 0"
-                    Width="320"
-                    BorderBrush="#CCCCCC"
-                    BorderThickness="1">
+                                  CornerRadius="12"
+                                  Padding="12"
+                                  Margin="0 0 20 0"
+                                  Width="320"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1">
                                 <StackPanel>
                                     <Grid Margin="0 0 0 10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Text="Listos para entregar"
-                                   FontSize="18"
-                                   FontWeight="Bold"/>
-                                        <Border Grid.Column="1"
-                                Background="#FF6B35"
-                                CornerRadius="10"
-                                Padding="8 2">
-                                            <TextBlock Text="1"
-                                       Foreground="White"
-                                       FontWeight="Bold"/>
+                                        <TextBlock Text="Listos para entregar" FontSize="18" FontWeight="Bold"/>
+                                        <Border Grid.Column="1" Background="#FF6B35"
+                                              CornerRadius="10"
+                                              Padding="8 2" Margin="270,0,0,0">
+                                            <TextBlock x:Name="txtNumListos" Text="0" 
+                                                 Foreground="White"
+                                                 FontWeight="Bold"/>
                                         </Border>
                                     </Grid>
-
-                                    <!-- Lista de pedidos -->
-                                    <StackPanel>
-
-                                        <!-- Pedido comprimido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="ID: 301 - Pedro Martínez" FontWeight="Bold"/>
-                                                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                    <TextBlock Text="Local" Margin="0 0 10 0"/>
-                                                    <TextBlock Text="15,00€" FontWeight="Bold"/>
-                                                    <TextBlock Text="▼" Margin="5,0,0,0"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                    </StackPanel>
+                                    <StackPanel x:Name="listaListos" />
                                 </StackPanel>
                             </Border>
 
@@ -828,61 +656,25 @@
                             <!--   FASE: HISTORIAL -->
                             <!-- ========================== -->
                             <Border Background="#FAFAFA"
-                    CornerRadius="12"
-                    Padding="12"
-                    Width="320"
-                    BorderBrush="#CCCCCC"
-                    BorderThickness="1">
+                                  CornerRadius="12"
+                                  Padding="12"
+                                  Width="320"
+                                  BorderBrush="#CCCCCC"
+                                  BorderThickness="1">
                                 <StackPanel>
                                     <Grid Margin="0 0 0 10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Text="Historial"
-                                   FontSize="18"
-                                   FontWeight="Bold"/>
-                                        <Border Grid.Column="1"
-                                Background="#FF6B35"
-                                CornerRadius="10"
-                                Padding="8 2">
-                                            <TextBlock Text="1"
-                                       Foreground="White"
-                                       FontWeight="Bold"/>
+                                        <TextBlock Text="Historial" FontSize="18" FontWeight="Bold"/>
+                                        <Border Grid.Column="1" 
+                                              Background="#FF6B35"
+                                              CornerRadius="10"
+                                              Padding="8 2" Margin="270,0,0,0">
+                                            <TextBlock x:Name="txtNumHistorial" Text="0" Foreground="White" FontWeight="Bold"/>
                                         </Border>
                                     </Grid>
-
-                                    <StackPanel>
-
-                                        <!-- Pedido extendido -->
-                                        <Border Background="#FFFFFF" CornerRadius="8" Padding="8" Margin="0 0 0 8" BorderBrush="#DDDDDD" BorderThickness="1">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Text="ID: 401 - Laura Gómez" FontWeight="Bold"/>
-                                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                                        <TextBlock Text="Teléfono" Margin="0 0 10 0"/>
-                                                        <TextBlock Text="20,00€" FontWeight="Bold"/>
-                                                        <TextBlock Text="▲" Margin="5,0,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-
-                                                <StackPanel Margin="0 8 0 0">
-                                                    <TextBlock Text="Hora entrega: 17:00"/>
-                                                    <TextBlock Text="Dirección: C/ Luna 7"/>
-                                                    <TextBlock Text="Productos: Pasta x1, Agua x1"/>
-                                                    <TextBlock Text="Forma pago: Bizum"/>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Border>
-
-                                    </StackPanel>
+                                    <StackPanel x:Name="listaHistorial" />
                                 </StackPanel>
                             </Border>
+
 
                         </StackPanel>
                     </ScrollViewer>
