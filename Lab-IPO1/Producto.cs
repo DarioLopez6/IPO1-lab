@@ -8,5 +8,11 @@ namespace Lab_IPO1
 {
     class Producto
     {
+        public string Nombre { get; set; }
+        public int Cantidad { get; set; }
+        public double Precio { get; set; }
+
+        public string PrecioTexto => Precio.ToString("0.00") + "€";
     }
+
 }
