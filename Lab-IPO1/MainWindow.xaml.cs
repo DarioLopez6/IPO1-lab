@@ -292,6 +292,13 @@ public partial class MainWindow : Window
         txtcliente.Text = "";
         txtdomicilio.Text = "";
         txthora.Text = "";
+        txterrorTipoPedido.Visibility = Visibility.Hidden;
+        txterrorHora.Visibility = Visibility.Hidden;
+        txterrorDomicilio.Visibility = Visibility.Hidden;
+        txterrorCliente.Visibility = Visibility.Hidden;
+        txterrorPago.Visibility = Visibility.Hidden;
+        txtpedidoVacio.Visibility = Visibility.Hidden;
+        txterrorPedido.Visibility = Visibility.Hidden;
     }
 
     private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -326,13 +333,86 @@ public partial class MainWindow : Window
         if ((btnenLocal.IsChecked == btntelfono.IsChecked) ||
             (btntarjeta.IsChecked == btnefectivo.IsChecked &&
             btntarjeta.IsChecked == btnbizum.IsChecked) ||
-            (total == 0) || hora == "")
+            (total == 0) || hora == ""|| cliente == "" ||(domicilio == "" && btntelfono.IsChecked == true))
         {
-            MessageBox.Show("Faltan datos obligatorios o hay datos incorrectos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            // 1. Tipo de pedido
+            if (btnenLocal.IsChecked == false && btntelfono.IsChecked == false)
+            {
+                txterrorTipoPedido.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorTipoPedido.Visibility = Visibility.Hidden;
+            }
+
+            // 2. Hora
+            if (string.IsNullOrWhiteSpace(hora))
+            {
+                txterrorHora.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorHora.Visibility = Visibility.Hidden;
+            }
+
+            // 3. Domicilio (solo obligatorio si NO es 'En local')
+            if (btntelfono.IsChecked == true && domicilio == "")
+            {
+                txterrorDomicilio.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorDomicilio.Visibility = Visibility.Hidden;
+            }
+
+            // 4. Cliente
+            if (string.IsNullOrWhiteSpace(cliente))
+            {
+                txterrorCliente.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorCliente.Visibility = Visibility.Hidden;
+            }
+
+            // 5. Método de pago
+            if (btntarjeta.IsChecked == false && btnefectivo.IsChecked == false && btnbizum.IsChecked == false)
+            {
+                txterrorPago.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorPago.Visibility = Visibility.Hidden;
+            }
+
+            // 6. Total vacío
+            if (total == 0)
+            {
+                txtpedidoVacio.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtpedidoVacio.Visibility = Visibility.Hidden;
+            }
+
+            // 7. Error general
+            if (txterrorTipoPedido.Visibility == Visibility.Visible ||
+                txterrorHora.Visibility == Visibility.Visible ||
+                txterrorCliente.Visibility == Visibility.Visible ||
+                txterrorPago.Visibility == Visibility.Visible ||
+                txtpedidoVacio.Visibility == Visibility.Visible)
+            {
+                txterrorPedido.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txterrorPedido.Visibility = Visibility.Hidden;
+            }
+
         }
         else
         {
+            txterrorDomicilio.Visibility = Visibility.Hidden;
             Pedido pedido = new Pedido(local, hora, domicilio, cliente, productos, total, pago, estado, puntos);
             pendientesDePago.Add(pedido);
             AgregarPedidoAFase(pedido);

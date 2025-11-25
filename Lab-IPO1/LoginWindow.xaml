@@ -91,7 +91,7 @@
             </Border>
 
             <!-- Recordar sesión -->
-            <CheckBox Content="Mantener sesión iniciada en este equipo" ToolTip="Esto en realidad no hace nada" Foreground="#666" Margin="0 0 0 18" Width="241" HorizontalAlignment="Left"/>
+            <CheckBox Content="Mantener sesión iniciada en este equipo" ToolTip="Activar si no quieres cerrar sesion al cerrar la App" Foreground="#666" Margin="0 0 0 18" Width="241" HorizontalAlignment="Left"/>
         </StackPanel>
 
         <!-- Autoría + Acceder -->
