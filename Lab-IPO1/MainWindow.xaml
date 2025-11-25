@@ -185,188 +185,188 @@
                 <ColumnDefinition Width="400"/>
                 <!-- Para el Border de Pedido Actual -->
             </Grid.ColumnDefinitions>
-            
+
             <!-- ─────────────────────────────── -->
-        <!-- TABCONTROL OCUPA EL RESTO      -->
-        <!-- ─────────────────────────────── -->
-        <TabControl x:Name="MainTabControl"
+            <!-- TABCONTROL OCUPA EL RESTO      -->
+            <!-- ─────────────────────────────── -->
+            <TabControl x:Name="MainTabControl"
                 TabStripPlacement="Left" Grid.Column="0"
                 SelectionChanged="MainTabControl_SelectionChanged"
                 BorderThickness="1" Background="#FFFFFF">
 
-            <!-- TAB PRODUCTOS -->
-            <TabItem x:Name="TabProductos" Background="Transparent">
-                <TabItem.Header>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                        <Image x:Name="ImgProductos" Height="64" Source="/imagenes/menuProductosOn.png"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <Grid Background="#FFFFFF" Margin="0">
-                    <Button Cursor="Hand" Margin="10">
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#FF6B35">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="26" Height="22" Source="/imagenes/cobrarIcon.png" Margin="0,0,5,0"/>
-                            <TextBlock Foreground="White" Text="Entrantes" VerticalAlignment="Center"/>
+                <!-- TAB PRODUCTOS -->
+                <TabItem x:Name="TabProductos" Background="Transparent">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Image x:Name="ImgProductos" Height="64" Source="/imagenes/menuProductosOn.png"/>
                         </StackPanel>
-                    </Button>
-                </Grid>
-            </TabItem>
+                    </TabItem.Header>
+                    <Grid Background="#FFFFFF" Margin="0">
+                        <Button Cursor="Hand" Margin="10">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#FF6B35">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Width="26" Height="22" Source="/imagenes/cobrarIcon.png" Margin="0,0,5,0"/>
+                                <TextBlock Foreground="White" Text="Entrantes" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </TabItem>
 
-            <!-- TAB PEDIDOS -->
-            <TabItem x:Name="TabPedidos" Background="Transparent">
-                <TabItem.Header>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                        <Image x:Name="ImgPedidos" Height="64" Source="/imagenes/menuPedidosOff.png"/>
-                    </StackPanel>
-                </TabItem.Header>
+                <!-- TAB PEDIDOS -->
+                <TabItem x:Name="TabPedidos" Background="Transparent">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Image x:Name="ImgPedidos" Height="64" Source="/imagenes/menuPedidosOff.png"/>
+                        </StackPanel>
+                    </TabItem.Header>
 
-                <Grid Background="#FFFFFF">
-                    <!-- Barra superior -->
-                    <Border Padding="15" BorderThickness="0,0,0,1" BorderBrush="#DDDDDD" Background="#FFFFFF">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                    <Grid Background="#FFFFFF">
+                        <!-- Barra superior -->
+                        <Border Padding="15" BorderThickness="0,0,0,1" BorderBrush="#DDDDDD" Background="#FFFFFF">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <TextBlock Text="Gestión de Pedidos" FontSize="22" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <TextBlock Text="Gestión de Pedidos" FontSize="22" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                            <Grid Grid.Row="1" Height="40">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="1" Height="40">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <!-- Buscador + Combo -->
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
-                                    <DockPanel Width="220" Height="32" Background="#F5F5F5" Margin="0,0,10,0">
-                                        <Image Width="18" Height="18" Margin="5,0" VerticalAlignment="Center" Source="/imagenes/logo.png"/>
-                                        <TextBox x:Name="TxtBuscarPedido" BorderThickness="0" Background="Transparent" Padding="10,0" FontSize="14"/>
-                                    </DockPanel>
+                                    <!-- Buscador + Combo -->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                        <DockPanel Width="220" Height="32" Background="#F5F5F5" Margin="0,0,10,0">
+                                            <Image Width="18" Height="18" Margin="5,0" VerticalAlignment="Center" Source="/imagenes/lupaIcono.png"/>
+                                            <TextBox x:Name="txtBuscador" TextChanged="txtBuscador_TextChanged" BorderThickness="0" Background="Transparent" Padding="10,0" FontSize="14" VerticalAlignment="Center"/>
+                                        </DockPanel>
 
-                                    <ComboBox Width="160" Height="32" SelectedIndex="0" Padding="5" x:Name="CmbFiltrosPedido" BorderBrush="#BBBBBB">
-                                        <ComboBoxItem Content="Todos los filtros"/>
-                                        <ComboBoxItem Content="Pendientes de pago"/>
-                                        <ComboBoxItem Content="En elaboración"/>
-                                        <ComboBoxItem Content="Listos para entrega"/>
-                                        <ComboBoxItem Content="Historial"/>
-                                        <ComboBoxItem Content="Clientes registrados"/>
-                                        <ComboBoxItem Content="Pedidos telefónicos"/>
-                                    </ComboBox>
-                                </StackPanel>
+                                        <ComboBox x:Name="cmbFiltroPedido" Width="140" SelectedItem="0"
+          SelectionChanged="cmbFiltroPedido_SelectionChanged">
+                                            <ComboBoxItem Content="Todos" IsSelected="True"/>
+                                            <ComboBoxItem Content="Local"/>
+                                            <ComboBoxItem Content="Teléfono"/>
+                                        </ComboBox>
 
-                                <!-- RadioButtons -->
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
-                                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}" GroupName="FiltroTiempo" Content="Hoy"/>
-                                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}" GroupName="FiltroTiempo" Content="Ayer"/>
-                                    <RadioButton Width="90" Style="{StaticResource RadioButtonButtonStyle}" GroupName="FiltroTiempo" Content="Semana"/>
-                                </StackPanel>
+                                        <ComboBox x:Name="cmbFiltroPago" Width="140" SelectedItem="0"
+                                            SelectionChanged="cmbFiltroPago_SelectionChanged">
+                                            <ComboBoxItem Content="Todos" IsSelected="True"/>
+                                            <ComboBoxItem Content="Tarjeta"/>
+                                            <ComboBoxItem Content="Efectivo"/>
+                                            <ComboBoxItem Content="Bizum"/>
+                                        </ComboBox>
+                                        
+                                    </StackPanel>
+
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Border>
+                        </Border>
 
-                    <!-- Fases scroll horizontal -->
-                    <ScrollViewer Margin="10,125,10,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PanningMode="HorizontalOnly">
-                        <StackPanel Orientation="Horizontal">
-                            <!-- PENDIENTES -->
-                            <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
-                                <DockPanel>
-                                    <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Pendientes de pago" FontSize="18" FontWeight="Bold"/>
-                                        <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
-                                            <TextBlock Text="0" x:Name="txtNumPendientes" Foreground="White" FontWeight="Bold"/>
-                                        </Border>
-                                    </Grid>
-                                    <ScrollViewer Height="419" VerticalScrollBarVisibility="Auto">
-                                        <StackPanel x:Name="listaPendientesPago"/>
-                                    </ScrollViewer>
-                                </DockPanel>
-                            </Border>
+                        <!-- Fases scroll horizontal -->
+                        <ScrollViewer Margin="10,125,10,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PanningMode="HorizontalOnly">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- PENDIENTES -->
+                                <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
+                                    <DockPanel>
+                                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Pendientes de pago" FontSize="18" FontWeight="Bold"/>
+                                            <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
+                                                <TextBlock Text="0" x:Name="txtNumPendientes" Foreground="White" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                        <ScrollViewer Height="419" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="listaPendientesPago"/>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Border>
 
-                            <!-- EN ELABORACIÓN -->
-                            <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
-                                <DockPanel>
-                                    <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="En elaboración" FontSize="18" FontWeight="Bold"/>
-                                        <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
-                                            <TextBlock Text="0" x:Name="txtNumEnElaboracion" Foreground="White" FontWeight="Bold"/>
-                                        </Border>
-                                    </Grid>
-                                    <ScrollViewer Height="419" VerticalScrollBarVisibility="Auto">
-                                        <StackPanel x:Name="listaEnElaboracion"/>
-                                    </ScrollViewer>
-                                </DockPanel>
-                            </Border>
+                                <!-- EN ELABORACIÓN -->
+                                <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
+                                    <DockPanel>
+                                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="En elaboración" FontSize="18" FontWeight="Bold"/>
+                                            <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
+                                                <TextBlock Text="0" x:Name="txtNumEnElaboracion" Foreground="White" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                        <ScrollViewer Height="419" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="listaEnElaboracion"/>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Border>
 
-                            <!-- LISTOS -->
-                            <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
-                                <DockPanel>
-                                    <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Listos para entregar" FontSize="18" FontWeight="Bold"/>
-                                        <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
-                                            <TextBlock Text="0" x:Name="txtNumListos" Foreground="White" FontWeight="Bold"/>
-                                        </Border>
-                                    </Grid>
-                                    <ScrollViewer Height="420" VerticalScrollBarVisibility="Auto">
-                                        <StackPanel x:Name="listaListos"/>
-                                    </ScrollViewer>
-                                </DockPanel>
-                            </Border>
+                                <!-- LISTOS -->
+                                <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
+                                    <DockPanel>
+                                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Listos para entregar" FontSize="18" FontWeight="Bold"/>
+                                            <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
+                                                <TextBlock Text="0" x:Name="txtNumListos" Foreground="White" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                        <ScrollViewer Height="420" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="listaListos"/>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Border>
 
-                            <!-- HISTORIAL -->
-                            <Border Width="320" Padding="12" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
-                                <DockPanel>
-                                    <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Historial" FontSize="18" FontWeight="Bold"/>
-                                        <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
-                                            <TextBlock Text="0" x:Name="txtNumHistorial" Foreground="White" FontWeight="Bold"/>
-                                        </Border>
-                                    </Grid>
-                                    <ScrollViewer Height="420" VerticalScrollBarVisibility="Auto">
-                                        <StackPanel x:Name="listaHistorial"/>
-                                    </ScrollViewer>
-                                </DockPanel>
-                            </Border>
+                                <!-- HISTORIAL -->
+                                <Border Width="320" Padding="12" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
+                                    <DockPanel>
+                                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Historial" FontSize="18" FontWeight="Bold"/>
+                                            <Border Grid.Column="1" Background="#FF6B35" CornerRadius="10" Padding="8,2">
+                                                <TextBlock Text="0" x:Name="txtNumHistorial" Foreground="White" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                        <ScrollViewer Height="420" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="listaHistorial"/>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Border>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </Grid>
+                </TabItem>
+
+                <!-- TAB CLIENTES -->
+                <TabItem x:Name="TabClientes" Background="Transparent">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Image x:Name="ImgClientes" Height="64" Source="/imagenes/menuClientesOff.png"/>
                         </StackPanel>
-                    </ScrollViewer>
+                    </TabItem.Header>
+                    <Grid Background="#FFFFFF"/>
+                </TabItem>
 
-                </Grid>
-            </TabItem>
-
-            <!-- TAB CLIENTES -->
-            <TabItem x:Name="TabClientes" Background="Transparent">
-                <TabItem.Header>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                        <Image x:Name="ImgClientes" Height="64" Source="/imagenes/menuClientesOff.png"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <Grid Background="#FFFFFF"/>
-            </TabItem>
-
-        </TabControl>
-            <Border 
+            </TabControl>
+            <Border x:Name="pedidoActual" 
 Background="#FFFFFF" Grid.Column="1"
 BorderBrush="#CCCCCC"
 BorderThickness="1"

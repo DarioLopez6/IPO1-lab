@@ -37,7 +37,111 @@ public partial class MainWindow : Window
         ActualizarTotal();
         CargarEjemplosPedidos();
         CargarPedidos(); //carga los pedidos de prueba en las 4 listas
+        FiltrarYBuscarPedidos();
     }
+    private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        FiltrarYBuscarPedidos();
+    }
+
+    private void cmbFiltroPedido_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        FiltrarYBuscarPedidos();
+    }
+
+    private void cmbFiltroPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        FiltrarYBuscarPedidos();
+    }
+
+    private void PintarPedidosFiltrados(List<Pedido> lista)
+    {
+        // Protege contra controles no inicializados
+        if (listaPendientesPago == null || listaEnElaboracion == null ||
+            listaListos == null || listaHistorial == null)
+            return;
+
+        listaPendientesPago.Children.Clear();
+        listaEnElaboracion.Children.Clear();
+        listaListos.Children.Clear();
+        listaHistorial.Children.Clear();
+
+        foreach (var p in lista)
+        {
+            var card = CrearCardPedido(p);
+
+            switch (p.Estado)
+            {
+                case 1: listaPendientesPago.Children.Add(card); break;
+                case 2: listaEnElaboracion.Children.Add(card); break;
+                case 3: listaListos.Children.Add(card); break;
+                case 4: listaHistorial.Children.Add(card); break;
+            }
+        }
+
+        ActualizarContadores();
+    }
+
+
+
+    private void FiltrarYBuscarPedidos()
+    {
+        string busqueda = txtBuscador.Text.Trim().ToLower();
+        string filtroPedido = "Todos";
+        if (cmbFiltroPedido.SelectedItem is ComboBoxItem cpi && cpi.Content != null)
+            filtroPedido = cpi.Content.ToString();
+        string filtroPago = "Todos";
+        if (cmbFiltroPago != null && cmbFiltroPago.SelectedItem is ComboBoxItem cpf && cpf.Content != null)
+        {
+            filtroPago = cpf.Content.ToString();
+        }
+
+
+        var filtrados = pedidos.Where(p =>
+        {
+            // -------------------------------
+            // 1. FILTRO TIPO PEDIDO
+            // -------------------------------
+            bool coincidePedido =
+                filtroPedido == "Todos" ||
+                (filtroPedido == "Local" && p.Local) ||
+                (filtroPedido == "Teléfono" && !p.Local);
+
+            // -------------------------------
+            // 2. FILTRO TIPO PAGO
+            // -------------------------------
+            string pagoReal = p.Pago switch
+            {
+                1 => "Tarjeta",
+                2 => "Efectivo",
+                _ => "Bizum"
+            };
+
+            bool coincidePago =
+                filtroPago == "Todos" ||
+                pagoReal.Equals(filtroPago, StringComparison.OrdinalIgnoreCase);
+
+            // -------------------------------
+            // 3. BUSCADOR — CREA UN TEXTO GIGANTE DEL PEDIDO
+            // -------------------------------
+            string textoCompleto =
+                $"{p.Id} {p.Cliente} {p.Hora} {p.Domicilio} {(p.Local ? "Local" : "Teléfono")} {pagoReal} {p.Total} " +
+                string.Join(" ", p.Productos.Select(prod => $"{prod.Nombre} {prod.Cantidad}"));
+
+            bool coincideBusqueda =
+                string.IsNullOrWhiteSpace(busqueda) ||
+                textoCompleto.ToLower().Contains(busqueda);
+
+            return coincidePedido && coincidePago && coincideBusqueda;
+        }).ToList();
+
+        // -------------------------------
+        // 4. PINTAR RESULTADOS
+        // -------------------------------
+        PintarPedidosFiltrados(filtrados);
+    }
+
+
     private void AgregarPedidoAFase(Pedido p)
     {
         var card = CrearCardPedido(p);
@@ -415,6 +519,7 @@ public partial class MainWindow : Window
             txterrorDomicilio.Visibility = Visibility.Hidden;
             Pedido pedido = new Pedido(local, hora, domicilio, cliente, productos, total, pago, estado, puntos);
             pendientesDePago.Add(pedido);
+            pedidos.Add(pedido);
             AgregarPedidoAFase(pedido);
             Button_Click_2(sender, e);
             ActualizarTotal();
