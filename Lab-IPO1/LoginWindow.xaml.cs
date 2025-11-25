@@ -157,6 +157,19 @@ namespace Lab_IPO1
                 main.Show();
                 this.Close();
             }
+            else
+            {
+                if(BorderUsuario.BorderBrush == Brushes.Green)
+                {
+                    txterrorContrasena.Visibility = Visibility.Visible;
+                    txterrorUsuario.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    txterrorUsuario.Visibility = Visibility.Visible;
+                    txterrorContrasena.Visibility = Visibility.Hidden;
+                }
+            }
         }
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
