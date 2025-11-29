@@ -13,7 +13,7 @@ namespace Lab_IPO1
         public string Hora { get; set; }
         public string Domicilio { get; set; }
         public string Cliente { get; set; }
-        public List<Producto> Productos { get; set; } = new List<Producto>();
+        public List<Plato> Platos { get; set; } = new List<Plato>();
         public double Total { get; set; }
         public int Pago { get; set; }             // 1=tarjeta,2=efectivo,3=bizum
         public int Estado { get; set; }           // 1..4
@@ -21,13 +21,13 @@ namespace Lab_IPO1
 
 
         // Constructor opcional
-        public Pedido(bool local, string hora, string domicilio, string cliente, List<Producto> productos, double total, int pago, int estado, string puntos)
+        public Pedido(bool local, string hora, string domicilio, string cliente, List<Plato> platos, double total, int pago, int estado, string puntos)
         {
             Local = local;
             Hora = hora;
             Domicilio = domicilio;
             Cliente = cliente;
-            Productos = new List<Producto>();
+            Platos = platos;
             Total = total;
             Pago = pago;
             Estado = estado;

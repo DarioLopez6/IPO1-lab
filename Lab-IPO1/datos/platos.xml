@@ -1,0 +1,119 @@
+﻿<Platos>
+
+	<!-- ============== ENTRANTES ============== -->
+	<Plato categoria="Entrante" subcategoria="Ensalada"
+		   nombre="Ensalada César"
+		   ingredientes="Lechuga, pollo, parmesano, crutones, salsa césar"
+		   precio="7.50"
+		   alergenos="Gluten, Lactosa, Huevo"
+		   imagen ="imagenes/Ensalada-cesar-con-pasta-3.jpg"/>
+
+	<Plato categoria="Entrante" subcategoria="Fritos"
+		   nombre="Croquetas de Jamón"
+		   ingredientes="Bechamel, jamón serrano, pan rallado"
+		   precio="6.00"
+		   alergenos="Gluten, Lactosa"
+		   imagen ="imagenes/CroquetasJamon.jpg"/>
+
+	<Plato categoria="Entrante" subcategoria="Sopa"
+		   nombre="Sopa de Cebolla"
+		   ingredientes="Cebolla, caldo, pan gratinado"
+		   precio="5.90"
+		   alergenos="Gluten, Lactosa"
+		   imagen ="imagenes/sopa-de-cebolla.jpg"/>
+
+	<!-- ============== PRIMEROS ============== -->
+	<Plato categoria="Primero" subcategoria="Arroz"
+		   nombre="Paella Valenciana"
+		   ingredientes="Arroz, conejo, pollo, verduras"
+		   precio="12.50"
+		   alergenos="Ninguno"
+		   imagen ="imagenes/Paellavalenciana.jpg"/>
+	<Plato categoria="Primero" subcategoria="Pasta"
+		   nombre="Espaguetis Carbonara"
+		   ingredientes="Pasta, huevo, panceta, queso"
+		   precio="10.90"
+		   alergenos="Gluten, Huevo, Lactosa"/>
+
+	<Plato categoria="Primero" subcategoria="Ensalada"
+		   nombre="Ensalada Mediterránea"
+		   ingredientes="Tomate, pepino, cebolla, queso feta"
+		   precio="8.20"
+		   alergenos="Lactosa"
+		   imagen ="imagenes/Ensalada-Mediterranea-de-Hierbas-Provenzales.jpeg"/>
+
+	<!-- ============== SEGUNDOS ============== -->
+	<Plato categoria="Segundo" subcategoria="Carne"
+		   nombre="Entrecot a la Parrilla"
+		   ingredientes="Ternera, patatas, sal"
+		   precio="16.90"
+		   alergenos="Ninguno"
+		   imagen ="imagenes/entrecot.jpg"/>
+
+	<Plato categoria="Segundo" subcategoria="Pescado"
+		   nombre="Salmón al Horno"
+		   ingredientes="Salmón, limón, aceite, patatas"
+		   precio="15.40"
+		   alergenos="Pescado"
+		   imagen ="imagenes/salmon-horno-patatas-scaled.jpg"/>
+
+	<Plato categoria="Segundo" subcategoria="Guiso"
+		   nombre="Estofado de Ternera"
+		   ingredientes="Ternera, vino tinto, patatas, zanahoria"
+		   precio="13.80"
+		   alergenos="Sulfitos"
+		   imagen ="imagenes/estofado de ternera.jpeg"/>
+
+	<Plato categoria="Segundo" subcategoria="Pasta"
+		   nombre="Lasaña Boloñesa"
+		   ingredientes="Pasta, salsa de tomate, carne picada, queso"
+		   precio="11.50"
+		   alergenos="Gluten, Lactosa"
+		   imagen ="imagenes/lasaña a la boloñesa.jpg"/>
+
+	<!-- ============== POSTRES ============== -->
+	<Plato categoria="Postre" subcategoria="Tarta"
+		   nombre="Tarta de Queso"
+		   ingredientes="Queso crema, galleta, azúcar"
+		   precio="4.50"
+		   alergenos="Lactosa, Gluten"
+		   imagen ="imagenes/tarta-de-queso-de-la-vina.jpg"/>
+
+	<Plato categoria="Postre" subcategoria="Helado"
+		   nombre="Helado de Vainilla"
+		   ingredientes="Leche, azúcar, vainilla"
+		   precio="3.20"
+		   alergenos="Lactosa"
+		   imagen ="imagenes/helado de vainilla.jpg"/>
+
+	<Plato categoria="Postre" subcategoria="Casero"
+		   nombre="Arroz con Leche"
+		   ingredientes="Arroz, leche, azúcar, canela"
+		   precio="3.80"
+		   alergenos="Lactosa"
+		   imagen ="imagenes/arroz con leche.png"/>
+
+	<!-- ============== BEBIDAS ============== -->
+	<Plato categoria="Bebida" subcategoria="Refresco"
+		   nombre="Coca-Cola"
+		   ingredientes="Agua carbonatada, azúcar, cafeína"
+		   precio="2.20"
+		   alergenos="Ninguno"
+		   imagen ="imagenes/cocacola.jpg"/>
+
+	<Plato categoria="Bebida" subcategoria="Vino"
+		   nombre="Vino Tinto Rioja"
+		   ingredientes="Uva, fermentación"
+		   precio="3.50"
+		   alergenos="Sulfitos"
+		   imagen ="imagenes/rioja-vega-crianza.png"/>
+
+	<Plato categoria="Bebida" subcategoria="Cerveza"
+		   nombre="Cerveza Artesanal"
+		   ingredientes="Cebada, lúpulo, agua"
+		   precio="3.00"
+		   alergenos="Gluten"
+		   imagen ="imagenes/cerveza.jpg"/>
+
+</Platos>
+

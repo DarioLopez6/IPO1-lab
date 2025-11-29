@@ -9,35 +9,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Linq;
 
 namespace Lab_IPO1;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     List<Pedido> pendientesDePago = new List<Pedido>();
     List<Pedido> enElaboracion = new List<Pedido>();
     List<Pedido> listosParaEntregar = new List<Pedido>();
     List<Pedido> historial = new List<Pedido>();
-    ObservableCollection<Producto> productosActuales = new ObservableCollection<Producto>();
+    ObservableCollection<Plato> productosActuales = new ObservableCollection<Plato>();
     private List<Pedido> pedidos = new List<Pedido>();
-    private List<Producto> productList = new List<Producto>();
-    public MainWindow()
+    private List<Plato> productList = new List<Plato>();
+    private List<Plato> listadoPlatos = new List<Plato>();
+
+public MainWindow()
     {
         InitializeComponent();
-        listaProductos.ItemsSource = productosActuales;
-        productosActuales.Add(new Producto
-        {
-            Nombre = "Pizza Margarita",
-            Cantidad = 1,
-            Precio = 12.00
-        });
+        listadoPlatos = CargarContenidoXML();
+        PlatosListView.ItemsSource = listadoPlatos;
+
+        CargarPedidos();
         ActualizarTotal();
         CargarEjemplosPedidos();
-        CargarPedidos(); //carga los pedidos de prueba en las 4 listas
-        FiltrarYBuscarPedidos();
+        CargarPedidos(); // carga los pedidos de prueba en las 4 listas
+        
+        listadoPlatos = new List<Plato>
+{
+new Plato { Nombre = "Pizza Margarita", Precio = 8, Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), Cantidad = 0 },
+new Plato { Nombre = "Hamburguesa con Queso", Precio = 6, Imagen = new Uri("/imagenes/hamburguesa.png", UriKind.Relative), Cantidad = 0 },
+new Plato { Nombre = "Ensalada César", Precio = 5, Imagen = new Uri("/imagenes/ensalada.png", UriKind.Relative), Cantidad = 0 },
+new Plato { Nombre = "Pasta Boloñesa", Precio = 7, Imagen = new Uri("/imagenes/pasta.png", UriKind.Relative), Cantidad = 0 },
+new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/taco.png", UriKind.Relative), Cantidad = 0 }
+};
+        PlatosListView.ItemsSource = listadoPlatos;
+        DataContext = listadoPlatos;
+
     }
     private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -54,9 +63,268 @@ public partial class MainWindow : Window
         FiltrarYBuscarPedidos();
     }
 
+
+    private List<Plato> CargarContenidoXML()
+    {
+        List<Plato> listado = new List<Plato>();
+        XmlDocument doc = new XmlDocument();
+        doc.Load("Datos/platos.xml");
+
+        foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+        {
+            if (node.Attributes == null) continue;
+
+            Plato nuevoPlato = new Plato
+            {
+                Categoria = node.Attributes["Categoria"]?.Value ?? "",
+                Subcategoria = node.Attributes["Subcategoria"]?.Value ?? "",
+                Nombre = node.Attributes["Nombre"]?.Value ?? "",
+                Ingredientes = node.Attributes["Ingredientes"]?.Value ?? "",
+                Precio = int.Parse(node.Attributes["Precio"]?.Value ?? "0"),
+                Alergenos = node.Attributes["Alergenos"]?.Value ?? "",
+                Cantidad = int.Parse(node.Attributes["Cantidad"]?.Value ?? "0")
+            };
+
+            string img = node.Attributes["Imagen"]?.Value;
+            if (!string.IsNullOrEmpty(img))
+                nuevoPlato.Imagen = new Uri(img, UriKind.Relative);
+
+            listado.Add(nuevoPlato);
+        }
+
+        return listado;
+    }
+
+    private void PlatosListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (PlatosListView.SelectedItem is Plato prodSeleccionado)
+        {
+            var existente = productosActuales.FirstOrDefault(p => p.Nombre == prodSeleccionado.Nombre);
+            if (existente != null)
+            {
+                existente.Cantidad++;
+            }
+            else
+            {
+                productosActuales.Add(new Plato
+                {
+                    Nombre = prodSeleccionado.Nombre,
+                    Precio = prodSeleccionado.Precio,
+                    Imagen = prodSeleccionado.Imagen,
+                    Cantidad = 1
+                });
+            }
+            ActualizarTotal();
+            PlatosListView.SelectedItem = null;
+        }
+    }
+
+    private void AgregarPedidoAFase(Pedido p)
+    {
+        var card = CrearCardPedido(p);
+
+        switch (p.Estado)
+        {
+            case 1: listaPendientesPago.Children.Add(card); break;
+            case 2: listaEnElaboracion.Children.Add(card); break;
+            case 3: listaListos.Children.Add(card); break;
+            case 4: listaHistorial.Children.Add(card); break;
+        }
+
+        ActualizarContadores();
+    }
+
+    private void MoverPedidoSiguiente(Pedido p, Border card)
+    {
+        switch (p.Estado)
+        {
+            case 1: listaPendientesPago.Children.Remove(card); break;
+            case 2: listaEnElaboracion.Children.Remove(card); break;
+            case 3: listaListos.Children.Remove(card); break;
+            case 4: listaHistorial.Children.Remove(card); break;
+        }
+
+        p.Estado = Math.Min(4, p.Estado + 1);
+        AgregarPedidoAFase(p);
+    }
+
+    private void EliminarPedido(Pedido p, Border card)
+    {
+        switch (p.Estado)
+        {
+            case 1: listaPendientesPago.Children.Remove(card); break;
+            case 2: listaEnElaboracion.Children.Remove(card); break;
+            case 3: listaListos.Children.Remove(card); break;
+            case 4: listaHistorial.Children.Remove(card); break;
+        }
+
+        pedidos.Remove(p);
+        ActualizarContadores();
+    }
+
+    private void ActualizarContadores()
+    {
+        txtNumPendientes.Text = listaPendientesPago.Children.Count.ToString();
+        txtNumEnElaboracion.Text = listaEnElaboracion.Children.Count.ToString();
+        txtNumListos.Text = listaListos.Children.Count.ToString();
+        txtNumHistorial.Text = listaHistorial.Children.Count.ToString();
+    }
+
+    private void ActualizarTotal()
+    {
+        double total = productosActuales.Sum(p => p.Precio * p.Cantidad);
+        txttotal.Text = total.ToString("0.00") + "€";
+    }
+
+    private Border CrearCardPedido(Pedido p)
+    {
+        var card = new Border
+        {
+            Background = Brushes.White,
+            CornerRadius = new CornerRadius(8),
+            BorderBrush = new SolidColorBrush(Color.FromRgb(221, 221, 221)),
+            BorderThickness = new Thickness(1),
+            Padding = new Thickness(8),
+            Margin = new Thickness(0, 0, 0, 8),
+            Cursor = Cursors.Hand
+        };
+
+        var root = new StackPanel();
+        card.Child = root;
+
+        var header = new Grid();
+        header.ColumnDefinitions.Add(new ColumnDefinition());
+        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        var title = new TextBlock
+        {
+            Text = $"ID: {p.Id} - {p.Cliente}",
+            FontWeight = FontWeights.Bold
+        };
+
+        var rightPanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        rightPanel.Children.Add(new TextBlock { Text = p.Local ? "Local" : "Teléfono", Margin = new Thickness(0, 0, 10, 0) });
+        rightPanel.Children.Add(new TextBlock { Text = $"{p.Total:0.00}€", FontWeight = FontWeights.Bold });
+        var flecha = new TextBlock { Text = "▼", Margin = new Thickness(5, 0, 0, 0) };
+        rightPanel.Children.Add(flecha);
+
+        header.Children.Add(title);
+        header.Children.Add(rightPanel);
+        Grid.SetColumn(rightPanel, 1);
+        root.Children.Add(header);
+
+        var detalle = new StackPanel { Margin = new Thickness(0, 8, 0, 0), Visibility = Visibility.Collapsed };
+        detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora: {p.Hora}" });
+        detalle.Children.Add(new TextBlock { Text = $"Dirección: {(string.IsNullOrEmpty(p.Domicilio) ? "—" : p.Domicilio)}" });
+        detalle.Children.Add(new TextBlock { Text = $"Forma pago: {(p.Pago == 1 ? "Tarjeta" : p.Pago == 2 ? "Efectivo" : "Bizum")}" });
+
+        var productosText = string.Join(", ", p.Platos.Select(x => $"{x.Nombre} x{x.Cantidad}"));
+        detalle.Children.Add(new TextBlock { Text = $"Productos: {productosText}" });
+
+        var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0) };
+        var btnMover = new Button { Content = "Siguiente fase", Padding = new Thickness(6, 2, 6, 2), Margin = new Thickness(0, 0, 8, 0) };
+        btnMover.Click += (s, e) => MoverPedidoSiguiente(p, card);
+
+        var btnEliminar = new Button { Content = "Eliminar", Padding = new Thickness(6, 2, 6, 2) };
+        btnEliminar.Click += (s, e) => EliminarPedido(p, card);
+
+        acciones.Children.Add(btnMover);
+        acciones.Children.Add(btnEliminar);
+        detalle.Children.Add(acciones);
+        root.Children.Add(detalle);
+
+        card.MouseLeftButtonUp += (s, e) =>
+        {
+            if (detalle.Visibility == Visibility.Visible)
+            {
+                detalle.Visibility = Visibility.Collapsed;
+                flecha.Text = "▼";
+            }
+            else
+            {
+                detalle.Visibility = Visibility.Visible;
+                flecha.Text = "▲";
+            }
+        };
+
+        card.Tag = p;
+        return card;
+    }
+
+    private void CargarEjemplosPedidos()
+    {
+        var p1 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        pedidos.Add(p1); AgregarPedidoAFase(p1);
+
+        var p2 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        pedidos.Add(p2); AgregarPedidoAFase(p2);
+
+        var p3 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        pedidos.Add(p3); AgregarPedidoAFase(p3);
+
+        ActualizarContadores();
+    }
+
+    private void EliminarProducto_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button btn && btn.DataContext is Plato prod)
+        {
+            productosActuales.Remove(prod);
+            ActualizarTotal();
+        }
+    }
+
+    private void CargarPedidos()
+    {
+        pendientesDePago.Add(new Pedido(false, "13:00", "Calle Falsa 123", "Juan Pérez", new List<Plato>(), 25.50, 2, 1, "+3"));
+        pendientesDePago.Add(new Pedido(true, "14:30", "", "María López", new List<Plato>(), 15.00, 1, 1, ""));
+
+        enElaboracion.Add(new Pedido(false, "12:45", "Avenida Siempre Viva 456", "Carlos García", new List<Plato>(), 30.00, 3, 2, "+3"));
+
+        listosParaEntregar.Add(new Pedido(true, "11:15", "", "Ana Martínez", new List<Plato>(), 20.00, 2, 3, ""));
+
+        historial.Add(new Pedido(false, "10:00", "Plaza Mayor 789", "Luis Fernández", new List<Plato>(), 18.75, 1, 4, ""));
+    }
+
+    private void FiltrarYBuscarPedidos()
+    {
+        string busqueda = txtBuscador.Text.Trim().ToLower();
+        string filtroPedido = "Todos";
+        if (cmbFiltroPedido.SelectedItem is ComboBoxItem cpi && cpi.Content != null)
+            filtroPedido = cpi.Content.ToString();
+        string filtroPago = "Todos";
+        if (cmbFiltroPago != null && cmbFiltroPago.SelectedItem is ComboBoxItem cpf && cpf.Content != null)
+        {
+            filtroPago = cpf.Content.ToString();
+        }
+
+        var filtrados = pedidos.Where(p =>
+        {
+            bool coincidePedido = filtroPedido == "Todos" || (filtroPedido == "Local" && p.Local) || (filtroPedido == "Teléfono" && !p.Local);
+
+            string pagoReal = p.Pago switch
+            {
+                1 => "Tarjeta",
+                2 => "Efectivo",
+                _ => "Bizum"
+            };
+
+            bool coincidePago = filtroPago == "Todos" || pagoReal.Equals(filtroPago, System.StringComparison.OrdinalIgnoreCase);
+
+            string textoCompleto =
+                $"{p.Id} {p.Cliente} {p.Hora} {p.Domicilio} {(p.Local ? "Local" : "Teléfono")} {pagoReal} {p.Total} " +
+                string.Join(" ", p.Platos.Select(prod => $"{prod.Nombre} {prod.Cantidad}"));
+
+            bool coincideBusqueda = string.IsNullOrWhiteSpace(busqueda) || textoCompleto.ToLower().Contains(busqueda);
+
+            return coincidePedido && coincidePago && coincideBusqueda;
+        }).ToList();
+
+        PintarPedidosFiltrados(filtrados);
+    }
+
     private void PintarPedidosFiltrados(List<Pedido> lista)
     {
-        // Protege contra controles no inicializados
         if (listaPendientesPago == null || listaEnElaboracion == null ||
             listaListos == null || listaHistorial == null)
             return;
@@ -82,288 +350,14 @@ public partial class MainWindow : Window
         ActualizarContadores();
     }
 
-
-
-    private void FiltrarYBuscarPedidos()
-    {
-        string busqueda = txtBuscador.Text.Trim().ToLower();
-        string filtroPedido = "Todos";
-        if (cmbFiltroPedido.SelectedItem is ComboBoxItem cpi && cpi.Content != null)
-            filtroPedido = cpi.Content.ToString();
-        string filtroPago = "Todos";
-        if (cmbFiltroPago != null && cmbFiltroPago.SelectedItem is ComboBoxItem cpf && cpf.Content != null)
-        {
-            filtroPago = cpf.Content.ToString();
-        }
-
-
-        var filtrados = pedidos.Where(p =>
-        {
-            // -------------------------------
-            // 1. FILTRO TIPO PEDIDO
-            // -------------------------------
-            bool coincidePedido =
-                filtroPedido == "Todos" ||
-                (filtroPedido == "Local" && p.Local) ||
-                (filtroPedido == "Teléfono" && !p.Local);
-
-            // -------------------------------
-            // 2. FILTRO TIPO PAGO
-            // -------------------------------
-            string pagoReal = p.Pago switch
-            {
-                1 => "Tarjeta",
-                2 => "Efectivo",
-                _ => "Bizum"
-            };
-
-            bool coincidePago =
-                filtroPago == "Todos" ||
-                pagoReal.Equals(filtroPago, StringComparison.OrdinalIgnoreCase);
-
-            // -------------------------------
-            // 3. BUSCADOR — CREA UN TEXTO GIGANTE DEL PEDIDO
-            // -------------------------------
-            string textoCompleto =
-                $"{p.Id} {p.Cliente} {p.Hora} {p.Domicilio} {(p.Local ? "Local" : "Teléfono")} {pagoReal} {p.Total} " +
-                string.Join(" ", p.Productos.Select(prod => $"{prod.Nombre} {prod.Cantidad}"));
-
-            bool coincideBusqueda =
-                string.IsNullOrWhiteSpace(busqueda) ||
-                textoCompleto.ToLower().Contains(busqueda);
-
-            return coincidePedido && coincidePago && coincideBusqueda;
-        }).ToList();
-
-        // -------------------------------
-        // 4. PINTAR RESULTADOS
-        // -------------------------------
-        PintarPedidosFiltrados(filtrados);
-    }
-
-
-    private void AgregarPedidoAFase(Pedido p)
-    {
-        var card = CrearCardPedido(p);
-
-        switch (p.Estado)
-        {
-            case 1: listaPendientesPago.Children.Add(card); break;
-            case 2: listaEnElaboracion.Children.Add(card); break;
-            case 3: listaListos.Children.Add(card); break;
-            case 4: listaHistorial.Children.Add(card); break;
-        }
-
-        ActualizarContadores();
-    }
-
-    private void MoverPedidoSiguiente(Pedido p, Border card)
-    {
-        // quitar del contenedor actual
-        switch (p.Estado)
-        {
-            case 1: listaPendientesPago.Children.Remove(card); break;
-            case 2: listaEnElaboracion.Children.Remove(card); break;
-            case 3: listaListos.Children.Remove(card); break;
-            case 4: listaHistorial.Children.Remove(card); break;
-        }
-
-        // cambiar estado (simple incremento hasta 4)
-        p.Estado = Math.Min(4, p.Estado + 1);
-
-        // añadir al nuevo contenedor
-        AgregarPedidoAFase(p);
-    }
-
-    private void EliminarPedido(Pedido p, Border card)
-    {
-        // quitar del contenedor visible
-        switch (p.Estado)
-        {
-            case 1: listaPendientesPago.Children.Remove(card); break;
-            case 2: listaEnElaboracion.Children.Remove(card); break;
-            case 3: listaListos.Children.Remove(card); break;
-            case 4: listaHistorial.Children.Remove(card); break;
-        }
-
-        // quitar de la lista maestra si procede
-        pedidos.Remove(p);
-
-        ActualizarContadores();
-    }
-
-    private void ActualizarContadores()
-    {
-        txtNumPendientes.Text = listaPendientesPago.Children.Count.ToString();
-        txtNumEnElaboracion.Text = listaEnElaboracion.Children.Count.ToString();
-        txtNumListos.Text = listaListos.Children.Count.ToString();
-        txtNumHistorial.Text = listaHistorial.Children.Count.ToString();
-    }
-
-    private Border CrearCardPedido(Pedido p)
-    {
-        // Border principal
-        var card = new Border
-        {
-            Background = Brushes.White,
-            CornerRadius = new CornerRadius(8),
-            BorderBrush = new SolidColorBrush(Color.FromRgb(221, 221, 221)),
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(8),
-            Margin = new Thickness(0, 0, 0, 8),
-            Cursor = System.Windows.Input.Cursors.Hand
-        };
-
-        var root = new StackPanel();
-        card.Child = root;
-
-        // Header (siempre visible)
-        var header = new Grid();
-        header.ColumnDefinitions.Add(new ColumnDefinition());
-        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-
-        var title = new TextBlock
-        {
-            Text = $"ID: {p.Id} - {p.Cliente}",
-            FontWeight = FontWeights.Bold
-        };
-
-        var rightPanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
-        rightPanel.Children.Add(new TextBlock { Text = p.Local ? "Local" : "Teléfono", Margin = new Thickness(0, 0, 10, 0) });
-        rightPanel.Children.Add(new TextBlock { Text = $"{p.Total:0.00}€", FontWeight = FontWeights.Bold });
-        var flecha = new TextBlock { Text = "▼", Margin = new Thickness(5, 0, 0, 0) };
-        rightPanel.Children.Add(flecha);
-
-        header.Children.Add(title);
-        header.Children.Add(rightPanel);
-        Grid.SetColumn(rightPanel, 1);
-
-        root.Children.Add(header);
-
-        // Detalle (oculto inicialmente)
-        var detalle = new StackPanel { Margin = new Thickness(0, 8, 0, 0), Visibility = Visibility.Collapsed };
-
-        detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora: {p.Hora}" });
-        detalle.Children.Add(new TextBlock { Text = $"Dirección: {(string.IsNullOrEmpty(p.Domicilio) ? "—" : p.Domicilio)}" });
-        detalle.Children.Add(new TextBlock { Text = $"Forma pago: {(p.Pago == 1 ? "Tarjeta" : p.Pago == 2 ? "Efectivo" : "Bizum")}" });
-
-        // Productos (compacto)
-        var productosText = string.Join(", ", p.Productos.Select(x => $"{x.Nombre} x{x.Cantidad}"));
-        detalle.Children.Add(new TextBlock { Text = $"Productos: {productosText}" });
-
-        // Botones de acción (ejemplo: mover estado, eliminar)
-        var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0) };
-
-        var btnMover = new Button { Content = "Siguiente fase", Padding = new Thickness(6, 2, 6, 2), Margin = new Thickness(0, 0, 8, 0) };
-        btnMover.Click += (s, e) =>
-        {
-            MoverPedidoSiguiente(p, card);
-        };
-
-        var btnEliminar = new Button { Content = "Eliminar", Padding = new Thickness(6, 2, 6, 2) };
-        btnEliminar.Click += (s, e) =>
-        {
-            EliminarPedido(p, card);
-        };
-
-        acciones.Children.Add(btnMover);
-        acciones.Children.Add(btnEliminar);
-        detalle.Children.Add(acciones);
-
-        root.Children.Add(detalle);
-
-        // Click en la tarjeta expande/colapsa
-        card.MouseLeftButtonUp += (s, e) =>
-        {
-            if (detalle.Visibility == Visibility.Visible)
-            {
-                detalle.Visibility = Visibility.Collapsed;
-                flecha.Text = "▼";
-            }
-            else
-            {
-                detalle.Visibility = Visibility.Visible;
-                flecha.Text = "▲";
-            }
-        };
-
-        // Guardar referencia al Pedido (opcional)
-        card.Tag = p;
-
-        return card;
-    }
-
-    private void CargarEjemplosPedidos()
-    {
-        // ejemplo corto
-        var p1 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
-        pedidos.Add(p1);
-        AgregarPedidoAFase(p1);
-
-        // ejemplo extendido
-        var p2 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
-        pedidos.Add(p2);
-        AgregarPedidoAFase(p2);
-
-        // ejemplo en elaboracion
-        var p3 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
-        pedidos.Add(p3);
-        AgregarPedidoAFase(p3);
-
-        // Actualiza contadores (si no se llaman en AgregarPedidoAFase)
-        ActualizarContadores();
-    }
-    private void ActualizarTotal()
-    {
-        double total = productosActuales.Sum(p => p.Precio * p.Cantidad);
-
-        txttotal.Text = total.ToString("0.00") + "€";
-    }
-
-    private void EliminarProducto_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is Button btn && btn.DataContext is Producto prod)
-        {
-            productosActuales.Remove(prod);
-            ActualizarTotal(); // si tienes una función para recalcular
-        }
-    }
-
-
-    private void CargarPedidos()
-    {
-        // Pedidos de prueba para la lista de pendientes de pago
-        pendientesDePago.Add(new Pedido(false, "13:00", "Calle Falsa 123", "Juan Pérez", new List<Producto>(), 25.50, 2, 1, "+3"));
-        pendientesDePago.Add(new Pedido(true, "14:30", "", "María López", new List<Producto>(), 15.00, 1, 1, ""));
-
-        // Pedidos de prueba para la lista de en elaboración
-        enElaboracion.Add(new Pedido(false, "12:45", "Avenida Siempre Viva 456", "Carlos García", new List<Producto>(), 30.00, 3, 2, "+3"));
-
-        // Pedidos de prueba para la lista de listos para entregar
-        listosParaEntregar.Add(new Pedido(true, "11:15", "", "Ana Martínez", new List<Producto>(), 20.00, 2, 3, ""));
-
-        // Pedidos de prueba para la lista de historial
-        historial.Add(new Pedido(false, "10:00", "Plaza Mayor 789", "Luis Fernández", new List<Producto>(), 18.75, 1, 4, ""));
-    }
-
+    // Eventos de UI y botones
     public void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (!IsLoaded) return; // evita errores al inicializar
+        if (!IsLoaded) return;
 
-        // Productos
-        ImgProductos.Source = new BitmapImage(new Uri(
-            TabProductos.IsSelected ? "/imagenes/menuProductosOn.png" : "/imagenes/menuProductosOff.png",
-            UriKind.Relative));
-
-        // Pedidos
-        ImgPedidos.Source = new BitmapImage(new Uri(
-            TabPedidos.IsSelected ? "/imagenes/menuPedidosOn.png" : "/imagenes/menuPedidosOff.png",
-            UriKind.Relative));
-
-        // Clientes
-        ImgClientes.Source = new BitmapImage(new Uri(
-            TabClientes.IsSelected ? "/imagenes/menuClientesOn.png" : "/imagenes/menuClientesOff.png",
-            UriKind.Relative));
+        ImgProductos.Source = new BitmapImage(new Uri(TabProductos.IsSelected ? "/imagenes/menuProductosOn.png" : "/imagenes/menuProductosOff.png", UriKind.Relative));
+        ImgPedidos.Source = new BitmapImage(new Uri(TabPedidos.IsSelected ? "/imagenes/menuPedidosOn.png" : "/imagenes/menuPedidosOff.png", UriKind.Relative));
+        ImgClientes.Source = new BitmapImage(new Uri(TabClientes.IsSelected ? "/imagenes/menuClientesOn.png" : "/imagenes/menuClientesOff.png", UriKind.Relative));
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -372,17 +366,16 @@ public partial class MainWindow : Window
         main.Show();
         this.Close();
     }
+
     private void BtnAyuda_Click(object sender, RoutedEventArgs e)
     {
-        HelpWindow help = new HelpWindow();
-        help.Owner = this;
+        HelpWindow help = new HelpWindow { Owner = this };
         help.ShowDialog();
     }
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        HelpWindow help = new HelpWindow();
-        help.Owner = this;
+        HelpWindow help = new HelpWindow { Owner = this };
         help.ShowDialog();
     }
 
@@ -409,6 +402,7 @@ public partial class MainWindow : Window
     {
         Button_Click_2(sender, e);
     }
+
     private void Btnautoria_Click(object sender, RoutedEventArgs e)
     {
         MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -416,118 +410,46 @@ public partial class MainWindow : Window
 
     private void Button_Click_4(object sender, RoutedEventArgs e)
     {
-        bool local = false;
-        if (btnenLocal.IsChecked == true) local = true;
+        bool local = btnenLocal.IsChecked == true;
         string hora = txthora.Text;
         string domicilio = txtdomicilio.Text;
         string cliente = txtcliente.Text;
-        List<Producto> productos = new List<Producto>();
+        List<Plato> platos = new List<Plato>();
         double total = double.Parse(txttotal.Text.Substring(0, txttotal.Text.Length - 1));
-        int pago = 0;    // Forma de pago: 1=Tarjeta, 2=Efectivo, 3=Bizum
-        if (btntarjeta.IsChecked == true) pago = 1;
-        else if (btnefectivo.IsChecked == true) pago = 2;
-        else if (btnbizum.IsChecked == true) pago = 3;
-        int estado = 1;  // Estado inicial: pendiente de pago = 1
-        string puntos = "";
-        if (total > 20)
-        {
-            puntos = "+3";
-        }
+        int pago = btntarjeta.IsChecked == true ? 1 : btnefectivo.IsChecked == true ? 2 : btnbizum.IsChecked == true ? 3 : 0;
+        int estado = 1;
+        string puntos = total > 20 ? "+3" : "";
 
         if ((btnenLocal.IsChecked == btntelfono.IsChecked) ||
-            (btntarjeta.IsChecked == btnefectivo.IsChecked &&
-            btntarjeta.IsChecked == btnbizum.IsChecked) ||
-            (total == 0) || hora == "" || cliente == "" || (domicilio == "" && btntelfono.IsChecked == true))
+            (btntarjeta.IsChecked == btnefectivo.IsChecked && btntarjeta.IsChecked == btnbizum.IsChecked) ||
+            total == 0 || string.IsNullOrEmpty(hora) || string.IsNullOrWhiteSpace(cliente) ||
+            (btntelfono.IsChecked == true && string.IsNullOrEmpty(domicilio)))
         {
-            // 1. Tipo de pedido
-            if (btnenLocal.IsChecked == false && btntelfono.IsChecked == false)
-            {
-                txterrorTipoPedido.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorTipoPedido.Visibility = Visibility.Hidden;
-            }
-
-            // 2. Hora
-            if (string.IsNullOrWhiteSpace(hora))
-            {
-                txterrorHora.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorHora.Visibility = Visibility.Hidden;
-            }
-
-            // 3. Domicilio (solo obligatorio si NO es 'En local')
-            if (btntelfono.IsChecked == true && domicilio == "")
-            {
-                txterrorDomicilio.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorDomicilio.Visibility = Visibility.Hidden;
-            }
-
-            // 4. Cliente
-            if (string.IsNullOrWhiteSpace(cliente))
-            {
-                txterrorCliente.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorCliente.Visibility = Visibility.Hidden;
-            }
-
-            // 5. Método de pago
-            if (btntarjeta.IsChecked == false && btnefectivo.IsChecked == false && btnbizum.IsChecked == false)
-            {
-                txterrorPago.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorPago.Visibility = Visibility.Hidden;
-            }
-
-            // 6. Total vacío
-            if (total == 0)
-            {
-                txtpedidoVacio.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txtpedidoVacio.Visibility = Visibility.Hidden;
-            }
-
-            // 7. Error general
+            if (!btnenLocal.IsChecked.Value && !btntelfono.IsChecked.Value) txterrorTipoPedido.Visibility = Visibility.Visible; else txterrorTipoPedido.Visibility = Visibility.Hidden;
+            if (string.IsNullOrWhiteSpace(hora)) txterrorHora.Visibility = Visibility.Visible; else txterrorHora.Visibility = Visibility.Hidden;
+            if (btntelfono.IsChecked == true && string.IsNullOrEmpty(domicilio)) txterrorDomicilio.Visibility = Visibility.Visible; else txterrorDomicilio.Visibility = Visibility.Hidden;
+            if (string.IsNullOrWhiteSpace(cliente)) txterrorCliente.Visibility = Visibility.Visible; else txterrorCliente.Visibility = Visibility.Hidden;
+            if (!btntarjeta.IsChecked.Value && !btnefectivo.IsChecked.Value && !btnbizum.IsChecked.Value) txterrorPago.Visibility = Visibility.Visible; else txterrorPago.Visibility = Visibility.Hidden;
+            if (total == 0) txtpedidoVacio.Visibility = Visibility.Visible; else txtpedidoVacio.Visibility = Visibility.Hidden;
             if (txterrorTipoPedido.Visibility == Visibility.Visible ||
                 txterrorHora.Visibility == Visibility.Visible ||
                 txterrorCliente.Visibility == Visibility.Visible ||
                 txterrorPago.Visibility == Visibility.Visible ||
-                txtpedidoVacio.Visibility == Visibility.Visible)
-            {
-                txterrorPedido.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txterrorPedido.Visibility = Visibility.Hidden;
-            }
-
+                txtpedidoVacio.Visibility == Visibility.Visible) txterrorPedido.Visibility = Visibility.Visible;
+            else txterrorPedido.Visibility = Visibility.Hidden;
         }
         else
         {
             txterrorDomicilio.Visibility = Visibility.Hidden;
-            Pedido pedido = new Pedido(local, hora, domicilio, cliente, productos, total, pago, estado, puntos);
+            Pedido pedido = new Pedido(local, hora, domicilio, cliente, platos, total, pago, estado, puntos);
             pendientesDePago.Add(pedido);
             pedidos.Add(pedido);
             AgregarPedidoAFase(pedido);
             Button_Click_2(sender, e);
             ActualizarTotal();
-            txtlogo.Text = local + " " + hora + " " + domicilio + " " + cliente + " " + productos + " " + total + " " + pago + " " + estado + " " + puntos;
+            txtlogo.Text = $"{local} {hora} {domicilio} {cliente} {platos} {total} {pago} {estado} {puntos}";
         }
-
     }
 
+
 }
-
-

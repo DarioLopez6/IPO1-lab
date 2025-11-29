@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="datos\platos.xml" />
     <None Remove="imagenes\cobrarIcon.png" />
     <None Remove="imagenes\contrasenaIcono.png" />
     <None Remove="imagenes\cross.png" />
@@ -29,6 +30,12 @@
     <None Remove="imagenes\perfil.png" />
     <None Remove="imagenes\tick.png" />
     <None Remove="imagenes\usuarioIcono.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="datos\platos.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

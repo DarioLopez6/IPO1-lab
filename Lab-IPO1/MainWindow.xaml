@@ -201,20 +201,130 @@
                             <Image x:Name="ImgProductos" Height="64" Source="/imagenes/menuProductosOn.png"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid Background="#FFFFFF" Margin="0">
-                        <Button Cursor="Hand" Margin="10">
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#FF6B35">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Width="26" Height="22" Source="/imagenes/cobrarIcon.png" Margin="0,0,5,0"/>
-                                <TextBlock Foreground="White" Text="Entrantes" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
+                    <Grid Background="#FFFFFF" Margin="0,0,-12,0">
+                        <!-- ================================ -->
+                        <!--        BARRA SUPERIOR           -->
+                        <!-- ================================ -->
+                        <Border Background="#FFFFFF" Padding="15" BorderBrush="#DDDDDD" BorderThickness="0,0,0,1">
+                            <Grid Margin="0,0,0,-6">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- Título -->
+                                    <RowDefinition Height="Auto" MinHeight="57"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="47*"/>
+                                    <RowDefinition Height="417*"/>
+                                    <!-- Barra inferior -->
+                                </Grid.RowDefinitions>
+
+                                <!-- ========================= -->
+                                <!-- TÍTULO - ARRIBA IZQUIERDA -->
+                                <!-- ========================= -->
+                                <TextBlock Text="Platos"
+              FontSize="22"
+              FontWeight="Bold"
+              Margin="0 0 0 10"
+              HorizontalAlignment="Left"
+              Grid.Row="0" Width="63"/>
+
+
+                                <!-- ========================= -->
+                                <!-- BARRA INFERIOR (2 columnas) -->
+                                <!-- ========================= -->
+                                <Grid Margin="0,39,0,0" Grid.RowSpan="2">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <!-- Izquierda -->
+                                        <ColumnDefinition Width="Auto" />
+                                        <!-- Derecha -->
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <!-- IZQUIERDA: Buscador + Filtro -->
+                                    <StackPanel Orientation="Horizontal"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Grid.Column="0">
+
+                                        <!-- Buscador con icono -->
+                                        <DockPanel Background="#F5F5F5"
+                      Height="32" Width="220"
+                      LastChildFill="True"
+                      Margin="0 0 10 0">
+
+                                            <Image Source="/imagenes/logo.png"
+                          Width="18" Height="18"
+                          Margin="5,0"
+                          VerticalAlignment="Center"/>
+
+                                            <TextBox x:Name="TxtBuscarPlato"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="10,0"
+                        FontSize="14" VerticalAlignment="Center"/>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,57,0,0" Grid.RowSpan="2">
+                                    <RadioButton x:Name="btnEntrantes" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Entrantes"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnPrimeros" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Primeros"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnSegundos" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Segundos"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnPostres" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Postres"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnBebidas" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Bebidas"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                    <RadioButton x:Name="btnEnsaladas" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Ensaladas"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnHuevos" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Huevos"
+                GroupName="TipoPlatos"
+                Width="80" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnArrocesYPastas" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Arroces y Pastas"
+                GroupName="TipoPlatos"
+                Width="auto" HorizontalAlignment="Left"/>
+                                    <RadioButton x:Name="btnPescados" Style="{StaticResource RadioButtonButtonStyle}"
+                Content="Pescados"
+                GroupName="TipoPlatos"
+                Width="auto" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <Border BorderBrush="Gray" Background="Gray" Grid.Row="4">
+                                    <ListView x:Name="PlatosListView" Margin="10" av:ItemsSource="{av:SampleData ItemCount=5}" SelectionChanged="PlatosListView_SelectionChanged">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="{Binding Imagen}"
+                                Width="40" Height="40" Margin="5"/>
+                                                    <TextBlock Text="{Binding Nombre}"
+                                VerticalAlignment="Center"
+                                FontSize="16"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Border>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </TabItem>
 
