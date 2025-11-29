@@ -54,7 +54,12 @@
         <StackPanel Grid.Row="3" Margin="0">
 
             <!-- Usuario -->
-            <TextBlock Text="Usuario" Foreground="#666" FontSize="14" Margin="0 0 0 3"/>
+            <Grid Height="21">
+                <TextBlock Text="Usuario" Foreground="#666" FontSize="14" Margin="0,0,295,0"/>
+                <TextBlock x:Name="txterrorUsuario" TextWrapping="Wrap" Text="Usuario incorrecto" Margin="65,0,0,0" Foreground="Red" FontWeight="Bold" VerticalAlignment="Center" Visibility="Hidden"/>
+            </Grid>
+
+            <!-- Usuario -->
             <Border x:Name="BorderUsuario" ToolTip="Escribe el nombre de usuario que tienes asignado" CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1" Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
                 <DockPanel>
                     <Image x:Name="ImgUsuarioIcon" Source="/imagenes/usuarioIcono.png" Height="18" Width="18" Margin="0 0 8 0"/>
@@ -70,7 +75,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Contraseña" Foreground="#666" FontSize="14" Grid.Column="0"/>
+                <TextBlock Text="Contraseña" Foreground="#666" FontSize="14" Grid.Column="0" Margin="0,0,171,0"/>
+                <TextBlock x:Name="txterrorContrasena" TextWrapping="Wrap" Text="Contraseña incorrecta" Grid.ColumnSpan="2" Margin="80,0,114,0" Visibility="Hidden" FontWeight="Bold" VerticalAlignment="Center" Foreground="Red"/>
                 <TextBlock Text="Recuperar contraseña" Foreground="#999" FontSize="12" TextDecorations="Underline"
                            Cursor="Hand" Grid.Column="1" MouseLeftButtonUp="BtnRecuperar_Click"/>
             </Grid>
@@ -91,7 +97,7 @@
             </Border>
 
             <!-- Recordar sesión -->
-            <CheckBox Content="Mantener sesión iniciada en este equipo" ToolTip="Esto en realidad no hace nada" Foreground="#666" Margin="0 0 0 18" Width="241" HorizontalAlignment="Left"/>
+            <CheckBox Content="Mantener sesión iniciada en este equipo" ToolTip="Activar si no quieres cerrar sesion al cerrar la App" Foreground="#666" Margin="0 0 0 18" Width="241" HorizontalAlignment="Left"/>
         </StackPanel>
 
         <!-- Autoría + Acceder -->
