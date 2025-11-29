@@ -690,7 +690,212 @@
                         <Image x:Name="ImgClientes" Source="/imagenes/menuClientesOff.png" Height="64"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Background="#FFFFFF"/>
+                <Grid Background="#FFFFFF" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23*"/>
+                        <RowDefinition Height="43*"/>
+                        <RowDefinition Height="139*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <!-- ===================== -->
+                    <!--       PARTE ARRIBA    -->
+                    <!-- ===================== -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,10">
+                        <Image Source="imagenes/usuarioIcono.png" Height="18" Margin="0 0 6 0"/>
+                        <TextBox x:Name="BuscadorClientes"
+         Width="554"
+         Height="30"
+         VerticalAlignment="Center"
+         Margin="0,0,10,0" Background="LightGray"
+                             />
+                        <Button Padding="15,5" Cursor="Hand" Width="126" Click="Button_Click_3" Height="41" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="#FFFF6B35" 
+                                BorderBrush="LightGray" 
+                                BorderThickness="2" 
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Source="imagenes/usuarioIcono.png" Height="18" Margin="0 0 6 0"/>
+                                <TextBlock Text="Añadir Cliente" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- ===================== -->
+                    <!--      PARTE CENTRO     -->
+                    <!-- ===================== -->
+                    <ScrollViewer
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Disabled" Margin="0,69,0,2" Grid.RowSpan="2">
+                        <ItemsControl x:Name="ListaClientes">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <!-- Tarjeta 1 -->
+                            <Border Width="260" Height="90" Margin="5" Background="LightGray" Padding="10" CornerRadius="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="https://via.placeholder.com/60"
+       Width="60" Height="60" Grid.Column="0"/>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Juan Pérez" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock Text="juanperez@email.com" FontSize="13"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Tarjeta 2 -->
+                            <Border Width="260" Height="90" Margin="5" Background="LightGray" Padding="10" CornerRadius="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="https://via.placeholder.com/60"
+       Width="60" Height="60" Grid.Column="0"/>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Ana García" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock Text="ana.garcia@email.com" FontSize="13"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Tarjeta 3 -->
+                            <Border Width="260" Height="90" Margin="5" Background="LightGray" Padding="10" CornerRadius="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="https://via.placeholder.com/60"
+       Width="60" Height="60" Grid.Column="0"/>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Carlos López" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock Text="c.lopez@email.com" FontSize="13"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <!-- ===================== -->
+                    <!--     PARTE ABAJO       -->
+                    <!-- ===================== -->
+                    <Border Grid.Row="2"
+Background="#F7F7F7"
+CornerRadius="10"
+Padding="20"
+Margin="0,3,0,0">
+
+                        <!-- Scroll interno SOLO para el contenido -->
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+
+                                <!-- TÍTULO -->
+                                <TextBlock Text="Información del Cliente Seleccionado"
+               FontWeight="Bold"
+               FontSize="20"
+               Margin="0,0,0,15"/>
+
+                                <!-- ============================= -->
+                                <!--      DATOS DEL CLIENTE       -->
+                                <!-- ============================= -->
+
+                                <!-- NOMBRE -->
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="Nombre y apellidos:" FontWeight="Bold" Width="180"/>
+                                    <TextBlock Text="Juan Pérez García"/>
+                                </StackPanel>
+
+                                <!-- DIRECCIONES -->
+                                <StackPanel Margin="0,8">
+                                    <TextBlock Text="Direcciones:" FontWeight="Bold"/>
+                                    <ItemsControl Margin="20,5,0,0">
+                                        <TextBlock Text="• Calle Mayor 12, Madrid"/>
+                                        <TextBlock Text="• Avenida del Sol 42, Valencia"/>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- TELÉFONOS -->
+                                <StackPanel Margin="0,8">
+                                    <TextBlock Text="Teléfonos:" FontWeight="Bold"/>
+                                    <ItemsControl Margin="20,5,0,0">
+                                        <TextBlock Text="• 600 123 456"/>
+                                        <TextBlock Text="• 912 554 998"/>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- CORREOS -->
+                                <StackPanel Margin="0,8">
+                                    <TextBlock Text="Correos electrónicos:" FontWeight="Bold"/>
+                                    <ItemsControl Margin="20,5,0,0">
+                                        <TextBlock Text="• juanperez@email.com"/>
+                                        <TextBlock Text="• jperez@empresa.com"/>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- ALERGIAS -->
+                                <StackPanel Margin="0,8">
+                                    <TextBlock Text="Alergias / intolerancias:" FontWeight="Bold"/>
+                                    <ItemsControl Margin="20,5,0,0">
+                                        <TextBlock Text="• Lactosa"/>
+                                        <TextBlock Text="• Frutos secos"/>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- FORMA DE PAGO -->
+                                <StackPanel Orientation="Horizontal" Margin="0,8">
+                                    <TextBlock Text="Forma de pago:" FontWeight="Bold" Width="180"/>
+                                    <TextBlock Text="Tarjeta de crédito"/>
+                                </StackPanel>
+
+                                <!-- HISTORIAL DE PEDIDOS -->
+                                <StackPanel Margin="0,8">
+                                    <TextBlock Text="Historial de pedidos:" FontWeight="Bold"/>
+                                    <ItemsControl Margin="20,5,0,0">
+                                        <TextBlock Text="• Pedido #00123 – 14/04/2024 – 32,50€"/>
+                                        <TextBlock Text="• Pedido #00110 – 28/03/2024 – 12,90€"/>
+                                        <TextBlock Text="• Pedido #00098 – 10/03/2024 – 25,00€"/>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <!-- PUNTOS -->
+                                <StackPanel Orientation="Horizontal" Margin="0,8">
+                                    <TextBlock Text="Puntos acumulados:" FontWeight="Bold" Width="180"/>
+                                    <TextBlock Text="145 puntos"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,8">
+                                    <TextBlock Text="Puntos canjeados:" FontWeight="Bold" Width="180"/>
+                                    <TextBlock Text="60 puntos"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+
+
+
+                </Grid>
             </TabItem>
 
         </TabControl>
