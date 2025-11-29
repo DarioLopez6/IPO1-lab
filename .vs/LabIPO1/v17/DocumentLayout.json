@@ -61,7 +61,7 @@
               "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml.cs",
               "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAAGEAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T15:40:26.724Z",
               "IsPinned": true,
@@ -85,8 +85,7 @@
               "RelativeToolTip": "Lab-IPO1\\LoginWindow.xaml.cs",
               "ViewState": "AgIAAKIAAAAAAAAAAAAuwL8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T16:33:11.866Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T16:33:11.866Z"
             },
             {
               "$type": "Document",
@@ -121,8 +120,7 @@
               "RelativeToolTip": "Lab-IPO1\\Pedido.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAzwB8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T18:24:37.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T18:24:37.971Z"
             },
             {
               "$type": "Document",
@@ -134,8 +132,7 @@
               "RelativeToolTip": "Lab-IPO1\\Plato.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T19:04:57.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T19:04:57.595Z"
             }
           ]
         }
