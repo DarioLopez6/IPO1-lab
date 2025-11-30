@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="imagenes\cobrarIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

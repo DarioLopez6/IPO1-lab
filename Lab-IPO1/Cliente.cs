@@ -18,7 +18,7 @@ namespace Lab_IPO1
         public List<String> eMail { get; set; }
         public List<String> Alergias { get; set; }
         public List<String> Intolerancias { get; set; }
-        public List<Pedido> Historial { get; set; }
+        public List<Pedido> Historial { get; set; } = new List<Pedido>();
         public FORMAPAGO pago { get; set; }
         public int puntosAcumulados { get; set; }
         public int puntosCangeados { get; set; }

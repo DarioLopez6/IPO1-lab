@@ -21,11 +21,14 @@ public partial class MainWindow : Window
     List<Pedido> listosParaEntregar = new List<Pedido>();
     List<Pedido> historial = new List<Pedido>();
     ObservableCollection<Plato> productosActuales = new ObservableCollection<Plato>();
+    private ObservableCollection<Cliente> clientesFiltrados;
     private List<Pedido> pedidos = new List<Pedido>();
     private List<Plato> productList = new List<Plato>();
     private List<Plato> listadoPlatos = new List<Plato>();
     private List<Cliente> misClientes = new List<Cliente>();
     private Cliente clienteSeleccionado;
+    private Cliente clienteSeleccionadoBox;
+    private List<Cliente> clientesBase;
 
     public MainWindow()
     {
@@ -56,7 +59,26 @@ public partial class MainWindow : Window
             new Cliente(4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
             };
         ActualizarClientes();
+        clientesBase = misClientes;
 
+        clientesFiltrados = new ObservableCollection<Cliente>(clientesBase);
+        cbBuscarCliente.ItemsSource = clientesFiltrados;
+
+    }
+    private void cbBuscarCliente_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        string texto = cbBuscarCliente.Text.Trim().ToLower();
+
+        var filtrados = clientesBase
+            .Where(c => c.Nombre.ToLower().Contains(texto) ||
+                        c.Apellidos.ToLower().Contains(texto))
+            .ToList();
+
+        clientesFiltrados.Clear();
+        foreach (var c in filtrados)
+            clientesFiltrados.Add(c);
+
+        cbBuscarCliente.IsDropDownOpen = true; // muestra sugerencias en tiempo real
     }
     private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -401,7 +423,7 @@ public partial class MainWindow : Window
         btnbizum.IsChecked = false;
         btnefectivo.IsChecked = false;
         btntarjeta.IsChecked = false;
-        txtcliente.Text = "";
+        cbBuscarCliente.Text = "";
         txtdomicilio.Text = "";
         txthora.Text = "";
         txterrorTipoPedido.Visibility = Visibility.Hidden;
@@ -428,7 +450,7 @@ public partial class MainWindow : Window
         bool local = btnenLocal.IsChecked == true;
         string hora = txthora.Text;
         string domicilio = txtdomicilio.Text;
-        string cliente = txtcliente.Text;
+        string cliente = cbBuscarCliente.Text;
         double total = double.Parse(txttotal.Text.Substring(0, txttotal.Text.Length - 1));
         int pago = btntarjeta.IsChecked == true ? 1 : btnefectivo.IsChecked == true ? 2 : btnbizum.IsChecked == true ? 3 : 0;
         int estado = 1;
@@ -473,6 +495,15 @@ public partial class MainWindow : Window
             pendientesDePago.Add(pedido);
             pedidos.Add(pedido);
             AgregarPedidoAFase(pedido);
+            if (clienteSeleccionado != null)
+            {
+                if (clienteSeleccionado.Historial == null)
+                    clienteSeleccionado.Historial = new List<Pedido>();
+
+                clienteSeleccionado.Historial.Add(pedido);
+                FichaClienteBorder.Visibility=Visibility.Collapsed;
+            }
+
 
             // Limpiar pedido actual
             productosActuales.Clear();
@@ -722,5 +753,8 @@ public partial class MainWindow : Window
         }
     }
 
-
+    private void cbBuscarCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        clienteSeleccionadoBox = (Cliente)cbBuscarCliente.SelectedItem;
+    }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dqYBekLRUP8=",
+  "dgSpecHash": "GWsnZe5Nz7c=",
   "success": true,
   "projectFilePath": "C:\\Users\\Darío López\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\LabIPO1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Darío López\\.nuget\\packages\\extended.wpf.toolkit\\5.0.0\\extended.wpf.toolkit.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
