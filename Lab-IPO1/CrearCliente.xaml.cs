@@ -50,14 +50,22 @@ namespace Lab_IPO1
             List<string> intolerancias = txtIntolerancias.Text.Split(',')
                 .Select(s => s.Trim()).Where(s => s != "").ToList();
 
-            // Forma de pago
-            FORMAPAGO formaPago =
-                rbTarjeta.IsChecked == true ? FORMAPAGO.TARGETA : FORMAPAGO.EFECTIVO;
+            // Forma de pago principal
+            FORMAPAGO formaPagoPrincipal;
+            if (rbTarjeta.IsChecked == true) formaPagoPrincipal = FORMAPAGO.TARGETA;
+            else if (rbEfectivo.IsChecked == true) formaPagoPrincipal = FORMAPAGO.EFECTIVO;
+            else formaPagoPrincipal = FORMAPAGO.BIZUM; // añade Bizum al enum si no existe
+
+            // Forma de pago alternativa
+            FORMAPAGO formaPagoAlternativa;
+            if (rbTarjeta1.IsChecked == true) formaPagoAlternativa = FORMAPAGO.TARGETA;
+            else if (rbEfectivo1.IsChecked == true) formaPagoAlternativa = FORMAPAGO.EFECTIVO;
+            else formaPagoAlternativa = FORMAPAGO.BIZUM;
 
             // Generar ID
             int nuevoID = new Random().Next(100000, 999999);
 
-            // Crear cliente
+            // Crear cliente (puedes guardar la alternativa en otra propiedad si quieres)
             NuevoCliente = new Cliente(
                 nuevoID,
                 txtNombre.Text.Trim(),
@@ -67,91 +75,17 @@ namespace Lab_IPO1
                 correos,
                 alergias,
                 intolerancias,
-                formaPago,
+                formaPagoPrincipal,
                 0,
                 0
             );
 
             this.DialogResult = true;
             Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            // Cancelar: cerrar ventana y devolver false
-            this.DialogResult = false;
-            Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Ocultar mensaje de error previo
-            lblErrorNombre.Visibility = Visibility.Collapsed;
-
-            // Validación: nombre obligatorio
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                lblErrorNombre.Visibility = Visibility.Visible;
-                return;
-            }
-
-            // Convertir listas de valores separados por comas
-            List<string> telefonos = txtTelefono.Text
-                .Split(',')
-                .Select(s => s.Trim())
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList();
-
-            List<string> correos = txtCorreo.Text
-                .Split(',')
-                .Select(s => s.Trim())
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList();
-
-            List<string> direcciones = new List<string>();
-            if (!string.IsNullOrWhiteSpace(txtDireccionPrincipal.Text))
-                direcciones.Add(txtDireccionPrincipal.Text.Trim());
-            if (!string.IsNullOrWhiteSpace(txtDireccionSecundaria.Text))
-                direcciones.Add(txtDireccionSecundaria.Text.Trim());
-
-            List<string> alergias = txtAlergias.Text
-                .Split(',')
-                .Select(s => s.Trim())
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList();
-
-            List<string> intolerancias = txtIntolerancias.Text
-                .Split(',')
-                .Select(s => s.Trim())
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList();
-
-            // Determinar forma de pago
-            FORMAPAGO formaPago = rbTarjeta.IsChecked == true ? FORMAPAGO.TARGETA : FORMAPAGO.EFECTIVO;
-
-            // Generar ID temporal
-            int nuevoID = new Random().Next(100000, 999999);
-
-            // Crear el objeto Cliente
-            NuevoCliente = new Cliente(
-                nuevoID,
-                txtNombre.Text.Trim(),
-                txtApellidos.Text.Trim(),
-                direcciones,
-                telefonos,
-                correos,
-                alergias,
-                intolerancias,
-                formaPago,
-                0, // puntos acumulados
-                0  // puntos canjeados
-            );
-
-            // Cerrar ventana con resultado OK
-            this.DialogResult = true;
-            Close();
 
         }
+
+
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {

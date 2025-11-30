@@ -492,7 +492,7 @@
                             <Border Background="#F0F0F0"
         CornerRadius="10"
         Padding="8"
-        Margin="10,12,9,15"
+        Margin="10,12,28,15"
         Height="42">
 
                                 <Grid>
@@ -516,7 +516,7 @@
                  BorderThickness="0"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Stretch"
-                 FontSize="14"/>
+                 FontSize="14" TextChanged="BuscadorClientes_TextChanged"/>
                                 </Grid>
                             </Border>
 
@@ -550,8 +550,8 @@
                             <Grid>
 
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="24*"/>
+                                    <RowDefinition Height="97*"/>
                                 </Grid.RowDefinitions>
 
                                 <!-- CABECERA -->
@@ -580,7 +580,7 @@
                                 </Grid>
 
                                 <!-- SCROLL CON TARJETAS -->
-                                <ScrollViewer Grid.Row="1"
+                                <ScrollViewer Grid.Row="1" 
                       Margin="0,10,0,0"
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Disabled">
@@ -593,102 +593,10 @@
                                         </ItemsControl.ItemsPanel>
 
                                         <!-- EJEMPLO 1 -->
-                                        <Border Width="180" Height="55" Margin="5"
-                        Background="White"
-                        Padding="10"
-                        CornerRadius="10"
-                        BorderBrush="#E0E0E0"
-                        BorderThickness="1">
-
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="45"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <Border Width="38" Height="38" CornerRadius="19" ClipToBounds="True" VerticalAlignment="Center">
-                                                    <Image Source="/imagenes/perfil.png" Stretch="UniformToFill"/>
-                                                </Border>
-
-                                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                                    <TextBlock Text="Juan Pérez" FontWeight="Bold" FontSize="14"/>
-                                                    <TextBlock Text="666 555 444" FontSize="12" Foreground="Gray"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
 
                                         <!-- EJEMPLO 2 -->
-                                        <Border Width="180" Height="55" Margin="5"
-                        Background="White"
-                        Padding="10"
-                        CornerRadius="10"
-                        BorderBrush="#E0E0E0"
-                        BorderThickness="1">
-
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="45"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <Border Width="38" Height="38" CornerRadius="19" ClipToBounds="True" VerticalAlignment="Center">
-                                                    <Image Source="/imagenes/perfil.png" Stretch="UniformToFill"/>
-                                                </Border>
-
-                                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                                    <TextBlock Text="Ana García" FontWeight="Bold" FontSize="14"/>
-                                                    <TextBlock Text="699 111 222" FontSize="12" Foreground="Gray"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
                                         <!-- EJEMPLO 3 -->
-                                        <Border Width="180" Height="55" Margin="5"
-Background="White"
-Padding="10"
-CornerRadius="10"
-BorderBrush="#E0E0E0"
-BorderThickness="1">
-
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="45"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <Border Width="38" Height="38" CornerRadius="19" ClipToBounds="True" VerticalAlignment="Center">
-                                                    <Image Source="/imagenes/perfil.png" Stretch="UniformToFill"/>
-                                                </Border>
-
-                                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                                    <TextBlock Text="Juan Pérez" FontWeight="Bold" FontSize="14"/>
-                                                    <TextBlock Text="666 555 444" FontSize="12" Foreground="Gray"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
                                         <!-- EJEMPLO 4 -->
-                                        <Border Width="180" Height="55" Margin="5"
-Background="White"
-Padding="10"
-CornerRadius="10"
-BorderBrush="#E0E0E0"
-BorderThickness="1">
-
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="45"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <Border Width="38" Height="38" CornerRadius="19" ClipToBounds="True" VerticalAlignment="Center">
-                                                    <Image Source="/imagenes/perfil.png" Stretch="UniformToFill"/>
-                                                </Border>
-
-                                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                                    <TextBlock Text="Juan Pérez" FontWeight="Bold" FontSize="14"/>
-                                                    <TextBlock Text="666 555 444" FontSize="12" Foreground="Gray"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
 
                                     </ItemsControl>
 
@@ -700,13 +608,13 @@ BorderThickness="1">
 
 
 
-                        <Border Grid.Row="3"
+                        <Border x:Name="FichaClienteBorder" Grid.Row="3"
         Margin="10"
         Padding="15"
         Background="#F5F5F5"
         CornerRadius="12"
         BorderBrush="#D0D0D0"
-        BorderThickness="1">
+        BorderThickness="1" Visibility="Collapsed">
 
                             <Grid>
 
@@ -718,7 +626,7 @@ BorderThickness="1">
                                 <!-- CABECERA -->
                                 <Grid Grid.Row="0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="253*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
@@ -726,38 +634,31 @@ BorderThickness="1">
                        Text="Ficha de cliente - Nombre del Cliente"
                        FontSize="18"
                        FontWeight="Bold"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center" Height="24" Grid.ColumnSpan="2"/>
 
                                     <!-- BOTÓN EDITAR -->
-                                    <Button Content="Editar"
-                    Grid.Column="1"
-                    Padding="12 5"
-                    Margin="10 0 0 0"
-                    VerticalAlignment="Center"
-                    Background="White"
-                    BorderBrush="#C8C8C8"
-                    BorderThickness="2"
-                    Foreground="Black"
-                    Cursor="Hand"
-                    FontWeight="SemiBold"
-                    Width="90"
-                    Height="32"
-                    >
+                                    <Button x:Name="BtnEditarCliente" Padding="10,5" Cursor="Hand"
+     Background="White" BorderBrush="#C8C8C8" BorderThickness="2" Foreground="Black" FontWeight="SemiBold" Margin="5,0,7,0" Grid.Column="1" Click="BtnEditarCliente_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8"
-                                Padding="{TemplateBinding Padding}">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                 BorderBrush="{TemplateBinding BorderBrush}"
+                 BorderThickness="{TemplateBinding BorderThickness}"
+                 CornerRadius="8"
+                 Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
-                                    </Button>
-                                </Grid>
 
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Image Source="/imagenes/logo.png" Height="16" Margin="0,0,6,0"/>
+                                            <TextBlock Text="Editar" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </Button>
+
+                                </Grid>
 
                                 <!-- SCROLL GENERAL -->
                                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,15,0,0">
@@ -767,190 +668,82 @@ BorderThickness="1">
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-
-                                        <!-- ========================================================= -->
-                                        <!-- ESTILO PARA LOS EXPANDERS (flecha derecha, sin círculo) -->
-                                        <!-- ========================================================= -->
-                                        <Grid.Resources>
-                                            <Style TargetType="Expander">
-                                                <Setter Property="Foreground" Value="Black"/>
-                                                <Setter Property="Background" Value="#F5F5F5"/>
-                                                <Setter Property="Margin" Value="0,0,0,10"/>
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="Expander">
-                                                            <Border Background="{TemplateBinding Background}"
-                                            CornerRadius="10"
-                                            Padding="10"
-                                            BorderBrush="#D0D0D0"
-                                            BorderThickness="1">
-                                                                <Grid>
-                                                                    <Grid.RowDefinitions>
-                                                                        <RowDefinition Height="Auto"/>
-                                                                        <RowDefinition Height="*"/>
-                                                                    </Grid.RowDefinitions>
-
-                                                                    <!-- CABECERA -->
-                                                                    <ToggleButton 
-                                                Name="HeaderSite"
-                                                Grid.Row="0"
-                                                Content="{TemplateBinding Header}"
-                                                FontWeight="Bold"
-                                                Background="Transparent"
-                                                Foreground="Black"
-                                                BorderThickness="0"
-                                                Cursor="Hand">
-                                                                        <ToggleButton.Template>
-                                                                            <ControlTemplate TargetType="ToggleButton">
-                                                                                <Grid>
-                                                                                    <Grid.ColumnDefinitions>
-                                                                                        <ColumnDefinition/>
-                                                                                        <ColumnDefinition Width="20"/>
-                                                                                    </Grid.ColumnDefinitions>
-
-                                                                                    <ContentPresenter 
-                                                                Grid.Column="0"
-                                                                VerticalAlignment="Center"/>
-
-                                                                                    <!-- Flecha simple -->
-                                                                                    <Path x:Name="Arrow"
-                                                                  Grid.Column="1"
-                                                                  Data="M 0 0 L 8 8 L 0 16"
-                                                                  Stroke="Black"
-                                                                  StrokeThickness="2"
-                                                                  HorizontalAlignment="Center"
-                                                                  VerticalAlignment="Center"/>
-                                                                                </Grid>
-
-                                                                                <ControlTemplate.Triggers>
-                                                                                    <!-- Rotar flecha cuando se abre -->
-                                                                                    <Trigger Property="IsChecked" Value="True">
-                                                                                        <Setter TargetName="Arrow"
-                                                                        Property="RenderTransform">
-                                                                                            <Setter.Value>
-                                                                                                <RotateTransform Angle="90"
-                                                                                         CenterX="4" 
-                                                                                         CenterY="8"/>
-                                                                                            </Setter.Value>
-                                                                                        </Setter>
-                                                                                    </Trigger>
-                                                                                </ControlTemplate.Triggers>
-                                                                            </ControlTemplate>
-                                                                        </ToggleButton.Template>
-                                                                    </ToggleButton>
-
-                                                                    <!-- CONTENIDO -->
-                                                                    <ContentPresenter 
-                                                Name="ExpandSite"
-                                                Grid.Row="1"
-                                                Margin="0,10,0,0"
-                                                Visibility="Collapsed"/>
-
-                                                                </Grid>
-                                                            </Border>
-
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger SourceName="HeaderSite"
-                                                 Property="IsChecked"
-                                                 Value="True">
-                                                                    <Setter TargetName="ExpandSite"
-                                                    Property="Visibility"
-                                                    Value="Visible"/>
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </Grid.Resources>
-
-
-                                        <!-- ========================================= -->
                                         <!-- COLUMNA 1 -->
-                                        <!-- ========================================= -->
                                         <StackPanel Grid.Column="0" Margin="5">
-
                                             <!-- Datos personales -->
-                                            <Expander Header="Datos personales">
+                                            <Expander Header="Datos personales" BorderBrush="LightGray" BorderThickness="2">
                                                 <StackPanel Margin="5">
                                                     <TextBlock Text="Nombre y apellidos:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Juan Pérez" Margin="0,0,0,8"/>
+                                                    <TextBlock x:Name="TxtNombreApellido" Margin="0,0,0,8"/>
 
                                                     <TextBlock Text="Teléfono(s):" FontWeight="Bold"/>
-                                                    <TextBlock Text="666 555 444" Margin="0,0,0,8"/>
+                                                    <TextBlock x:Name="TxtTelefono" Margin="0,0,0,8"/>
 
                                                     <TextBlock Text="Correo(s):" FontWeight="Bold"/>
-                                                    <TextBlock Text="juanperez@email.com"/>
+                                                    <TextBlock x:Name="TxtCorreo"/>
                                                 </StackPanel>
                                             </Expander>
 
                                             <!-- Direcciones -->
-                                            <Expander Header="Direcciones">
+                                            <Expander Header="Direcciones" BorderBrush="LightGray" BorderThickness="2">
                                                 <StackPanel Margin="5">
                                                     <TextBlock Text="Principal:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Calle Mayor 123" Margin="0,0,0,8"/>
+                                                    <TextBlock x:Name="TxtDireccionPrincipal" Margin="0,0,0,8"/>
 
                                                     <TextBlock Text="Secundaria:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Av. Los Robles 45"/>
+                                                    <TextBlock x:Name="TxtDireccionSecundaria"/>
+                                                </StackPanel>
+                                            </Expander>
+                                            <Expander Header="Alergias o intolerancias" BorderBrush="LightGray" BorderThickness="2">
+                                                <StackPanel Margin="5">
+                                                    <TextBlock Text="Alergias:" FontWeight="Bold"/>
+                                                    <TextBlock x:Name="TxtAlergias" Margin="0,0,0,8"/>
+
+                                                    <TextBlock Text="Intolerancias:" FontWeight="Bold"/>
+                                                    <TextBlock x:Name="TxtIntolerancias"/>
                                                 </StackPanel>
                                             </Expander>
 
                                             <!-- Alergias -->
-                                            <Expander Header="Alergias o intolerancias">
-                                                <StackPanel Margin="5">
-                                                    <TextBlock Text="Alergias:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Ninguna" Margin="0,0,0,8"/>
-
-                                                    <TextBlock Text="Intolerancias:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Lactosa"/>
-                                                </StackPanel>
-                                            </Expander>
-
                                         </StackPanel>
 
-
-                                        <!-- ========================================= -->
                                         <!-- COLUMNA 2 -->
-                                        <!-- ========================================= -->
                                         <StackPanel Grid.Column="1" Margin="5">
-
                                             <!-- Forma de pago -->
-                                            <Expander Header="Forma de pago">
+                                            <Expander Header="Forma de pago" BorderBrush="LightGray" BorderThickness="2">
                                                 <StackPanel Margin="5">
                                                     <TextBlock Text="Preferida:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Tarjeta" Margin="0,0,0,8"/>
+                                                    <TextBlock x:Name="TxtFormaPagoPreferida" Margin="0,0,0,8"/>
 
                                                     <TextBlock Text="Alternativa:" FontWeight="Bold"/>
-                                                    <TextBlock Text="Efectivo"/>
+                                                    <TextBlock x:Name="TxtFormaPagoAlternativa"/>
                                                 </StackPanel>
                                             </Expander>
 
                                             <!-- Puntos -->
-                                            <Expander Header="Puntos de cliente">
+                                            <Expander Header="Puntos de cliente" BorderBrush="LightGray" BorderThickness="2">
                                                 <StackPanel Margin="5">
                                                     <TextBlock Text="Acumulados:" FontWeight="Bold"/>
-                                                    <TextBlock Text="120 puntos" Margin="0,0,0,8"/>
+                                                    <TextBlock x:Name="TxtPuntosAcumulados" Margin="0,0,0,8"/>
 
                                                     <TextBlock Text="Canjeados:" FontWeight="Bold"/>
-                                                    <TextBlock Text="20 puntos"/>
+                                                    <TextBlock x:Name="TxtPuntosCanjeados"/>
                                                 </StackPanel>
                                             </Expander>
 
-                                            <!-- Notas -->
-                                            <Expander Header="Historial de pedidos">
+                                            <!-- Historial -->
+                                            <Expander Header="Historial de pedidos" BorderBrush="LightGray" BorderThickness="2">
                                                 <StackPanel Margin="5">
                                                     <TextBlock Text="Pedidos:" FontWeight="Bold"/>
+                                                    <TextBlock x:Name="TxtHistorialPedidos"/>
                                                 </StackPanel>
                                             </Expander>
-
                                         </StackPanel>
-
                                     </Grid>
                                 </ScrollViewer>
-
                             </Grid>
                         </Border>
+
 
 
 

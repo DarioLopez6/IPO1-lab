@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_IPO1
 {
-    public enum FORMAPAGO { TARGETA, EFECTIVO }
+    public enum FORMAPAGO { TARGETA, EFECTIVO, BIZUM }
     public class Cliente
     {
         public int ID { get; set; }

@@ -25,6 +25,7 @@ public partial class MainWindow : Window
     private List<Plato> productList = new List<Plato>();
     private List<Plato> listadoPlatos = new List<Plato>();
     private List<Cliente> misClientes = new List<Cliente>();
+    private Cliente clienteSeleccionado;
 
     public MainWindow()
     {
@@ -51,9 +52,10 @@ public partial class MainWindow : Window
             {
             new Cliente(1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
             new Cliente(2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
-            new Cliente(3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
-            new Cliente(4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0)
+            new Cliente(3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
+            new Cliente(4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
             };
+        ActualizarClientes();
 
     }
     private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
@@ -511,9 +513,13 @@ public partial class MainWindow : Window
                 Padding = new Thickness(10),
                 CornerRadius = new CornerRadius(10),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(224, 224, 224)),
-                BorderThickness = new Thickness(1)
+                BorderThickness = new Thickness(1),
+                Cursor = Cursors.Hand
             };
-
+            border.MouseLeftButtonDown += (s, e) =>
+            {
+                MostrarFichaCliente(cliente);
+            };
             // Crear el Grid interno
             Grid grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(45) });
@@ -573,6 +579,148 @@ public partial class MainWindow : Window
         }
 
 }
+
+    private void BuscadorClientes_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        string filtro = BuscadorClientes.Text.Trim().ToLower();
+
+        ListaClientes.Items.Clear();
+
+        foreach (var cliente in misClientes)
+        {
+            // Concatenamos nombre, apellidos y primer teléfono
+            string datosConcatenados = (cliente.Nombre + " " + cliente.Apellidos + " " +
+                                       (cliente.Telefono.Count > 0 ? cliente.Telefono[0] : "")).ToLower();
+
+            if (datosConcatenados.Contains(filtro))
+            {
+                // Crear el borde principal
+                Border border = new Border
+                {
+                    Width = 180,
+                    Height = 55,
+                    Margin = new Thickness(5),
+                    Background = Brushes.White,
+                    Padding = new Thickness(10),
+                    CornerRadius = new CornerRadius(10),
+                    BorderBrush = new SolidColorBrush(Color.FromRgb(224, 224, 224)),
+                    BorderThickness = new Thickness(1)
+                };
+
+                // Grid interno
+                Grid grid = new Grid();
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(45) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                // Imagen de perfil
+                Border imgBorder = new Border
+                {
+                    Width = 38,
+                    Height = 38,
+                    CornerRadius = new CornerRadius(19),
+                    ClipToBounds = true,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                Image img = new Image
+                {
+                    Source = new BitmapImage(new Uri("/imagenes/perfil.png", UriKind.Relative)),
+                    Stretch = Stretch.UniformToFill
+                };
+                imgBorder.Child = img;
+                grid.Children.Add(imgBorder);
+
+                // Datos del cliente
+                StackPanel sp = new StackPanel
+                {
+                    Margin = new Thickness(10, 0, 0, 0),
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                TextBlock nombre = new TextBlock
+                {
+                    Text = cliente.Nombre + " " + cliente.Apellidos,
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 14
+                };
+                TextBlock telefono = new TextBlock
+                {
+                    Text = cliente.Telefono.Count > 0 ? cliente.Telefono[0] : "",
+                    FontSize = 12,
+                    Foreground = Brushes.Gray
+                };
+                sp.Children.Add(nombre);
+                sp.Children.Add(telefono);
+
+                Grid.SetColumn(sp, 1);
+                grid.Children.Add(sp);
+
+                border.Child = grid;
+                ListaClientes.Items.Add(border);
+            }
+        }
+
+    }
+
+    private void MostrarFichaCliente(Cliente cliente)
+    {
+        clienteSeleccionado = cliente;
+        // Hacer visible la ficha
+        FichaClienteBorder.Visibility = Visibility.Visible;
+
+        // Cabecera
+        TxtFichaCliente.Text = $"Ficha de cliente - {cliente.Nombre} {cliente.Apellidos}";
+
+        // Datos personales
+        TxtNombreApellido.Text = $"{cliente.Nombre} {cliente.Apellidos}";
+        TxtTelefono.Text = cliente.Telefono.Count > 0 ? cliente.Telefono[0] : "";
+        TxtCorreo.Text = cliente.eMail.Count > 0 ? cliente.eMail[0] : "";
+
+        // Direcciones
+        TxtDireccionPrincipal.Text = cliente.Direccion.Count > 0 ? cliente.Direccion[0] : "";
+        TxtDireccionSecundaria.Text = cliente.Direccion.Count > 1 ? cliente.Direccion[1] : "";
+
+        // Alergias e intolerancias
+        TxtAlergias.Text = cliente.Alergias.Count > 0 ? string.Join(", ", cliente.Alergias) : "Ninguna";
+        TxtIntolerancias.Text = cliente.Intolerancias.Count > 0 ? string.Join(", ", cliente.Intolerancias) : "Ninguna";
+
+        // Forma de pago
+        TxtFormaPagoPreferida.Text = cliente.pago switch
+        {
+            FORMAPAGO.TARGETA => "Tarjeta",
+            FORMAPAGO.EFECTIVO => "Efectivo",
+            FORMAPAGO.BIZUM => "Bizum",
+            _ => ""
+        };
+
+        // Puntos
+        TxtPuntosAcumulados.Text = cliente.puntosAcumulados.ToString();
+        TxtPuntosCanjeados.Text = cliente.puntosCangeados.ToString();
+
+        // Historial de pedidos
+        if (cliente.Historial != null && cliente.Historial.Count > 0)
+            TxtHistorialPedidos.Text = string.Join(", ", cliente.Historial.Select(p => p.ToString()));
+        else
+            TxtHistorialPedidos.Text = "No hay pedidos";
+    }
+
+    private void BtnEditarCliente_Click(object sender, RoutedEventArgs e)
+    {
+        if (clienteSeleccionado == null)
+        {
+            MessageBox.Show("No hay cliente seleccionado para editar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        EditarCliente ventanaEditar = new EditarCliente(clienteSeleccionado);
+        ventanaEditar.Owner = this;
+        bool? resultado = ventanaEditar.ShowDialog();
+
+        if (resultado == true)
+        {
+            // Aquí puedes refrescar cualquier control que muestre al cliente
+            ActualizarClientes();
+            FichaClienteBorder.Visibility = Visibility.Collapsed;
+        }
+    }
 
 
 }

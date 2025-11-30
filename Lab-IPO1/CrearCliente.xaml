@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="CrearCliente" Height="756" Width="333">
+        Title="CrearCliente" Height="428" Width="333">
 
     <Window.Resources>
 
@@ -169,23 +169,34 @@
 
 
                 <!-- FORMA DE PAGO -->
-                <TextBlock Text="Forma de pago:" FontWeight="Bold" Margin="0,5,0,0"/>
+                <TextBlock Text="Forma de pago principal:" FontWeight="Bold" Margin="0,5,0,0"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Left" Cursor="Hand">
                     <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-                                 x:Name="rbTarjeta" GroupName="MetodoPago" Content="Tarjeta"/>
+                 x:Name="rbTarjeta" GroupName="MetodoPagoPrincipal" Content="Tarjeta"/>
                     <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-                                 x:Name="rbEfectivo" GroupName="MetodoPago" Content="Efectivo"/>
+                 x:Name="rbEfectivo" GroupName="MetodoPagoPrincipal" Content="Efectivo"/>
                     <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-                                 x:Name="rbBizum" GroupName="MetodoPago" Content="Bizum"/>
+                 x:Name="rbBizum" GroupName="MetodoPagoPrincipal" Content="Bizum"/>
                 </StackPanel>
+
+                <TextBlock Text="Forma de pago alternativa:" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Cursor="Hand">
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbTarjeta1" GroupName="MetodoPagoAlternativa" Content="Tarjeta"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbEfectivo1" GroupName="MetodoPagoAlternativa" Content="Efectivo"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbBizum1" GroupName="MetodoPagoAlternativa" Content="Bizum"/>
+                </StackPanel>
+
 
 
                 <!-- BOTONES -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
 
                     <!-- CANCELAR -->
-                    <Button Width="102" Height="45" Click="Button_Click_2" Cursor="Hand">
+                    <Button Width="102" Height="45" Click="BtnCancelar_Click" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border CornerRadius="10" BorderThickness="1"
@@ -200,7 +211,7 @@
 
 
                     <!-- CREAR -->
-                    <Button Width="102" Height="45" Click="Button_Click" Cursor="Hand">
+                    <Button Width="102" Height="45" Click="BtnCrear_Click" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border CornerRadius="10" BorderThickness="1"

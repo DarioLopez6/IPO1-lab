@@ -1,0 +1,236 @@
+﻿<Window x:Class="Lab_IPO1.EditarCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_IPO1"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="EditarCliente" Height="428" Width="354">
+
+    <Window.Resources>
+
+        <!-- TARJETA DE PRODUCTO -->
+        <Style x:Key="ProductoCardStyle" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <!-- RADIOBUTTON COMO BOTÓN -->
+        <Style x:Key="RadioButtonButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border x:Name="Border"
+                                CornerRadius="10"
+                                BorderThickness="1"
+                                BorderBrush="#CCCCCC"
+                                Background="LightGray"
+                                Padding="8"
+                                Margin="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FF6B35"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#CC5500"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFE6E6E6"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Border CornerRadius="20" Background="White" Padding="20" Margin="10" BorderBrush="#FF6B35" BorderThickness="2">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Orientation="Vertical">
+
+                <!-- TITULO -->
+                <DockPanel Margin="0,0,0,10" LastChildFill="True">
+                    <!-- Botón de ayuda a la derecha -->
+                    <Button DockPanel.Dock="Right" Padding="15,5" Cursor="Hand" Width="80" HorizontalAlignment="Right"
+            FocusVisualStyle="{x:Null}" ToolTip="Pulsar si necesitas ayuda" Click="BtnAyuda_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#F0F0F0" BorderBrush="LightGray" BorderThickness="2" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/imagenes/help.png" Height="18" Margin="0 0 6 0"/>
+                            <TextBlock Text="Ayuda" Foreground="#333"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Título a la izquierda -->
+                    <TextBlock FontSize="24" FontWeight="Bold"
+           HorizontalAlignment="Left" VerticalAlignment="Center"
+           Foreground="#333" Margin="0,0,10,0"><Run Language="es-es" Text="Editar"/><Run Text=" Cliente"/></TextBlock>
+
+                </DockPanel>
+
+
+                <!-- ====================== CAMPOS ====================== -->
+
+                <!-- NOMBRE -->
+                <TextBlock Text="Nombre:" FontWeight="Bold"/>
+
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtNombre" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+                <TextBlock x:Name="lblErrorNombre" Text="El nombre es obligatorio"
+                           Visibility="Collapsed"
+                           Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
+
+
+                <!-- APELLIDOS -->
+                <TextBlock Text="Apellidos:" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtApellidos" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- DIRECCIÓN PRINCIPAL -->
+                <TextBlock Text="Dirección principal:" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtDireccionPrincipal" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- DIRECCIÓN SECUNDARIA -->
+                <TextBlock Text="Dirección secundaria:" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtDireccionSecundaria" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- TELEFONOS -->
+                <TextBlock Text="Teléfonos (separados por comas):" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtTelefono" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- EMAILS -->
+                <TextBlock Text="Correos (separados por comas):" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtCorreo" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- ALERGIAS -->
+                <TextBlock Text="Alergias (separadas por comas):" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtAlergias" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- INTOLERANCIAS -->
+                <TextBlock Text="Intolerancias (separadas por comas):" FontWeight="Bold"/>
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtIntolerancias" Background="Transparent"
+                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                </Border>
+
+
+                <!-- FORMA DE PAGO -->
+                <TextBlock Text="Forma de pago principal:" FontWeight="Bold" Margin="0,5,0,0"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Left" Cursor="Hand">
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+                 x:Name="rbTarjeta" GroupName="MetodoPagoPrincipal" Content="Tarjeta"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+                 x:Name="rbEfectivo" GroupName="MetodoPagoPrincipal" Content="Efectivo"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+                 x:Name="rbBizum" GroupName="MetodoPagoPrincipal" Content="Bizum"/>
+                </StackPanel>
+
+                <TextBlock Text="Forma de pago alternativa:" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Cursor="Hand">
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbTarjeta1" GroupName="MetodoPagoAlternativa" Content="Tarjeta"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbEfectivo1" GroupName="MetodoPagoAlternativa" Content="Efectivo"/>
+                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
+            x:Name="rbBizum1" GroupName="MetodoPagoAlternativa" Content="Bizum"/>
+                </StackPanel>
+
+
+
+                <!-- BOTONES -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+
+                    <!-- CANCELAR -->
+                    <Button Width="102" Height="45" Click="BtnCancelar_Click" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="10" BorderThickness="1"
+                                        BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <TextBlock HorizontalAlignment="Center" FontSize="18">Cancelar</TextBlock>
+                    </Button>
+
+
+                    <!-- Guardar -->
+                    <Button Width="102" Height="45" Cursor="Hand" Click="BtnGuardar_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="10" BorderThickness="1"
+                                        BorderBrush="#CCCCCC" Background="#FF6B35">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <TextBlock HorizontalAlignment="Center" Text="Guardar" VerticalAlignment="Center"
+                                   FontSize="20" Foreground="White"/>
+                    </Button>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Border>
+
+</Window>
