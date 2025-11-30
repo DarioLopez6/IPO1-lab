@@ -180,9 +180,9 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
                 <!-- Para el TabControl -->
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="auto"/>
                 <!-- Para el Border de Pedido Actual -->
             </Grid.ColumnDefinitions>
 
@@ -961,189 +961,69 @@ BorderThickness="1">
                 </TabItem>
 
             </TabControl>
-            <Border x:Name="pedidoActual" 
-Background="#FFFFFF" Grid.Column="1"
+            <Expander Grid.Column="1" ExpandDirection="Right" IsExpanded="True" Background="White">
+                <Expander.Header>
+                    <StackPanel>
+                        <TextBlock Text="Pedido Actual" FontWeight="Bold">
+                            <TextBlock.LayoutTransform>
+                                <RotateTransform Angle="-90"/>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </StackPanel>
+                </Expander.Header>
+                <Border Background="White" Padding="10">
+                    <StackPanel>
+                        <Border x:Name="pedidoActual" 
+Background="#FFFFFF" 
 BorderBrush="#CCCCCC"
 BorderThickness="1"
 Padding="15" Width="400">
-                <StackPanel
+                            <StackPanel
     Orientation="Vertical" Margin="-6,-6,-6,-6">
-                    <!-- TITULO -->
+                                <!-- TITULO -->
 
 
-                    <!-- TITULO -->
-                    <Grid
+                                <!-- TITULO -->
+                                <Grid
     RenderTransformOrigin="0.498,0.458" Height="31">
-                        <Grid.ColumnDefinitions
+                                    <Grid.ColumnDefinitions
     >
-                            <ColumnDefinition
+                                        <ColumnDefinition
     Width="142*"/>
-                            <ColumnDefinition
+                                        <ColumnDefinition
     Width="197*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
     Text="Pedido Actual" x:Name="txtpedidoActualTitulo" Margin="0,0,1,2" FontSize="20" FontWeight="Bold"/>
-                        <TextBlock
+                                    <TextBlock
     Width="159" Visibility="Hidden" VerticalAlignment="Center" TextWrapping="Wrap" x:Name="txterrorPedido" Margin="38,0,0,0" Height="27" HorizontalAlignment="Left" FontSize="11" FontWeight="Bold" Foreground="Red" Grid.Column="1"><Run
     Text="Selecciona o rellena los campos"/><Run
     Language="es-es" Text=" "/><Run
     Text="marcados con *"/></TextBlock>
-                    </Grid>
-                    <!-- ────────── CAJA PRINCIPAL CON 4 APARTADOS ────────── -->
-                    <Border
+                                </Grid>
+                                <!-- ────────── CAJA PRINCIPAL CON 4 APARTADOS ────────── -->
+                                <Border
     Padding="10" Margin="0 0 0 15" CornerRadius="10" Background="#F2F2F2">
-                        <Grid
+                                    <Grid
     Margin="0">
-                            <Grid.RowDefinitions
+                                        <Grid.RowDefinitions
     >
-                                <RowDefinition
+                                            <RowDefinition
     Height="Auto"/>
-                                <RowDefinition
+                                            <RowDefinition
     Height="Auto"/>
 
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions
     >
-                                <ColumnDefinition
+                                            <ColumnDefinition
     Width="*"/>
-                                <ColumnDefinition
+                                            <ColumnDefinition
     Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <!-- ESPACIO 1: Tipo de pedido -->
-                            <StackPanel
+                                        </Grid.ColumnDefinitions>
+                                        <!-- ESPACIO 1: Tipo de pedido -->
+                                        <StackPanel
     Grid.Row="0" Margin="5" Grid.Column="0">
-                                <Grid
-    >
-                                    <Grid.ColumnDefinitions
-    >
-                                        <ColumnDefinition
-    Width="*"/>
-                                        <ColumnDefinition
-    Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock
-    Text="Tipo de pedido" x:Name="txttipoPedido1" Margin="0,0,27,0" FontSize="13" FontWeight="Bold"/>
-                                    <TextBlock
-    Width="28" Visibility="Hidden" Text="*" x:Name="txterrorTipoPedido" Margin="122,0,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="Red" Grid.ColumnSpan="2"/>
-                                </Grid>
-                                <StackPanel
-    Orientation="Horizontal" Margin="0 5 0 10" Cursor="Hand">
-                                    <RadioButton
-    Width="72" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnenLocal" Height="39" GroupName="TipoPedido" Content="En local"/>
-                                    <RadioButton
-    Width="67" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btntelfono" GroupName="TipoPedido" Content="Teléfono"/>
-
-                                </StackPanel>
-
-                            </StackPanel>
-                            <!-- ESPACIO 2: Hora de recogida/entrega -->
-                            <StackPanel
-    Grid.Row="0" Margin="5,5,5,5" Grid.Column="1">
-                                <Grid
-    Height="23" Width="159">
-                                    <TextBlock
-    FontWeight="Bold" FontSize="13" Text="Hora recogida/entrega"/>
-                                    <TextBlock
-    Visibility="Hidden" TextWrapping="Wrap" x:Name="txterrorHora" Margin="142,0,0,0"><Run
-    Text="*" Language="es-es" FontSize="14" FontWeight="Bold" Foreground="Red"/></TextBlock>
-                                </Grid>
-                                <Button
-    Margin="0 5 0 0" Height="30" Cursor="Pen">
-                                    <Button.Template
-    >
-                                        <ControlTemplate
-    TargetType="{x:Type Button}">
-                                            <Border
-    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
-                                                <ContentPresenter
-    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-
-                                        </ControlTemplate>
-
-                                    </Button.Template>
-                                    <TextBox
-    Width="120" TextWrapping="Wrap" x:Name="txthora" BorderBrush="#00ABADB3" Background="Transparent"/>
-                                </Button>
-
-                            </StackPanel>
-                            <!-- ESPACIO 3: Entrega a domicilio -->
-                            <StackPanel
-    Grid.Row="1" Margin="5" Grid.Column="0">
-                                <Grid
-    Height="17">
-                                    <TextBlock
-    Text="Entrega a domicilio" Margin="0,0,28,0" FontSize="13" FontWeight="Bold"/>
-                                    <TextBlock
-    Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorDomicilio" Margin="126,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
-                                </Grid>
-                                <Button
-    Margin="0 5 0 0" Height="30" Cursor="Pen">
-                                    <Button.Template
-    >
-                                        <ControlTemplate
-    TargetType="{x:Type Button}">
-                                            <Border
-    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
-                                                <ContentPresenter
-    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-
-                                        </ControlTemplate>
-
-                                    </Button.Template>
-                                    <TextBox
-    Width="120" TextWrapping="Wrap" x:Name="txtdomicilio" BorderBrush="#00ABADB3" Background="Transparent"/>
-                                </Button>
-
-                            </StackPanel>
-                            <!-- ESPACIO 4: Cliente -->
-                            <StackPanel
-    Grid.Row="1" Margin="5" Grid.Column="1">
-                                <Grid
-    Height="17">
-                                    <TextBlock
-    Text="Cliente" Margin="0,0,96,0" FontSize="13" FontWeight="Bold"/>
-                                    <TextBlock
-    Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorCliente" Margin="59,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
-                                </Grid>
-                                <Button
-    Margin="0 5 0 0" Height="30" Cursor="Pen">
-                                    <Button.Template
-    >
-                                        <ControlTemplate
-    TargetType="{x:Type Button}">
-                                            <Border
-    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
-                                                <ContentPresenter
-    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-
-                                        </ControlTemplate>
-
-                                    </Button.Template>
-                                    <TextBox
-    Width="120" TextWrapping="Wrap" x:Name="txtcliente" BorderBrush="#00ABADB3" Background="Transparent"/>
-                                </Button>
-
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                    <!-- ────────── LISTA DE PRODUCTOS SCROLLEABLE ────────── -->
-                    <Border
-    Padding="10" Margin="0 0 0 10" Height="184" CornerRadius="10" Background="#F9F9F9">
-                        <ScrollViewer
-    VerticalScrollBarVisibility="Auto">
-                            <!-- LISTA DINÁMICA DE PRODUCTOS -->
-                            <ItemsControl
-    x:Name="listaProductos">
-                                <ItemsControl.ItemTemplate
-    >
-                                    <DataTemplate
-    >
-                                        <!-- La tarjeta de producto mantiene tu mismo estilo -->
-                                        <Border
-    Style="{StaticResource ProductoCardStyle}">
                                             <Grid
     >
                                                 <Grid.ColumnDefinitions
@@ -1153,171 +1033,306 @@ Padding="15" Width="400">
                                                     <ColumnDefinition
     Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <!-- Nombre del producto -->
                                                 <TextBlock
-    FontSize="15" Text="{Binding Nombre}" VerticalAlignment="Center"/>
-                                                <!-- Cantidad, precio y botón eliminar -->
-                                                <StackPanel
-    VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                                                    <!-- Cantidad -->
-                                                    <TextBlock
-    FontSize="14" Text="x{Binding Cantidad}"/>
-                                                    <!-- Precio -->
-                                                    <TextBlock
-    Width="58" Text="{Binding PrecioTexto}" FontSize="14" FontWeight="Bold"/>
-                                                    <!-- Botón eliminar -->
-                                                    <Button
-    Width="22" Height="22" Click="EliminarProducto_Click" Cursor="Hand">
-                                                        <Button.Template
-    >
-                                                            <ControlTemplate
-    TargetType="{x:Type Button}">
-                                                                <Border
-    CornerRadius="5" BorderThickness="1" BorderBrush="#AA0000" Background="#FFCCCC">
-                                                                    <TextBlock
-    VerticalAlignment="Center" Text="✕" HorizontalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
-                                                                </Border>
-
-                                                            </ControlTemplate>
-
-                                                        </Button.Template>
-                                                    </Button>
-
-                                                </StackPanel>
+    Text="Tipo de pedido" x:Name="txttipoPedido1" Margin="0,0,27,0" FontSize="13" FontWeight="Bold"/>
+                                                <TextBlock
+    Width="28" Visibility="Hidden" Text="*" x:Name="txterrorTipoPedido" Margin="122,0,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="Red" Grid.ColumnSpan="2"/>
                                             </Grid>
-                                        </Border>
+                                            <StackPanel
+    Orientation="Horizontal" Margin="0 5 0 10" Cursor="Hand">
+                                                <RadioButton
+    Width="72" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnenLocal" Height="39" GroupName="TipoPedido" Content="En local"/>
+                                                <RadioButton
+    Width="67" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btntelfono" GroupName="TipoPedido" Content="Teléfono"/>
 
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
+                                            </StackPanel>
 
-                            </ItemsControl>
-
-                        </ScrollViewer>
-                    </Border>
-                    <!-- Separador visual -->
-                    <Rectangle
-    Width="275" Margin="0 0 0 10" Height="1" HorizontalAlignment="Stretch" Fill="#CCCCCC"/>
-                    <!-- Total y pago -->
-                    <Grid
-    Margin="0 0 0 10" Height="22">
-                        <Grid.ColumnDefinitions
+                                        </StackPanel>
+                                        <!-- ESPACIO 2: Hora de recogida/entrega -->
+                                        <StackPanel
+    Grid.Row="0" Margin="5,5,5,5" Grid.Column="1">
+                                            <Grid
+    Height="23" Width="159">
+                                                <TextBlock
+    FontWeight="Bold" FontSize="13" Text="Hora recogida/entrega"/>
+                                                <TextBlock
+    Visibility="Hidden" TextWrapping="Wrap" x:Name="txterrorHora" Margin="142,0,0,0"><Run
+    Text="*" Language="es-es" FontSize="14" FontWeight="Bold" Foreground="Red"/></TextBlock>
+                                            </Grid>
+                                            <Button
+    Margin="0 5 0 0" Height="30" Cursor="Pen">
+                                                <Button.Template
     >
-                            <ColumnDefinition
-    Width="9*"/>
-                            <ColumnDefinition
-    Width="50*"/>
-                            <ColumnDefinition
+                                                    <ControlTemplate
+    TargetType="{x:Type Button}">
+                                                        <Border
+    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                                            <ContentPresenter
+    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+
+                                                    </ControlTemplate>
+
+                                                </Button.Template>
+                                                <TextBox
+    Width="120" TextWrapping="Wrap" x:Name="txthora" BorderBrush="#00ABADB3" Background="Transparent"/>
+                                            </Button>
+
+                                        </StackPanel>
+                                        <!-- ESPACIO 3: Entrega a domicilio -->
+                                        <StackPanel
+    Grid.Row="1" Margin="5" Grid.Column="0">
+                                            <Grid
+    Height="17">
+                                                <TextBlock
+    Text="Entrega a domicilio" Margin="0,0,28,0" FontSize="13" FontWeight="Bold"/>
+                                                <TextBlock
+    Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorDomicilio" Margin="126,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
+                                            </Grid>
+                                            <Button
+    Margin="0 5 0 0" Height="30" Cursor="Pen">
+                                                <Button.Template
+    >
+                                                    <ControlTemplate
+    TargetType="{x:Type Button}">
+                                                        <Border
+    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                                            <ContentPresenter
+    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+
+                                                    </ControlTemplate>
+
+                                                </Button.Template>
+                                                <TextBox
+    Width="120" TextWrapping="Wrap" x:Name="txtdomicilio" BorderBrush="#00ABADB3" Background="Transparent"/>
+                                            </Button>
+
+                                        </StackPanel>
+                                        <!-- ESPACIO 4: Cliente -->
+                                        <StackPanel
+    Grid.Row="1" Margin="5" Grid.Column="1">
+                                            <Grid
+    Height="17">
+                                                <TextBlock
+    Text="Cliente" Margin="0,0,96,0" FontSize="13" FontWeight="Bold"/>
+                                                <TextBlock
+    Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorCliente" Margin="59,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
+                                            </Grid>
+                                            <Button
+    Margin="0 5 0 0" Height="30" Cursor="Pen">
+                                                <Button.Template
+    >
+                                                    <ControlTemplate
+    TargetType="{x:Type Button}">
+                                                        <Border
+    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                                            <ContentPresenter
+    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+
+                                                    </ControlTemplate>
+
+                                                </Button.Template>
+                                                <TextBox
+    Width="120" TextWrapping="Wrap" x:Name="txtcliente" BorderBrush="#00ABADB3" Background="Transparent"/>
+                                            </Button>
+
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <!-- ────────── LISTA DE PRODUCTOS SCROLLEABLE ────────── -->
+                                <Border
+    Padding="10" Margin="0 0 0 10" Height="184" CornerRadius="10" Background="#F9F9F9">
+                                    <ScrollViewer
+    VerticalScrollBarVisibility="Auto">
+                                        <!-- LISTA DINÁMICA DE PRODUCTOS -->
+                                        <ItemsControl
+    x:Name="listaProductos">
+                                            <ItemsControl.ItemTemplate
+    >
+                                                <DataTemplate
+    >
+                                                    <!-- La tarjeta de producto mantiene tu mismo estilo -->
+                                                    <Border
+    Style="{StaticResource ProductoCardStyle}">
+                                                        <Grid
+    >
+                                                            <Grid.ColumnDefinitions
+    >
+                                                                <ColumnDefinition
+    Width="*"/>
+                                                                <ColumnDefinition
     Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
+                                                            </Grid.ColumnDefinitions>
+                                                            <!-- Nombre del producto -->
+                                                            <TextBlock
+    FontSize="15" Text="{Binding Nombre}" VerticalAlignment="Center"/>
+                                                            <!-- Cantidad, precio y botón eliminar -->
+                                                            <StackPanel
+    VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
+                                                                <!-- Cantidad -->
+                                                                <TextBlock
+    FontSize="14" Text="x{Binding Cantidad}"/>
+                                                                <!-- Precio -->
+                                                                <TextBlock
+    Width="58" Text="{Binding PrecioTexto}" FontSize="14" FontWeight="Bold"/>
+                                                                <!-- Botón eliminar -->
+                                                                <Button
+    Width="22" Height="22" Click="EliminarProducto_Click" Cursor="Hand">
+                                                                    <Button.Template
+    >
+                                                                        <ControlTemplate
+    TargetType="{x:Type Button}">
+                                                                            <Border
+    CornerRadius="5" BorderThickness="1" BorderBrush="#AA0000" Background="#FFCCCC">
+                                                                                <TextBlock
+    VerticalAlignment="Center" Text="✕" HorizontalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
+                                                                            </Border>
+
+                                                                        </ControlTemplate>
+
+                                                                    </Button.Template>
+                                                                </Button>
+
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </Border>
+
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+
+                                        </ItemsControl>
+
+                                    </ScrollViewer>
+                                </Border>
+                                <!-- Separador visual -->
+                                <Rectangle
+    Width="275" Margin="0 0 0 10" Height="1" HorizontalAlignment="Stretch" Fill="#CCCCCC"/>
+                                <!-- Total y pago -->
+                                <Grid
+    Margin="0 0 0 10" Height="22">
+                                    <Grid.ColumnDefinitions
+    >
+                                        <ColumnDefinition
+    Width="9*"/>
+                                        <ColumnDefinition
+    Width="50*"/>
+                                        <ColumnDefinition
+    Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
     VerticalAlignment="Center" Text="Total:" Margin="0,0,44,0" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="3"/>
-                        <TextBlock
+                                    <TextBlock
     VerticalAlignment="Center" Text="21.50$" x:Name="txttotal" FontSize="14" FontWeight="Bold" Grid.Column="2"/>
-                        <TextBlock
+                                    <TextBlock
     Width="250" Visibility="Hidden" VerticalAlignment="Center" TextWrapping="Wrap" x:Name="txtpedidoVacio" Height="26" HorizontalAlignment="Center" Grid.Column="1"><Run
     Text="Seleccione algún producto *" Language="es-es" FontSize="14" FontWeight="Bold" Foreground="Red"/></TextBlock>
-                    </Grid>
-                    <Grid
+                                </Grid>
+                                <Grid
     Height="19">
-                        <TextBlock
+                                    <TextBlock
     Text="Forma de pago:" Margin="0,0,241,0" FontSize="13" FontWeight="Bold"/>
-                        <TextBlock
+                                    <TextBlock
     Visibility="Hidden" Text="*" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5" x:Name="txterrorPago" Margin="103,0,0,-1" FontSize="14" FontWeight="Bold" Foreground="Red">
-                            <TextBlock.RenderTransform
+                                        <TextBlock.RenderTransform
     >
-                                <TransformGroup
+                                            <TransformGroup
     >
-                                    <ScaleTransform
+                                                <ScaleTransform
     ScaleY="1"/>
-                                    <SkewTransform
+                                                <SkewTransform
     />
-                                    <RotateTransform
+                                                <RotateTransform
     />
-                                    <TranslateTransform
+                                                <TranslateTransform
     />
 
-                                </TransformGroup>
-                            </TextBlock.RenderTransform>
-                        </TextBlock>
-                    </Grid>
-                    <!-- Botones de pago -->
-                    <StackPanel
+                                            </TransformGroup>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                </Grid>
+                                <!-- Botones de pago -->
+                                <StackPanel
     Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Left" Cursor="Hand">
-                        <RadioButton
+                                    <RadioButton
     Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btntarjeta" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Tarjeta"/>
-                        <RadioButton
+                                    <RadioButton
     Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnefectivo" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Efectivo"/>
-                        <RadioButton
+                                    <RadioButton
     Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnbizum" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Bizum"/>
 
-                    </StackPanel>
-                    <!-- Texto informativo -->
-                    <TextBlock
+                                </StackPanel>
+                                <!-- Texto informativo -->
+                                <TextBlock
     Text="Pedidos &gt;20$ acumulan 3 puntos. Puede canjearlos por envío gratis." TextWrapping="Wrap" Margin="0 0 0 10" FontSize="11" Foreground="Gray"/>
-                    <!-- Barra inferior: Limpiar a la izquierda, Autoría+Cobrar a la derecha -->
-                    <Grid
+                                <!-- Barra inferior: Limpiar a la izquierda, Autoría+Cobrar a la derecha -->
+                                <Grid
     >
-                        <Grid.ColumnDefinitions
+                                    <Grid.ColumnDefinitions
     >
-                            <ColumnDefinition
+                                        <ColumnDefinition
     Width="*"/>
-                            <ColumnDefinition
+                                        <ColumnDefinition
     Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <!-- Botón Limpiar -->
-                        <Button
+                                    </Grid.ColumnDefinitions>
+                                    <!-- Botón Limpiar -->
+                                    <Button
     Width="70" Height="30" HorizontalAlignment="Left" Click="Button_Click_2" Cursor="Hand">
-                            <Button.Template
+                                        <Button.Template
     >
-                                <ControlTemplate
+                                            <ControlTemplate
     TargetType="{x:Type Button}">
-                                    <Border
+                                                <Border
     CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
-                                        <ContentPresenter
+                                                    <ContentPresenter
     HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
+                                                </Border>
 
-                                </ControlTemplate>
+                                            </ControlTemplate>
 
-                            </Button.Template>
-                            <TextBlock
+                                        </Button.Template>
+                                        <TextBlock
     HorizontalAlignment="Center" Text="Limpiar" VerticalAlignment="Center"/>
-                        </Button>
-                        <StackPanel
+                                    </Button>
+                                    <StackPanel
     VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                            <TextBlock
+                                        <TextBlock
     TextDecorations="Underline" Text="Autoría y versión" x:Name="btnautoria" MouseLeftButtonUp="Btnautoria_Click" Margin="0 0 5 0" Height="17" FontWeight="Bold" Foreground="Black" Cursor="Hand"/>
-                            <Button
+                                        <Button
     Width="100" x:Name="btncobrar" MouseLeftButtonUp="Btnautoria_Click" Height="30" Click="Button_Click_4" Cursor="Hand">
-                                <Button.Template
+                                            <Button.Template
     >
-                                    <ControlTemplate
+                                                <ControlTemplate
     TargetType="{x:Type Button}">
-                                        <Border
+                                                    <Border
     CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#FF6B35">
-                                            <ContentPresenter
+                                                        <ContentPresenter
     HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
+                                                    </Border>
 
-                                    </ControlTemplate>
+                                                </ControlTemplate>
 
-                                </Button.Template>
-                                <!-- CONTENIDO: ICONO + TEXTO -->
-                                <StackPanel
+                                            </Button.Template>
+                                            <!-- CONTENIDO: ICONO + TEXTO -->
+                                            <StackPanel
     VerticalAlignment="Center" Orientation="Horizontal" Margin="5 0" HorizontalAlignment="Center">
-                                    <Image
+                                                <Image
     Width="26" Source="/imagenes/cobrarIcon.png" Margin="0 0 5 0" Height="22"/>
-                                    <TextBlock
+                                                <TextBlock
     Foreground="White" Text="Cobrar" VerticalAlignment="Center"/>
 
-                                </StackPanel>
-                            </Button>
+                                            </StackPanel>
+                                        </Button>
 
-                        </StackPanel>
-                    </Grid>
+                                    </StackPanel>
+                                </Grid>
 
-                </StackPanel>
-            </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Expander>
 
 
         </Grid>

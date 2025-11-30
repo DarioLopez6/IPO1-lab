@@ -36,13 +36,6 @@ public MainWindow()
         CargarEjemplosPedidos();
         CargarPedidos(); // carga los pedidos de prueba en las 4 listas
         listaProductos.ItemsSource = productosActuales;
-        productosActuales.Add(new Plato 
-        { 
-            Nombre = "Pizza Margarita", 
-            Precio = 8, 
-            Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), 
-            Cantidad = 2 
-        });
         listadoPlatos = new List<Plato>
 {
 new Plato { Nombre = "Pizza Margarita", Precio = 8, Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), Cantidad = 0 },
