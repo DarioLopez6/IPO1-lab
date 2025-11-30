@@ -1147,62 +1147,42 @@ Padding="15" Width="400">
                                     <ScrollViewer
     VerticalScrollBarVisibility="Auto">
                                         <!-- LISTA DINÁMICA DE PRODUCTOS -->
-                                        <ItemsControl
-    x:Name="listaProductos">
-                                            <ItemsControl.ItemTemplate
-    >
-                                                <DataTemplate
-    >
-                                                    <!-- La tarjeta de producto mantiene tu mismo estilo -->
-                                                    <Border
-    Style="{StaticResource ProductoCardStyle}">
-                                                        <Grid
-    >
-                                                            <Grid.ColumnDefinitions
-    >
-                                                                <ColumnDefinition
-    Width="*"/>
-                                                                <ColumnDefinition
-    Width="Auto"/>
+                                        <ItemsControl x:Name="listaProductos">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Style="{StaticResource ProductoCardStyle}">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <!-- Nombre del producto -->
-                                                            <TextBlock
-    FontSize="15" Text="{Binding Nombre}" VerticalAlignment="Center"/>
+
+                                                            <!-- Imagen + Nombre -->
+                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                                <Image Source="{Binding Imagen}" Width="24" Height="24" Margin="0,0,5,0"/>
+                                                                <TextBlock FontSize="15" Text="{Binding Nombre}" VerticalAlignment="Center"/>
+                                                            </StackPanel>
+
                                                             <!-- Cantidad, precio y botón eliminar -->
-                                                            <StackPanel
-    VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                                                                <!-- Cantidad -->
-                                                                <TextBlock
-    FontSize="14" Text="x{Binding Cantidad}"/>
-                                                                <!-- Precio -->
-                                                                <TextBlock
-    Width="58" Text="{Binding PrecioTexto}" FontSize="14" FontWeight="Bold"/>
-                                                                <!-- Botón eliminar -->
-                                                                <Button
-    Width="22" Height="22" Click="EliminarProducto_Click" Cursor="Hand">
-                                                                    <Button.Template
-    >
-                                                                        <ControlTemplate
-    TargetType="{x:Type Button}">
-                                                                            <Border
-    CornerRadius="5" BorderThickness="1" BorderBrush="#AA0000" Background="#FFCCCC">
-                                                                                <TextBlock
-    VerticalAlignment="Center" Text="✕" HorizontalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
+                                                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
+                                                                <TextBlock FontSize="14" Text="{Binding Cantidad, StringFormat=x{0}}" Margin="0,0,5,0"/>
+                                                                <TextBlock Width="58" Text="{Binding PrecioTexto}" FontSize="14" FontWeight="Bold" Margin="0,0,5,0"/>
+                                                                <Button Width="22" Height="22" Click="EliminarProducto_Click" Cursor="Hand">
+                                                                    <Button.Template>
+                                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                                            <Border CornerRadius="5" BorderThickness="1" BorderBrush="#AA0000" Background="#FFCCCC">
+                                                                                <TextBlock VerticalAlignment="Center" Text="✕" HorizontalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
                                                                             </Border>
-
                                                                         </ControlTemplate>
-
                                                                     </Button.Template>
                                                                 </Button>
-
                                                             </StackPanel>
                                                         </Grid>
                                                     </Border>
-
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
-
                                         </ItemsControl>
+
 
                                     </ScrollViewer>
                                 </Border>

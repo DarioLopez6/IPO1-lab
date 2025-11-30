@@ -214,12 +214,23 @@ new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/ta
         root.Children.Add(header);
 
         var detalle = new StackPanel { Margin = new Thickness(0, 8, 0, 0), Visibility = Visibility.Collapsed };
+        detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora realización: {DateTime.Now}" });
         detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora: {p.Hora}" });
         detalle.Children.Add(new TextBlock { Text = $"Dirección: {(string.IsNullOrEmpty(p.Domicilio) ? "—" : p.Domicilio)}" });
         detalle.Children.Add(new TextBlock { Text = $"Forma pago: {(p.Pago == 1 ? "Tarjeta" : p.Pago == 2 ? "Efectivo" : "Bizum")}" });
 
-        var productosText = string.Join(", ", p.Platos.Select(x => $"{x.Nombre} x{x.Cantidad}"));
-        detalle.Children.Add(new TextBlock { Text = $"Productos: {productosText}" });
+        var productosLabel = new TextBlock { Text = "Productos:", FontWeight = FontWeights.Bold };
+        detalle.Children.Add(productosLabel);
+
+        foreach (var plato in p.Platos)
+        {
+            detalle.Children.Add(new TextBlock
+            {
+                Text = $"{plato.Nombre} x{plato.Cantidad} - {plato.Precio * plato.Cantidad:0.00}€",
+                Margin = new Thickness(10, 0, 0, 0)
+            });
+        }
+
 
         var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0) };
         var btnMover = new Button { Content = "Siguiente fase", Padding = new Thickness(6, 2, 6, 2), Margin = new Thickness(0, 0, 8, 0) };
@@ -414,7 +425,6 @@ new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/ta
         string hora = txthora.Text;
         string domicilio = txtdomicilio.Text;
         string cliente = txtcliente.Text;
-        List<Plato> platos = new List<Plato>();
         double total = double.Parse(txttotal.Text.Substring(0, txttotal.Text.Length - 1));
         int pago = btntarjeta.IsChecked == true ? 1 : btnefectivo.IsChecked == true ? 2 : btnbizum.IsChecked == true ? 3 : 0;
         int estado = 1;
@@ -441,13 +451,31 @@ new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/ta
         else
         {
             txterrorDomicilio.Visibility = Visibility.Hidden;
+
+            // Creamos una copia profunda de los productos actuales
+            List<Plato> platos = productosActuales.Select(p => new Plato
+            {
+                Nombre = p.Nombre,
+                Precio = p.Precio,
+                Imagen = p.Imagen,
+                Cantidad = p.Cantidad,
+                Categoria = p.Categoria,
+                Subcategoria = p.Subcategoria,
+                Ingredientes = p.Ingredientes,
+                Alergenos = p.Alergenos
+            }).ToList();
+
             Pedido pedido = new Pedido(local, hora, domicilio, cliente, platos, total, pago, estado, puntos);
             pendientesDePago.Add(pedido);
             pedidos.Add(pedido);
             AgregarPedidoAFase(pedido);
-            Button_Click_2(sender, e);
+
+            // Limpiar pedido actual
+            productosActuales.Clear();
             ActualizarTotal();
-            txtlogo.Text = $"{local} {hora} {domicilio} {cliente} {platos} {total} {pago} {estado} {puntos}";
+
+            // Opcional: limpiar inputs
+            Button_Click_2(sender, e);
         }
     }
 
