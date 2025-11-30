@@ -24,8 +24,9 @@ public partial class MainWindow : Window
     private List<Pedido> pedidos = new List<Pedido>();
     private List<Plato> productList = new List<Plato>();
     private List<Plato> listadoPlatos = new List<Plato>();
+    private List<Cliente> misClientes = new List<Cliente>();
 
-public MainWindow()
+    public MainWindow()
     {
         InitializeComponent();
         listadoPlatos = CargarContenidoXML();
@@ -37,15 +38,22 @@ public MainWindow()
         CargarPedidos(); // carga los pedidos de prueba en las 4 listas
         listaProductos.ItemsSource = productosActuales;
         listadoPlatos = new List<Plato>
-{
-new Plato { Nombre = "Pizza Margarita", Precio = 8, Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), Cantidad = 0 },
-new Plato { Nombre = "Hamburguesa con Queso", Precio = 6, Imagen = new Uri("/imagenes/hamburguesa.png", UriKind.Relative), Cantidad = 0 },
-new Plato { Nombre = "Ensalada César", Precio = 5, Imagen = new Uri("/imagenes/ensalada.png", UriKind.Relative), Cantidad = 0 },
-new Plato { Nombre = "Pasta Boloñesa", Precio = 7, Imagen = new Uri("/imagenes/pasta.png", UriKind.Relative), Cantidad = 0 },
-new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/taco.png", UriKind.Relative), Cantidad = 0 }
-};
+            {
+            new Plato { Nombre = "Pizza Margarita", Precio = 8, Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), Cantidad = 0 },
+            new Plato { Nombre = "Hamburguesa con Queso", Precio = 6, Imagen = new Uri("/imagenes/hamburguesa.png", UriKind.Relative), Cantidad = 0 },
+            new Plato { Nombre = "Ensalada César", Precio = 5, Imagen = new Uri("/imagenes/ensalada.png", UriKind.Relative), Cantidad = 0 },
+            new Plato { Nombre = "Pasta Boloñesa", Precio = 7, Imagen = new Uri("/imagenes/pasta.png", UriKind.Relative), Cantidad = 0 },
+            new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/taco.png", UriKind.Relative), Cantidad = 0 }
+            };
         PlatosListView.ItemsSource = listadoPlatos;
         DataContext = listadoPlatos;
+        misClientes = new List<Cliente>
+            {
+            new Cliente(1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
+            new Cliente(2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
+            new Cliente(3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
+            new Cliente(4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0)
+            };
 
     }
     private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
@@ -378,15 +386,9 @@ new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/ta
         this.Close();
     }
 
-    private void BtnAyuda_Click(object sender, RoutedEventArgs e)
-    {
-        HelpWindow help = new HelpWindow { Owner = this };
-        help.ShowDialog();
-    }
-
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        HelpWindow help = new HelpWindow { Owner = this };
+        HelpWindow help = new HelpWindow("• Pestañas productos, pedidos y clientes:", "Gestiona cada cosa con la interfaz proporcionada") { Owner = this };
         help.ShowDialog();
     }
 
@@ -478,6 +480,99 @@ new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/ta
             Button_Click_2(sender, e);
         }
     }
+
+    private void btnanadirCliente_Click(object sender, RoutedEventArgs e)
+    {
+        CrearCliente ventana = new CrearCliente();
+
+        ventana.Owner = this;     // <-- IMPORTANTE para bloquear la ventana principal
+        ventana.ShowInTaskbar = false;
+
+        if (ventana.ShowDialog() == true)
+        {
+            Cliente nuevo = ventana.NuevoCliente;
+            misClientes.Add(nuevo);
+            ActualizarClientes();
+        }
+    }
+    private void ActualizarClientes()
+    {
+        ListaClientes.Items.Clear();
+
+        foreach (var cliente in misClientes)
+        {
+            // Crear el borde principal
+            Border border = new Border
+            {
+                Width = 180,
+                Height = 55,
+                Margin = new Thickness(5),
+                Background = Brushes.White,
+                Padding = new Thickness(10),
+                CornerRadius = new CornerRadius(10),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(224, 224, 224)),
+                BorderThickness = new Thickness(1)
+            };
+
+            // Crear el Grid interno
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(45) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            // Imagen de perfil
+            Border imgBorder = new Border
+            {
+                Width = 38,
+                Height = 38,
+                CornerRadius = new CornerRadius(19),
+                ClipToBounds = true,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            Image img = new Image
+            {
+                Source = new BitmapImage(new Uri("/imagenes/perfil.png", UriKind.Relative)),
+                Stretch = Stretch.UniformToFill
+            };
+
+            imgBorder.Child = img;
+            grid.Children.Add(imgBorder);
+
+            // Datos del cliente
+            StackPanel sp = new StackPanel
+            {
+                Margin = new Thickness(10, 0, 0, 0),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            TextBlock nombre = new TextBlock
+            {
+                Text = cliente.Nombre + " " + cliente.Apellidos,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14
+            };
+
+            TextBlock telefono = new TextBlock
+            {
+                Text = cliente.Telefono.Count > 0 ? cliente.Telefono[0] : "",
+                FontSize = 12,
+                Foreground = Brushes.Gray
+            };
+
+            sp.Children.Add(nombre);
+            sp.Children.Add(telefono);
+
+            Grid.SetColumn(sp, 1);
+            grid.Children.Add(sp);
+
+            // Añadir Grid al Border
+            border.Child = grid;
+
+            // Añadir Border al ItemsControl
+            ListaClientes.Items.Add(border);
+        }
+
+}
 
 
 }

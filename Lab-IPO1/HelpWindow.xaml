@@ -30,9 +30,9 @@
                            FontSize="14"
                            TextWrapping="Wrap" Margin="0 0 0 10"/>
 
-                <TextBlock Text="• Inicio de Sesión:"
+                <TextBlock x:Name="subtitulo" Text="• Inicio de Sesión:"
                            FontSize="16" FontWeight="Bold"/>
-                <TextBlock Text="Introduce tu usuario y contraseña proporcionados por el administrador del TPV."
+                <TextBlock x:Name="textoSub" Text="Introduce tu usuario y contraseña proporcionados por el administrador del TPV."
                            TextWrapping="Wrap" Margin="0 0 0 10"/>
 
                 <TextBlock Text="• Uso de la aplicación:"

@@ -174,7 +174,7 @@ namespace Lab_IPO1
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow();
+            HelpWindow help = new HelpWindow("• Inicio de Sesión:", "Introduce tu usuario y contraseña proporcionados por el administrador del TPV.");
             help.Owner = this;
             help.ShowDialog();
         }

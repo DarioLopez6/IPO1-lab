@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Lab_IPO1
 {
-    enum FORMAPAGO { TARGETA, EFECTIVO }
-    class Cliente
+    public enum FORMAPAGO { TARGETA, EFECTIVO }
+    public class Cliente
     {
         public int ID { get; set; }
         public string Nombre { get; set; }

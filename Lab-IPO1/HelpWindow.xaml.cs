@@ -19,9 +19,11 @@ namespace Lab_IPO1
     /// </summary>
     public partial class HelpWindow : Window
     {
-        public HelpWindow()
+        public HelpWindow(string texto, string subtetxo)
         {
             InitializeComponent();
+            subtitulo.Text = texto;
+            textoSub.Text = subtetxo;
         }
 
         private void Button_Cerrar_Click(object sender, RoutedEventArgs e)

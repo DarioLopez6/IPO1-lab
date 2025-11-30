@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_IPO1
 {
-    class Pedido
+    public class Pedido
     {
         public int Id { get; set; }
         public bool Local { get; set; }           // true = en local, false = telefono/domicilio
