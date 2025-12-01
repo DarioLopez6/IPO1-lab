@@ -49,31 +49,35 @@ namespace Lab_IPO1
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            // Validación básica
-            lblErrorNombre.Visibility = string.IsNullOrWhiteSpace(txtNombre.Text) ? Visibility.Visible : Visibility.Collapsed;
-            if (lblErrorNombre.Visibility == Visibility.Visible)
-                return;
+            bool hayError = false;
 
-            // Actualizar los datos del cliente
-            ClienteEditado.Nombre = txtNombre.Text.Trim();
-            ClienteEditado.Apellidos = txtApellidos.Text.Trim();
-            ClienteEditado.Telefono = txtTelefono.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
-            ClienteEditado.eMail = txtCorreo.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+            // Nombre - solo letras
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || !txtNombre.Text.All(c => char.IsLetter(c) || c == ' '))
+            {
+                lblErrorNombre.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+            else lblErrorNombre.Visibility = Visibility.Collapsed;
 
-            ClienteEditado.Direccion = new List<string>();
-            if (!string.IsNullOrWhiteSpace(txtDireccionPrincipal.Text)) ClienteEditado.Direccion.Add(txtDireccionPrincipal.Text.Trim());
-            if (!string.IsNullOrWhiteSpace(txtDireccionSecundaria.Text)) ClienteEditado.Direccion.Add(txtDireccionSecundaria.Text.Trim());
+            // Apellidos - solo letras
+            if (!string.IsNullOrWhiteSpace(txtApellidos.Text) &&
+                !txtApellidos.Text.All(c => char.IsLetter(c) || c == ' '))
+            {
+                lblErrorApellidos.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+            else lblErrorApellidos.Visibility = Visibility.Collapsed;
 
-            ClienteEditado.Alergias = txtAlergias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
-            ClienteEditado.Intolerancias = txtIntolerancias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+            // Teléfono - solo números y comas
+            if (!string.IsNullOrWhiteSpace(txtTelefono.Text) &&
+                !txtTelefono.Text.All(c => char.IsDigit(c) || c == ',' || c == ' '))
+            {
+                lblErrorTelefono.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+            else lblErrorTelefono.Visibility = Visibility.Collapsed;
 
-            // Actualizar forma de pago principal
-            if (rbTarjeta.IsChecked == true) ClienteEditado.pago = FORMAPAGO.TARGETA;
-            else if (rbEfectivo.IsChecked == true) ClienteEditado.pago = FORMAPAGO.EFECTIVO;
-            else ClienteEditado.pago = FORMAPAGO.BIZUM;
-
-            this.DialogResult = true;
-            Close();
+            if (hayError) return;
         }
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)

@@ -95,23 +95,37 @@
                 <TextBlock Text="Nombre:" FontWeight="Bold"/>
 
                 <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
-                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
-                    <TextBox x:Name="txtNombre" Background="Transparent"
-                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                    Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtNombre"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="#333" FontSize="14"
+                         PreviewTextInput="SoloLetras_PreviewTextInput"
+                         TextChanged="ValidarCampos_TextChanged"/>
                 </Border>
 
-                <TextBlock x:Name="lblErrorNombre" Text="El nombre es obligatorio"
-                           Visibility="Collapsed"
-                           Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
+                <TextBlock x:Name="lblErrorNombre" Text="El nombre solo puede contener letras"
+                   Visibility="Collapsed"
+                   Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
 
 
                 <!-- APELLIDOS -->
                 <TextBlock Text="Apellidos:" FontWeight="Bold"/>
+
                 <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
                         Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
-                    <TextBox x:Name="txtApellidos" Background="Transparent"
-                             BorderThickness="0" Foreground="#333" FontSize="14"/>
-                </Border>
+                    <TextBox x:Name="txtApellidos"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="#333" FontSize="14"
+                         PreviewTextInput="SoloLetras_PreviewTextInput"
+                         TextChanged="ValidarCampos_TextChanged"/>
+                </Border>   
+
+                <TextBlock x:Name="lblErrorApellidos" Text="Los apellidos solo pueden contener letras"
+                   Visibility="Collapsed"
+                   Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
+
 
 
                 <!-- DIRECCIÓN PRINCIPAL -->
@@ -134,11 +148,21 @@
 
                 <!-- TELEFONOS -->
                 <TextBlock Text="Teléfonos (separados por comas):" FontWeight="Bold"/>
+
                 <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
-                        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
-                    <TextBox x:Name="txtTelefono" Background="Transparent"
-                             BorderThickness="0" Foreground="#333" FontSize="14"/>
+                    Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtTelefono"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="#333" FontSize="14"
+                         PreviewTextInput="SoloNumerosComas_PreviewTextInput"
+                         TextChanged="ValidarCampos_TextChanged"/>
                 </Border>
+
+                <TextBlock x:Name="lblErrorTelefono" Text="El teléfono solo puede contener números y comas"
+                   Visibility="Collapsed"
+                   Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
+                
 
 
                 <!-- EMAILS -->
@@ -211,7 +235,7 @@
 
 
                     <!-- CREAR -->
-                    <Button Width="102" Height="45" Click="BtnCrear_Click" Cursor="Hand">
+                    <Button x:Name="btnCrear" Width="102" Height="45" Click="BtnCrear_Click" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border CornerRadius="10" BorderThickness="1"

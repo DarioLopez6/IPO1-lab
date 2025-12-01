@@ -869,8 +869,9 @@ Padding="15" Width="400">
 
                                                 </Button.Template>
                                                 <TextBox
-    Width="120" TextWrapping="Wrap" x:Name="txthora" BorderBrush="#00ABADB3" Background="Transparent"/>
+    Width="120" TextWrapping="Wrap" x:Name="txthora" BorderBrush="#00ABADB3" Background="Transparent" TextChanged="txthora_TextChanged"/>
                                             </Button>
+                                            <TextBox x:Name="txterrorletras" TextWrapping="Wrap" Text="TextBox" Width="158" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontWeight="Bold" Visibility="Hidden"/>
 
                                         </StackPanel>
                                         <!-- ESPACIO 3: Entrega a domicilio -->

@@ -100,7 +100,7 @@
                              BorderThickness="0" Foreground="#333" FontSize="14"/>
                 </Border>
 
-                <TextBlock x:Name="lblErrorNombre" Text="El nombre es obligatorio"
+                <TextBlock x:Name="lblErrorNombre" Text="El nombre es obligatorio, solo letras"
                            Visibility="Collapsed"
                            Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
 
@@ -112,6 +112,11 @@
                     <TextBox x:Name="txtApellidos" Background="Transparent"
                              BorderThickness="0" Foreground="#333" FontSize="14"/>
                 </Border>
+
+                <TextBlock x:Name="lblErrorApellidos" Text="Los apellidos solo pueden contener letras"
+                   Visibility="Collapsed" Foreground="Red" FontWeight="Bold" FontSize="12"
+                   Margin="0,-5,0,5"/>
+
 
 
                 <!-- DIRECCIÓN PRINCIPAL -->
@@ -139,6 +144,11 @@
                     <TextBox x:Name="txtTelefono" Background="Transparent"
                              BorderThickness="0" Foreground="#333" FontSize="14"/>
                 </Border>
+
+                <TextBlock x:Name="lblErrorTelefono" Text="Solo se permiten números y comas"
+                   Visibility="Collapsed" Foreground="Red" FontWeight="Bold" FontSize="12"
+                   Margin="0,-5,0,5"/>
+
 
 
                 <!-- EMAILS -->

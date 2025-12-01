@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Lab_IPO1;
 
@@ -635,7 +636,12 @@ public partial class MainWindow : Window
                     Padding = new Thickness(10),
                     CornerRadius = new CornerRadius(10),
                     BorderBrush = new SolidColorBrush(Color.FromRgb(224, 224, 224)),
-                    BorderThickness = new Thickness(1)
+                    BorderThickness = new Thickness(1),
+                    Cursor = Cursors.Hand
+                };
+                border.MouseLeftButtonDown += (s, e) =>
+                {
+                    MostrarFichaCliente(cliente);
                 };
 
                 // Grid interno
@@ -756,5 +762,16 @@ public partial class MainWindow : Window
     private void cbBuscarCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         clienteSeleccionadoBox = (Cliente)cbBuscarCliente.SelectedItem;
+    }
+
+    private void txthora_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (Regex.IsMatch(txthora.Text, @"^\d{1,2}:\d{2}$"))
+            txterrorletras.Visibility = Visibility.Collapsed;
+        else
+            txterrorletras.Visibility = Visibility.Visible;
+
+        txterrorletras.Text = "Formato válido: HH:mm";
+        
     }
 }

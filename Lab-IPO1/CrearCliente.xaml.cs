@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Lab_IPO1
 {
@@ -93,5 +95,52 @@ namespace Lab_IPO1
             help.Owner = this;
             help.ShowDialog();
         }
+
+        // SOLO LETRAS Y ESPACIOS
+        private void SoloLetras_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+
+        // SOLO NÚMEROS, ESPACIOS Y COMAS
+        private void SoloNumerosComas_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c) && c != ',' && c != ' ')
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+
+        // VALIDACIÓN EN TIEMPO REAL
+        private void ValidarCampos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool nombreCorrecto = !string.IsNullOrWhiteSpace(txtNombre.Text) &&
+                                  txtNombre.Text.All(c => char.IsLetter(c) || c == ' ');
+
+            bool apellidosCorrectos = string.IsNullOrWhiteSpace(txtApellidos.Text) ||
+                                      txtApellidos.Text.All(c => char.IsLetter(c) || c == ' ');
+
+            bool telefonoCorrecto = string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                                    txtTelefono.Text.All(c => char.IsDigit(c) || c == ',' || c == ' ');
+
+            lblErrorNombre.Visibility = nombreCorrecto ? Visibility.Collapsed : Visibility.Visible;
+            lblErrorApellidos.Visibility = apellidosCorrectos ? Visibility.Collapsed : Visibility.Visible;
+            lblErrorTelefono.Visibility = telefonoCorrecto ? Visibility.Collapsed : Visibility.Visible;
+
+            // El botón crear solo se habilita si TODO es válido
+            btnCrear.IsEnabled = nombreCorrecto && apellidosCorrectos && telefonoCorrecto;
+        }
+
     }
 }
