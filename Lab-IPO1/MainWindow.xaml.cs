@@ -65,7 +65,48 @@ public partial class MainWindow : Window
         clientesFiltrados = new ObservableCollection<Cliente>(clientesBase);
         cbBuscarCliente.ItemsSource = clientesFiltrados;
 
+        // Suscribirse a cambios en el tipo de pedido
+        btnenLocal.Checked += TipoPedido_CheckedChanged;
+        btntelfono.Checked += TipoPedido_CheckedChanged;
+        btnenLocal.Unchecked += TipoPedido_CheckedChanged;
+        btntelfono.Unchecked += TipoPedido_CheckedChanged;
+
+        // Asegurar estado inicial correcto
+        UpdateDomicilioState();
+
+
     }
+
+    private void TipoPedido_CheckedChanged(object? sender, RoutedEventArgs e)
+    {
+        UpdateDomicilioState();
+    }
+
+    private void UpdateDomicilioState()
+    {
+        // Habilitar domicilio solo si "Teléfono" está seleccionado
+        bool domicilioHabilitado = btntelfono.IsChecked == true;
+
+        // Activamos/desactivamos el contenedor y el textbox
+        if (btnDomicilioContainer != null)
+        {
+            btnDomicilioContainer.IsEnabled = domicilioHabilitado;
+            btnDomicilioContainer.Opacity = domicilioHabilitado ? 1.0 : 0.6;
+
+            // También cambiamos el borde para que se vea más atenuado cuando esté desactivado
+            btnDomicilioContainer.BorderBrush = domicilioHabilitado
+                ? new SolidColorBrush(Color.FromRgb(204, 204, 204))   // #CCCCCC
+                : new SolidColorBrush(Color.FromRgb(220, 220, 220));  // más claro
+        }
+
+        if (txtdomicilio != null)
+        {
+            txtdomicilio.IsEnabled = domicilioHabilitado;
+            txtdomicilio.Foreground = domicilioHabilitado ? Brushes.Black : Brushes.Gray;
+            txtdomicilio.Text = domicilioHabilitado ? txtdomicilio.Text : txtdomicilio.Text; // no limpiamos el texto
+        }
+    }
+
     private void cbBuscarCliente_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
     {
         string texto = cbBuscarCliente.Text.Trim().ToLower();

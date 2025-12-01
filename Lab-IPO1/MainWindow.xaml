@@ -874,36 +874,38 @@ Padding="15" Width="400">
                                             <TextBox x:Name="txterrorletras" TextWrapping="Wrap" Text="TextBox" Width="158" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontWeight="Bold" Visibility="Hidden"/>
 
                                         </StackPanel>
-                                        <!-- ESPACIO 3: Entrega a domicilio -->
-                                        <StackPanel
-    Grid.Row="1" Margin="5" Grid.Column="0">
-                                            <Grid
-    Height="17">
-                                                <TextBlock
-    Text="Entrega a domicilio" Margin="0,0,28,0" FontSize="13" FontWeight="Bold"/>
-                                                <TextBlock
-    Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorDomicilio" Margin="126,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
+                                        <!-- ESPACIO 3: Entrega a domicilio (reemplazar) -->
+                                        <StackPanel Grid.Row="1" Margin="5" Grid.Column="0">
+                                            <Grid Height="17">
+                                                <TextBlock Text="Entrega a domicilio" Margin="0,0,28,0" FontSize="13" FontWeight="Bold"/>
+                                                <TextBlock Visibility="Hidden" Text="*" TextWrapping="Wrap" x:Name="txterrorDomicilio" Margin="126,0,0,0" FontSize="14" FontWeight="Bold" Foreground="Red"/>
                                             </Grid>
-                                            <Button
-    Margin="0 5 0 0" Height="30" Cursor="Pen">
-                                                <Button.Template
-    >
-                                                    <ControlTemplate
-    TargetType="{x:Type Button}">
-                                                        <Border
-    CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
-                                                            <ContentPresenter
-    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                            <!-- Button wrapper ahora tiene nombre para manipular estilo/estado -->
+                                            <Button x:Name="btnDomicilioContainer"
+            Margin="0 5 0 0"
+            Height="30"
+            Cursor="Pen"
+            Focusable="False">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
-
                                                     </ControlTemplate>
-
                                                 </Button.Template>
-                                                <TextBox
-    Width="120" TextWrapping="Wrap" x:Name="txtdomicilio" BorderBrush="#00ABADB3" Background="Transparent"/>
+
+                                                <!-- TextBox editable dentro -->
+                                                <TextBox x:Name="txtdomicilio"
+                 Width="120"
+                 TextWrapping="Wrap"
+                 BorderBrush="#00ABADB3"
+                 Background="Transparent"
+                 VerticalContentAlignment="Center"/>
                                             </Button>
 
                                         </StackPanel>
+
                                         <!-- ESPACIO 4: Cliente -->
                                         <StackPanel
     Grid.Row="1" Margin="5" Grid.Column="1">
