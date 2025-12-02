@@ -139,9 +139,8 @@
                    Foreground="Red"
                    FontWeight="Bold"
                    VerticalAlignment="Center"
-                   Margin="110,0,0,0"
-                   Visibility="Hidden"
-                   Grid.ColumnSpan="2"/>
+                   Margin="92,0,18,0"
+                   Grid.ColumnSpan="2" Visibility="Hidden"/>
 
                 <TextBlock Text="Recuperar contraseña"
                    Foreground="#999"

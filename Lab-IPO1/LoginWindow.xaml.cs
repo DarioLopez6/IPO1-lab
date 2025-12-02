@@ -199,6 +199,11 @@ namespace Lab_IPO1
                 else
                 {
                     txterrorUsuario.Visibility = Visibility.Visible;
+                    BorderContrasena.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+                    PwdBox.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
+                    TxtPasswordVisible.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
+                    PwdBox.Cursor = Cursors.No;
+                    TxtPasswordVisible.Cursor = Cursors.No;
                     txterrorContrasena.Visibility = Visibility.Hidden;
                 }
             }
