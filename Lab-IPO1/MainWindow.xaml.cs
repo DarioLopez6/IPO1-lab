@@ -255,10 +255,10 @@ public partial class MainWindow : Window
         var card = new Border
         {
             Background = Brushes.White,
-            CornerRadius = new CornerRadius(10),
+            CornerRadius = new CornerRadius(8),
             BorderBrush = new SolidColorBrush(Color.FromRgb(221, 221, 221)),
             BorderThickness = new Thickness(1),
-            Padding = new Thickness(10),
+            Padding = new Thickness(8),
             Margin = new Thickness(0, 0, 0, 8),
             Cursor = Cursors.Hand
         };
@@ -266,7 +266,6 @@ public partial class MainWindow : Window
         var root = new StackPanel();
         card.Child = root;
 
-        // Cabecera
         var header = new Grid();
         header.ColumnDefinitions.Add(new ColumnDefinition());
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -274,8 +273,7 @@ public partial class MainWindow : Window
         var title = new TextBlock
         {
             Text = $"ID: {p.Id} - {p.Cliente}",
-            FontWeight = FontWeights.Bold,
-            FontSize = 14
+            FontWeight = FontWeights.Bold
         };
 
         var rightPanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
@@ -289,14 +287,15 @@ public partial class MainWindow : Window
         Grid.SetColumn(rightPanel, 1);
         root.Children.Add(header);
 
-        // Detalle
         var detalle = new StackPanel { Margin = new Thickness(0, 8, 0, 0), Visibility = Visibility.Collapsed };
         detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora realización: {DateTime.Now}" });
-        detalle.Children.Add(new TextBlock { Text = $"Hora: {p.Hora}" });
+        detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora: {p.Hora}" });
         detalle.Children.Add(new TextBlock { Text = $"Dirección: {(string.IsNullOrEmpty(p.Domicilio) ? "—" : p.Domicilio)}" });
         detalle.Children.Add(new TextBlock { Text = $"Forma pago: {(p.Pago == 1 ? "Tarjeta" : p.Pago == 2 ? "Efectivo" : "Bizum")}" });
 
-        detalle.Children.Add(new TextBlock { Text = "Productos:", FontWeight = FontWeights.Bold });
+        var productosLabel = new TextBlock { Text = "Productos:", FontWeight = FontWeights.Bold };
+        detalle.Children.Add(productosLabel);
+
         foreach (var plato in p.Platos)
         {
             detalle.Children.Add(new TextBlock
@@ -306,55 +305,68 @@ public partial class MainWindow : Window
             });
         }
 
-        // Botones estilizados con iconos
-        var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0) };
+        var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0), HorizontalAlignment = HorizontalAlignment.Left };
 
-        Button CrearBoton(string texto, Color colorFondo, RoutedEventHandler clickHandler)
-        {
-            // StackPanel solo con el texto
-            var txt = new TextBlock
+        // Botón "Siguiente fase" - Naranja
+        var btnMover = CrearBoton(
+            "Siguiente fase",
+            Color.FromRgb(255, 127, 0),
+            Colors.White,
+            null,
+            (s, e) => MoverPedidoSiguiente(p, card)
+        );
+
+        // Botón "Editar" - Blanco con borde gris
+        var btnEditar = CrearBoton(
+            "Editar",
+            Colors.White,
+            Colors.Black,
+            Color.FromRgb(200, 200, 200),
+            (s, e) =>
             {
-                Text = texto,
-                Foreground = Brushes.White,
-                VerticalAlignment = VerticalAlignment.Center,
-                FontWeight = FontWeights.SemiBold
-            };
+                // Mensaje de advertencia
+                var aviso = MessageBox.Show(
+                    "Se va a utilizar la sección de 'Pedido Actual'. Todo lo que esté escrito se borrará.",
+                    "Atención",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Information
+                );
 
-            var border = new Border
+                if (aviso == MessageBoxResult.OK)
+                {
+                    // Cargar los datos del pedido en Pedido Actual
+                    CargarPedidoActual(p);
+
+                    // Cambiar a Tab de Productos
+                    MainTabControl.SelectedItem = TabProductos;
+
+                    // Eliminar pedido original para evitar duplicados
+                    EliminarPedido(p, card);
+                }
+            }
+        );
+
+        // Botón "Eliminar" - Rojo
+        var btnEliminar = CrearBoton(
+            "Eliminar",
+            Color.FromRgb(220, 53, 69),
+            Colors.White,
+            null,
+            (s, e) =>
             {
-                Background = new SolidColorBrush(colorFondo),
-                CornerRadius = new CornerRadius(8),
-                Padding = new Thickness(12, 6, 12, 6),
-                Child = txt
-            };
-
-            var btn = new Button
-            {
-                Content = border,
-                Background = Brushes.Transparent,
-                BorderBrush = Brushes.Transparent,
-                Cursor = Cursors.Hand
-            };
-            btn.Click += clickHandler;
-            return btn;
-        }
-
-
-        var btnMover = CrearBoton("Siguiente fase", Color.FromRgb(255, 107, 53), (s, e) => MoverPedidoSiguiente(p, card));
-        var btnEliminar = CrearBoton("Eliminar", Color.FromRgb(220, 53, 69), (s, e) =>
-        {
-            var resultado = MessageBox.Show(
-                $"¿Está usted seguro de que desea eliminar el pedido del cliente {p.Cliente}? Esta acción no podrá deshacerse.",
-                "Confirmación de eliminación",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning
-            );
-            if (resultado == MessageBoxResult.Yes)
-                EliminarPedido(p, card);
-        });
-
+                var resultado = MessageBox.Show(
+                    $"¿Está usted seguro de que desea eliminar el pedido del cliente {p.Cliente}? Esta acción no podrá deshacerse.",
+                    "Confirmación de eliminación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                );
+                if (resultado == MessageBoxResult.Yes)
+                    EliminarPedido(p, card);
+            }
+        );
 
         acciones.Children.Add(btnMover);
+        acciones.Children.Add(btnEditar); // EDITAR antes de eliminar
         acciones.Children.Add(btnEliminar);
         detalle.Children.Add(acciones);
 
@@ -378,6 +390,153 @@ public partial class MainWindow : Window
         card.Tag = p;
         return card;
     }
+
+    private void CargarPedidoActual(Pedido p)
+    {
+        // Limpiar pedido actual
+        productosActuales.Clear();
+
+        // Tipo de pedido
+        btnenLocal.IsChecked = p.Local;
+        btntelfono.IsChecked = !p.Local;
+        UpdateDomicilioState();
+
+        // Hora y domicilio
+        txthora.Text = p.Hora;
+        txtdomicilio.Text = p.Domicilio;
+
+        // Cliente
+        cbBuscarCliente.Text = p.Cliente;
+        clienteSeleccionadoBox = misClientes.FirstOrDefault(c => $"{c.Nombre} {c.Apellidos}" == p.Cliente);
+
+        // Forma de pago
+        btntarjeta.IsChecked = p.Pago == 1;
+        btnefectivo.IsChecked = p.Pago == 2;
+        btnbizum.IsChecked = p.Pago == 3;
+
+        // Productos
+        foreach (var plato in p.Platos)
+        {
+            productosActuales.Add(new Plato
+            {
+                Nombre = plato.Nombre,
+                Precio = plato.Precio,
+                Imagen = plato.Imagen,
+                Cantidad = plato.Cantidad,
+                Categoria = plato.Categoria,
+                Subcategoria = plato.Subcategoria,
+                Ingredientes = plato.Ingredientes,
+                Alergenos = plato.Alergenos
+            });
+        }
+
+        // Actualizar total
+        ActualizarTotal();
+    }
+
+
+    private Button CrearBoton(string texto, Color colorFondo, Color colorTexto, Color? colorBorde, RoutedEventHandler clickHandler)
+    {
+        var txt = new TextBlock
+        {
+            Text = texto,
+            Foreground = new SolidColorBrush(colorTexto),
+            VerticalAlignment = VerticalAlignment.Center,
+            FontWeight = FontWeights.SemiBold
+        };
+
+        var border = new Border
+        {
+            Background = new SolidColorBrush(colorFondo),
+            BorderBrush = colorBorde.HasValue ? new SolidColorBrush(colorBorde.Value) : null,
+            BorderThickness = colorBorde.HasValue ? new Thickness(2) : new Thickness(0),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(12, 6, 12, 6),
+            Child = txt
+        };
+
+        var btn = new Button
+        {
+            Content = border,
+            Background = Brushes.Transparent,
+            BorderBrush = Brushes.Transparent,
+            Cursor = Cursors.Hand
+        };
+
+        btn.Click += clickHandler;
+        return btn;
+    }
+
+
+
+    private void BtnEditarPedido_Click(object sender, RoutedEventArgs e, Pedido pedidoSeleccionado)
+    {
+        if (pedidoSeleccionado == null)
+            return;
+
+        // Mensaje de aviso
+        var resultado = MessageBox.Show(
+            "Se usará la sección de 'Pedido Actual' para modificar este pedido.\n" +
+            "Todos los datos que hubiera escrito se borrarán. ¿Desea continuar?",
+            "Editar Pedido",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Information
+        );
+
+        if (resultado != MessageBoxResult.Yes)
+            return;
+
+        // Limpiar pedido actual
+        productosActuales.Clear();
+        txtdomicilio.Text = "";
+        txthora.Text = "";
+        cbBuscarCliente.Text = "";
+        btntarjeta.IsChecked = false;
+        btnefectivo.IsChecked = false;
+        btnbizum.IsChecked = false;
+        btnenLocal.IsChecked = false;
+        btntelfono.IsChecked = false;
+        ActualizarTotal();
+
+        // Rellenar con datos del pedido seleccionado
+        if (pedidoSeleccionado.Local)
+            btnenLocal.IsChecked = true;
+        else
+            btntelfono.IsChecked = true;
+
+        txthora.Text = pedidoSeleccionado.Hora;
+        txtdomicilio.Text = pedidoSeleccionado.Domicilio;
+        cbBuscarCliente.Text = pedidoSeleccionado.Cliente;
+
+        switch (pedidoSeleccionado.Pago)
+        {
+            case 1: btntarjeta.IsChecked = true; break;
+            case 2: btnefectivo.IsChecked = true; break;
+            case 3: btnbizum.IsChecked = true; break;
+        }
+
+        // Copiar los productos al pedido actual
+        foreach (var p in pedidoSeleccionado.Platos)
+        {
+            productosActuales.Add(new Plato
+            {
+                Nombre = p.Nombre,
+                Precio = p.Precio,
+                Imagen = p.Imagen,
+                Cantidad = p.Cantidad,
+                Categoria = p.Categoria,
+                Subcategoria = p.Subcategoria,
+                Ingredientes = p.Ingredientes,
+                Alergenos = p.Alergenos
+            });
+        }
+
+        ActualizarTotal();
+
+        // Cambiar a pestaña de productos
+        MainTabControl.SelectedItem = TabProductos;
+    }
+
 
 
     private void CargarEjemplosPedidos()
