@@ -12,7 +12,7 @@ namespace Lab_IPO1
         private string usuario = "admin";
         private string password = "ipo1";
 
-        private BitmapImage tick = new BitmapImage(new Uri("/imagenes/tick.png", UriKind.Relative));
+    private BitmapImage tick = new BitmapImage(new Uri("/imagenes/tick.png", UriKind.Relative));
         private BitmapImage cross = new BitmapImage(new Uri("/imagenes/cross.png", UriKind.Relative));
         private BitmapImage iconUser = new BitmapImage(new Uri("/imagenes/usuarioIcono.png", UriKind.Relative));
         private BitmapImage iconPass = new BitmapImage(new Uri("/imagenes/contrasenaIcono.png", UriKind.Relative));
@@ -30,7 +30,7 @@ namespace Lab_IPO1
             TxtPasswordVisible.TextChanged += TxtPasswordVisible_TextChanged;
         }
 
-        // Usuario: enter valida y enfoca password
+        // Usuario: Enter valida y enfoca password
         private void TxtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -41,7 +41,15 @@ namespace Lab_IPO1
             }
         }
 
-        // PasswordBox: enter valida y enfoca BtnAcceder
+        // Contraseña: Enter ejecuta Acceder
+        private void TxtContrasena_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BtnAcceder.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+        }
+
         private void PwdBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -52,14 +60,12 @@ namespace Lab_IPO1
             }
         }
 
-        // TextBox visible: sincroniza y valida
         private void TxtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (passwordVisible)
                 ValidarContrasena();
         }
 
-        // PasswordBox: valida al cambiar
         private void PwdBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!passwordVisible)
@@ -73,21 +79,47 @@ namespace Lab_IPO1
             {
                 BorderUsuario.BorderBrush = Brushes.Gray;
                 ImgUsuarioIcon.Source = iconUser;
-                PwdBox.IsEnabled = false;
+                SetPasswordBoxEnabled(false);
+                return;
             }
-            else if (TxtUsuario.Text == usuario)
+
+            if (TxtUsuario.Text == usuario)
             {
                 BorderUsuario.BorderBrush = Brushes.Green;
                 BorderUsuario.Background = Brushes.LightGreen;
                 ImgUsuarioIcon.Source = tick;
-                PwdBox.IsEnabled = true;
+                SetPasswordBoxEnabled(true);
+                return;
+            }
+
+            // Usuario incorrecto
+            BorderUsuario.BorderBrush = Brushes.Red;
+            BorderUsuario.Background = Brushes.LightCoral;
+            ImgUsuarioIcon.Source = cross;
+            SetPasswordBoxEnabled(false);
+        }
+
+        // Helper para habilitar/deshabilitar PwdBox y TxtPasswordVisible
+        private void SetPasswordBoxEnabled(bool enabled)
+        {
+            PwdBox.IsEnabled = enabled;
+            TxtPasswordVisible.IsEnabled = enabled;
+
+            if (enabled)
+            {
+                BorderContrasena.Background = Brushes.White;
+                PwdBox.Foreground = Brushes.Black;
+                TxtPasswordVisible.Foreground = Brushes.Black;
+                PwdBox.Cursor = Cursors.IBeam;
+                TxtPasswordVisible.Cursor = Cursors.IBeam;
             }
             else
             {
-                BorderUsuario.BorderBrush = Brushes.Red;
-                BorderUsuario.Background = Brushes.LightCoral;
-                ImgUsuarioIcon.Source = cross;
-                PwdBox.IsEnabled = false;
+                BorderContrasena.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+                PwdBox.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
+                TxtPasswordVisible.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
+                PwdBox.Cursor = Cursors.No;
+                TxtPasswordVisible.Cursor = Cursors.No;
             }
         }
 
@@ -178,6 +210,7 @@ namespace Lab_IPO1
             help.Owner = this;
             help.ShowDialog();
         }
+
         private void BtnRecuperar_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("La contraseña para el usuario 'admin' es 'ipo1'.", "Recuperar Contraseña", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -188,4 +221,5 @@ namespace Lab_IPO1
             MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
+
 }
