@@ -91,6 +91,26 @@
 
                 <!-- ====================== CAMPOS ====================== -->
 
+
+                <!-- FOTO DEL CLIENTE -->
+                <TextBlock Text="Foto del cliente:" FontWeight="Bold" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button x:Name="btnSeleccionarFoto" Width="101" Height="27" Click="BtnSeleccionarFoto_Click" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="10" BorderThickness="1"
+                BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="Seleccionar foto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                        <Image x:Name="imgFotoCliente"  Width="50" Height="50" Margin="10,0,0,0" Stretch="UniformToFill"/>
+                </StackPanel>
+
+
+
                 <!-- NOMBRE -->
                 <TextBlock Text="Nombre:" FontWeight="Bold"/>
 
@@ -120,7 +140,7 @@
                          Foreground="#333" FontSize="14"
                          PreviewTextInput="SoloLetras_PreviewTextInput"
                          TextChanged="ValidarCampos_TextChanged"/>
-                </Border>   
+                </Border>
 
                 <TextBlock x:Name="lblErrorApellidos" Text="Los apellidos solo pueden contener letras"
                    Visibility="Collapsed"
@@ -162,7 +182,7 @@
                 <TextBlock x:Name="lblErrorTelefono" Text="El teléfono solo puede contener números y comas"
                    Visibility="Collapsed"
                    Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
-                
+
 
 
                 <!-- EMAILS -->
@@ -204,17 +224,7 @@
                  x:Name="rbBizum" GroupName="MetodoPagoPrincipal" Content="Bizum"/>
                 </StackPanel>
 
-                <TextBlock Text="Forma de pago alternativa:" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" Cursor="Hand">
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbTarjeta1" GroupName="MetodoPagoAlternativa" Content="Tarjeta"/>
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbEfectivo1" GroupName="MetodoPagoAlternativa" Content="Efectivo"/>
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbBizum1" GroupName="MetodoPagoAlternativa" Content="Bizum"/>
-                </StackPanel>
-
-
+                
 
                 <!-- BOTONES -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">

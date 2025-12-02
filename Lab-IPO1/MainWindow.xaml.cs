@@ -54,10 +54,10 @@ public partial class MainWindow : Window
         DataContext = listadoPlatos;
         misClientes = new List<Cliente>
             {
-            new Cliente(1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
-            new Cliente(2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
-            new Cliente(3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
-            new Cliente(4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
+            new Cliente("imagenes/perfil.png" ,1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
+            new Cliente("imagenes/perfil.png" ,2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
+            new Cliente("imagenes/perfil.png" ,3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
+            new Cliente("imagenes/perfil.png" ,4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
             };
         ActualizarClientes();
         clientesBase = misClientes;
@@ -255,10 +255,10 @@ public partial class MainWindow : Window
         var card = new Border
         {
             Background = Brushes.White,
-            CornerRadius = new CornerRadius(8),
+            CornerRadius = new CornerRadius(10),
             BorderBrush = new SolidColorBrush(Color.FromRgb(221, 221, 221)),
             BorderThickness = new Thickness(1),
-            Padding = new Thickness(8),
+            Padding = new Thickness(10),
             Margin = new Thickness(0, 0, 0, 8),
             Cursor = Cursors.Hand
         };
@@ -266,6 +266,7 @@ public partial class MainWindow : Window
         var root = new StackPanel();
         card.Child = root;
 
+        // Cabecera
         var header = new Grid();
         header.ColumnDefinitions.Add(new ColumnDefinition());
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -273,7 +274,8 @@ public partial class MainWindow : Window
         var title = new TextBlock
         {
             Text = $"ID: {p.Id} - {p.Cliente}",
-            FontWeight = FontWeights.Bold
+            FontWeight = FontWeights.Bold,
+            FontSize = 14
         };
 
         var rightPanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
@@ -287,15 +289,14 @@ public partial class MainWindow : Window
         Grid.SetColumn(rightPanel, 1);
         root.Children.Add(header);
 
+        // Detalle
         var detalle = new StackPanel { Margin = new Thickness(0, 8, 0, 0), Visibility = Visibility.Collapsed };
         detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora realización: {DateTime.Now}" });
-        detalle.Children.Add(new TextBlock { Text = $"Fecha/Hora: {p.Hora}" });
+        detalle.Children.Add(new TextBlock { Text = $"Hora: {p.Hora}" });
         detalle.Children.Add(new TextBlock { Text = $"Dirección: {(string.IsNullOrEmpty(p.Domicilio) ? "—" : p.Domicilio)}" });
         detalle.Children.Add(new TextBlock { Text = $"Forma pago: {(p.Pago == 1 ? "Tarjeta" : p.Pago == 2 ? "Efectivo" : "Bizum")}" });
 
-        var productosLabel = new TextBlock { Text = "Productos:", FontWeight = FontWeights.Bold };
-        detalle.Children.Add(productosLabel);
-
+        detalle.Children.Add(new TextBlock { Text = "Productos:", FontWeight = FontWeights.Bold });
         foreach (var plato in p.Platos)
         {
             detalle.Children.Add(new TextBlock
@@ -305,19 +306,61 @@ public partial class MainWindow : Window
             });
         }
 
-
+        // Botones estilizados con iconos
         var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0) };
-        var btnMover = new Button { Content = "Siguiente fase", Padding = new Thickness(6, 2, 6, 2), Margin = new Thickness(0, 0, 8, 0) };
-        btnMover.Click += (s, e) => MoverPedidoSiguiente(p, card);
 
-        var btnEliminar = new Button { Content = "Eliminar", Padding = new Thickness(6, 2, 6, 2) };
-        btnEliminar.Click += (s, e) => EliminarPedido(p, card);
+        Button CrearBoton(string texto, Color colorFondo, RoutedEventHandler clickHandler)
+        {
+            // StackPanel solo con el texto
+            var txt = new TextBlock
+            {
+                Text = texto,
+                Foreground = Brushes.White,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontWeight = FontWeights.SemiBold
+            };
+
+            var border = new Border
+            {
+                Background = new SolidColorBrush(colorFondo),
+                CornerRadius = new CornerRadius(8),
+                Padding = new Thickness(12, 6, 12, 6),
+                Child = txt
+            };
+
+            var btn = new Button
+            {
+                Content = border,
+                Background = Brushes.Transparent,
+                BorderBrush = Brushes.Transparent,
+                Cursor = Cursors.Hand
+            };
+            btn.Click += clickHandler;
+            return btn;
+        }
+
+
+        var btnMover = CrearBoton("Siguiente fase", Color.FromRgb(255, 107, 53), (s, e) => MoverPedidoSiguiente(p, card));
+        var btnEliminar = CrearBoton("Eliminar", Color.FromRgb(220, 53, 69), (s, e) =>
+        {
+            var resultado = MessageBox.Show(
+                $"¿Está usted seguro de que desea eliminar el pedido del cliente {p.Cliente}? Esta acción no podrá deshacerse.",
+                "Confirmación de eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            );
+            if (resultado == MessageBoxResult.Yes)
+                EliminarPedido(p, card);
+        });
+
 
         acciones.Children.Add(btnMover);
         acciones.Children.Add(btnEliminar);
         detalle.Children.Add(acciones);
+
         root.Children.Add(detalle);
 
+        // Toggle detalle al hacer clic en la tarjeta
         card.MouseLeftButtonUp += (s, e) =>
         {
             if (detalle.Visibility == Visibility.Visible)
@@ -335,6 +378,7 @@ public partial class MainWindow : Window
         card.Tag = p;
         return card;
     }
+
 
     private void CargarEjemplosPedidos()
     {
@@ -484,7 +528,7 @@ public partial class MainWindow : Window
 
     private void Btnautoria_Click(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
+        MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío. \nFecha: 1/12/2025.\nPrimer prototipo(V0.6).", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -569,6 +613,8 @@ public partial class MainWindow : Window
             misClientes.Add(nuevo);
             ActualizarClientes();
         }
+        FichaClienteBorder.Visibility = Visibility.Collapsed;
+        
     }
     private void ActualizarClientes()
     {
@@ -593,6 +639,7 @@ public partial class MainWindow : Window
             {
                 MostrarFichaCliente(cliente);
             };
+
             // Crear el Grid interno
             Grid grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(45) });
@@ -608,12 +655,28 @@ public partial class MainWindow : Window
                 VerticalAlignment = VerticalAlignment.Center
             };
 
-            Image img = new Image
-            {
-                Source = new BitmapImage(new Uri("/imagenes/perfil.png", UriKind.Relative)),
-                Stretch = Stretch.UniformToFill
-            };
+            // Crear imagen con fallback a imagen por defecto
+            Image img = new Image { Stretch = Stretch.UniformToFill };
+            BitmapImage bitmap;
 
+            if (string.IsNullOrWhiteSpace(cliente.Imagen))
+            {
+                // Imagen por defecto
+                bitmap = new BitmapImage(new Uri("imagenes/perfil.png", UriKind.Relative));
+            }
+            else
+            {
+                try
+                {
+                    bitmap = new BitmapImage(new Uri(cliente.Imagen, UriKind.RelativeOrAbsolute));
+                }
+                catch
+                {
+                    bitmap = new BitmapImage(new Uri("imagenes/perfil.png", UriKind.Relative));
+                }
+            }
+
+            img.Source = bitmap;
             imgBorder.Child = img;
             grid.Children.Add(imgBorder);
 
@@ -650,8 +713,8 @@ public partial class MainWindow : Window
             // Añadir Border al ItemsControl
             ListaClientes.Items.Add(border);
         }
+    }
 
-}
 
     private void BuscadorClientes_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -815,4 +878,44 @@ public partial class MainWindow : Window
         txterrorletras.Text = "Formato válido: HH:mm";
         
     }
+
+    private void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
+    {
+        if (clienteSeleccionado == null)
+        {
+            MessageBox.Show(
+                "No se ha seleccionado ningún cliente para proceder con la eliminación.",
+                "Aviso",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+            );
+            return;
+        }
+
+        // Mensaje de confirmación en tono culto
+        MessageBoxResult resultado = MessageBox.Show(
+            $"¿Está usted seguro de que desea eliminar al distinguido cliente " +
+            $"{clienteSeleccionado.Nombre} {clienteSeleccionado.Apellidos}? " +
+            "Esta acción será definitiva y no podrá ser revertida.",
+            "Confirmación de eliminación",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning
+        );
+
+        if (resultado == MessageBoxResult.Yes)
+        {
+            // Eliminamos al cliente de la lista principal
+            misClientes.Remove(clienteSeleccionado);
+
+            // Actualizamos la lista visible de clientes
+            ActualizarClientes();
+
+            // Limpiamos la ficha del cliente
+            FichaClienteBorder.Visibility = Visibility.Collapsed;
+            clienteSeleccionado = null;
+
+            
+        }
+    }
+
 }

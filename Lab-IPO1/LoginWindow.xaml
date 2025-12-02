@@ -228,7 +228,7 @@
 
         <!-- Autoría + Acceder -->
         <DockPanel Grid.Row="4" LastChildFill="False" Margin="0,20,0,0">
-            <TextBlock Text="Autoría - v1.0" Cursor="Hand" Foreground="#999" FontSize="12" TextDecorations="Underline"
+            <TextBlock Text="Autoría - v0.6" Cursor="Hand" Foreground="#999" FontSize="12" TextDecorations="Underline"
                        VerticalAlignment="Bottom" DockPanel.Dock="Left" MouseLeftButtonUp="Btnautoria_Click"/>
             <Button x:Name="BtnAcceder" Padding="10,8" Cursor="Hand" ToolTip="Acceder a la aplicación" Width="110" DockPanel.Dock="Right" Height="42"
                     Click="BtnAcceder_Click" FocusVisualStyle="{x:Null}">

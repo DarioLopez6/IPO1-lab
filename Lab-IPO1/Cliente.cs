@@ -10,6 +10,7 @@ namespace Lab_IPO1
     public enum FORMAPAGO { TARGETA, EFECTIVO, BIZUM }
     public class Cliente
     {
+        public string Imagen { get; set; } = "imagenes/perfil.png";
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
@@ -22,8 +23,9 @@ namespace Lab_IPO1
         public FORMAPAGO pago { get; set; }
         public int puntosAcumulados { get; set; }
         public int puntosCangeados { get; set; }
-        public Cliente(int iD, string nombre, string apellidos, List<String> direccion, List<String> telefono, List<String> eMail, List<String> alergias, List<String> intolerancias, FORMAPAGO pago, int puntAcu, int puntCang)
+        public Cliente(string imagen, int iD, string nombre, string apellidos, List<String> direccion, List<String> telefono, List<String> eMail, List<String> alergias, List<String> intolerancias, FORMAPAGO pago, int puntAcu, int puntCang)
         {
+            Imagen = imagen;
             ID = iD;
             Nombre = nombre;
             Apellidos = apellidos;
@@ -41,6 +43,14 @@ namespace Lab_IPO1
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public string getImagenNormal()
+        {
+            if (Imagen == "")
+                return "imagenes/perfil.png";
+            else
+                return Imagen;
         }
     }
 }

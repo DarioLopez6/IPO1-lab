@@ -91,6 +91,24 @@
 
                 <!-- ====================== CAMPOS ====================== -->
 
+                <TextBlock Text="Foto del cliente:" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,10" VerticalAlignment="Center">
+                    <Border Width="80" Height="80"   BorderBrush="#CCCCCC" BorderThickness="1" ClipToBounds="True">
+                        <Image x:Name="imgFotoCliente" Stretch="UniformToFill"/>
+                    </Border>
+                    <Button x:Name="btnSeleccionarFoto" Width="107" Height="28" Click="BtnSeleccionarFoto_Click" Cursor="Hand"
+        Margin="10,0,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="Seleccionar foto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+
                 <!-- NOMBRE -->
                 <TextBlock Text="Nombre:" FontWeight="Bold"/>
 
@@ -189,17 +207,6 @@
                     <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
                  x:Name="rbBizum" GroupName="MetodoPagoPrincipal" Content="Bizum"/>
                 </StackPanel>
-
-                <TextBlock Text="Forma de pago alternativa:" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" Cursor="Hand">
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbTarjeta1" GroupName="MetodoPagoAlternativa" Content="Tarjeta"/>
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbEfectivo1" GroupName="MetodoPagoAlternativa" Content="Efectivo"/>
-                    <RadioButton Width="80" Style="{StaticResource RadioButtonButtonStyle}"
-            x:Name="rbBizum1" GroupName="MetodoPagoAlternativa" Content="Bizum"/>
-                </StackPanel>
-
 
 
                 <!-- BOTONES -->

@@ -223,7 +223,7 @@ namespace Lab_IPO1
 
         private void Btnautoria_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío. \nFecha: 1/12/2025.\nPrimer prototipo(V0.6).", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 

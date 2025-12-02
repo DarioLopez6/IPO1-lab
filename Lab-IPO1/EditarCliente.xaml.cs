@@ -1,22 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 
 namespace Lab_IPO1
 {
     public partial class EditarCliente : Window
     {
+        private string rutaFotoCliente; // Nueva propiedad para la foto
         public Cliente ClienteEditado { get; private set; }
 
-    public EditarCliente(Cliente cliente)
+        public EditarCliente(Cliente cliente)
         {
             InitializeComponent();
 
-            if (cliente == null)
-                throw new ArgumentNullException(nameof(cliente));
+            if (cliente == null) throw new ArgumentNullException(nameof(cliente));
 
             ClienteEditado = cliente;
+            rutaFotoCliente = cliente.Imagen; // Cargar ruta actual del cliente
 
             // Cargar datos en los controles
             txtNombre.Text = cliente.Nombre;
@@ -28,17 +30,19 @@ namespace Lab_IPO1
             txtAlergias.Text = string.Join(", ", cliente.Alergias);
             txtIntolerancias.Text = string.Join(", ", cliente.Intolerancias);
 
+            // Cargar imagen
+            if (!string.IsNullOrEmpty(rutaFotoCliente))
+            {
+                imgFotoCliente.Source = new BitmapImage(new Uri(rutaFotoCliente, UriKind.RelativeOrAbsolute));
+            }
+
+            // Forma de pago principal
             switch (cliente.pago)
             {
                 case FORMAPAGO.TARGETA: rbTarjeta.IsChecked = true; break;
                 case FORMAPAGO.EFECTIVO: rbEfectivo.IsChecked = true; break;
                 case FORMAPAGO.BIZUM: rbBizum.IsChecked = true; break;
             }
-
-            // Forma de pago alternativa se deja sin seleccionar
-            rbTarjeta1.IsChecked = false;
-            rbEfectivo1.IsChecked = false;
-            rbBizum1.IsChecked = false;
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
@@ -78,6 +82,28 @@ namespace Lab_IPO1
             else lblErrorTelefono.Visibility = Visibility.Collapsed;
 
             if (hayError) return;
+
+            // Guardar cambios
+            ClienteEditado.Nombre = txtNombre.Text.Trim();
+            ClienteEditado.Apellidos = txtApellidos.Text.Trim();
+            ClienteEditado.Telefono = txtTelefono.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+            ClienteEditado.eMail = txtCorreo.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+            ClienteEditado.Direccion = new System.Collections.Generic.List<string>();
+            if (!string.IsNullOrWhiteSpace(txtDireccionPrincipal.Text)) ClienteEditado.Direccion.Add(txtDireccionPrincipal.Text.Trim());
+            if (!string.IsNullOrWhiteSpace(txtDireccionSecundaria.Text)) ClienteEditado.Direccion.Add(txtDireccionSecundaria.Text.Trim());
+            ClienteEditado.Alergias = txtAlergias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+            ClienteEditado.Intolerancias = txtIntolerancias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
+
+            // Forma de pago
+            if (rbTarjeta.IsChecked == true) ClienteEditado.pago = FORMAPAGO.TARGETA;
+            else if (rbEfectivo.IsChecked == true) ClienteEditado.pago = FORMAPAGO.EFECTIVO;
+            else ClienteEditado.pago = FORMAPAGO.BIZUM;
+
+            // Foto
+            ClienteEditado.Imagen = rutaFotoCliente;
+
+            this.DialogResult = true;
+            Close();
         }
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
@@ -87,7 +113,18 @@ namespace Lab_IPO1
             help.ShowDialog();
         }
 
+        private void BtnSeleccionarFoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Archivos de imagen (*.jpg;*.png;*.jpeg)|*.jpg;*.png;*.jpeg";
+            dlg.Title = "Seleccionar foto del cliente";
 
+            bool? resultado = dlg.ShowDialog();
+            if (resultado == true)
+            {
+                rutaFotoCliente = dlg.FileName;
+                imgFotoCliente.Source = new BitmapImage(new Uri(rutaFotoCliente));
+            }
+        }
     }
-
 }

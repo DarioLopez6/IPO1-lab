@@ -4,17 +4,36 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Lab_IPO1
 {
     public partial class CrearCliente : Window
     {
+        private string rutaFotoCliente = ""; // Guarda la ruta de la imagen seleccionada
+
         public Cliente NuevoCliente { get; private set; }
 
         public CrearCliente()
         {
             InitializeComponent();
         }
+
+
+        private void BtnSeleccionarFoto_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.Filter = "Archivos de imagen (*.jpg;*.png;*.jpeg)|*.jpg;*.png;*.jpeg";
+            dlg.Title = "Seleccionar foto del cliente";
+
+            bool? resultado = dlg.ShowDialog();
+            if (resultado == true)
+            {
+                rutaFotoCliente = dlg.FileName;
+                imgFotoCliente.Source = new BitmapImage(new Uri(rutaFotoCliente));
+            }
+        }
+
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -56,19 +75,14 @@ namespace Lab_IPO1
             FORMAPAGO formaPagoPrincipal;
             if (rbTarjeta.IsChecked == true) formaPagoPrincipal = FORMAPAGO.TARGETA;
             else if (rbEfectivo.IsChecked == true) formaPagoPrincipal = FORMAPAGO.EFECTIVO;
-            else formaPagoPrincipal = FORMAPAGO.BIZUM; // añade Bizum al enum si no existe
-
-            // Forma de pago alternativa
-            FORMAPAGO formaPagoAlternativa;
-            if (rbTarjeta1.IsChecked == true) formaPagoAlternativa = FORMAPAGO.TARGETA;
-            else if (rbEfectivo1.IsChecked == true) formaPagoAlternativa = FORMAPAGO.EFECTIVO;
-            else formaPagoAlternativa = FORMAPAGO.BIZUM;
+            else formaPagoPrincipal = FORMAPAGO.BIZUM; // añade Bizum al enum si no 
 
             // Generar ID
             int nuevoID = new Random().Next(100000, 999999);
 
             // Crear cliente (puedes guardar la alternativa en otra propiedad si quieres)
             NuevoCliente = new Cliente(
+                rutaFotoCliente,
                 nuevoID,
                 txtNombre.Text.Trim(),
                 txtApellidos.Text.Trim(),
