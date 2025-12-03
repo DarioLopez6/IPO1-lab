@@ -12,98 +12,170 @@ using System.Windows.Shapes;
 using System.Xml;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace Lab_IPO1;
 
 public partial class MainWindow : Window
 {
-    List<Pedido> pendientesDePago = new List<Pedido>();
-    List<Pedido> enElaboracion = new List<Pedido>();
-    List<Pedido> listosParaEntregar = new List<Pedido>();
-    List<Pedido> historial = new List<Pedido>();
-    ObservableCollection<Plato> productosActuales = new ObservableCollection<Plato>();
-    private ObservableCollection<Cliente> clientesFiltrados;
+    // Listas de pedidos
+    private List<Pedido> pendientesDePago = new List<Pedido>();
+    private List<Pedido> enElaboracion = new List<Pedido>();
+    private List<Pedido> listosParaEntregar = new List<Pedido>();
+    private List<Pedido> historial = new List<Pedido>();
     private List<Pedido> pedidos = new List<Pedido>();
+
+    // Listas de productos y clientes
+    private ObservableCollection<Plato> productosActuales = new ObservableCollection<Plato>();
+    private ObservableCollection<Cliente> clientesFiltrados;
     private List<Plato> productList = new List<Plato>();
     private List<Plato> listadoPlatos = new List<Plato>();
     private List<Cliente> misClientes = new List<Cliente>();
+    private List<Cliente> clientesBase;
     private Cliente clienteSeleccionado;
     private Cliente clienteSeleccionadoBox;
-    private List<Cliente> clientesBase;
+    private CollectionViewSource PlatosViewSource;
+
 
     public MainWindow()
     {
         InitializeComponent();
+
+        // Cargar datos de platos desde XML
         listadoPlatos = CargarContenidoXML();
         PlatosListView.ItemsSource = listadoPlatos;
 
+        listadoPlatos = CargarContenidoXML();
+        PlatosViewSource = new CollectionViewSource { Source = listadoPlatos };
+        PlatosViewSource.Filter += PlatosFiltrado;
+
+        PlatosListView.ItemsSource = PlatosViewSource.View;
+
+        // Cargar pedidos de prueba
         CargarPedidos();
-        ActualizarTotal();
         CargarEjemplosPedidos();
-        CargarPedidos(); // carga los pedidos de prueba en las 4 listas
-        listaProductos.ItemsSource = productosActuales;
-        listadoPlatos = new List<Plato>
-            {
-            new Plato { Nombre = "Pizza Margarita", Precio = 8, Imagen = new Uri("/imagenes/pizza.png", UriKind.Relative), Cantidad = 0 },
-            new Plato { Nombre = "Hamburguesa con Queso", Precio = 6, Imagen = new Uri("/imagenes/hamburguesa.png", UriKind.Relative), Cantidad = 0 },
-            new Plato { Nombre = "Ensalada César", Precio = 5, Imagen = new Uri("/imagenes/ensalada.png", UriKind.Relative), Cantidad = 0 },
-            new Plato { Nombre = "Pasta Boloñesa", Precio = 7, Imagen = new Uri("/imagenes/pasta.png", UriKind.Relative), Cantidad = 0 },
-            new Plato { Nombre = "Taco Mexicano", Precio = 4, Imagen = new Uri("/imagenes/taco.png", UriKind.Relative), Cantidad = 0 }
-            };
-        PlatosListView.ItemsSource = listadoPlatos;
-        DataContext = listadoPlatos;
+
+        // Inicializar clientes
         misClientes = new List<Cliente>
             {
-            new Cliente("imagenes/perfil.png" ,1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
-            new Cliente("imagenes/perfil.png" ,2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
-            new Cliente("imagenes/perfil.png" ,3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
-            new Cliente("imagenes/perfil.png" ,4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
+                new Cliente("imagenes/perfil.png", 1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
+                new Cliente("imagenes/perfil.png", 2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
+                new Cliente("imagenes/perfil.png", 3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
+                new Cliente("imagenes/perfil.png", 4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
             };
-        ActualizarClientes();
-        clientesBase = misClientes;
 
+        clientesBase = misClientes;
         clientesFiltrados = new ObservableCollection<Cliente>(clientesBase);
         cbBuscarCliente.ItemsSource = clientesFiltrados;
 
-        // Suscribirse a cambios en el tipo de pedido
+        listaProductos.ItemsSource = productosActuales;
+
+        // Suscribirse a cambios en tipo de pedido
         btnenLocal.Checked += TipoPedido_CheckedChanged;
         btntelfono.Checked += TipoPedido_CheckedChanged;
         btnenLocal.Unchecked += TipoPedido_CheckedChanged;
         btntelfono.Unchecked += TipoPedido_CheckedChanged;
 
-        // Asegurar estado inicial correcto
+        TxtBuscarPlato.TextChanged += (s, e) => PlatosViewSource.View.Refresh();
+    
+        btnPrimeros.Checked += MostrarSegundaCategoria;
+        btnSegundos.Checked += MostrarSegundaCategoria;
+
+        btnPrimeros.Unchecked += OcultarSegundaCategoriaSiNoHaySeleccion;
+        btnSegundos.Unchecked += OcultarSegundaCategoriaSiNoHaySeleccion;
+
+        btnEntrantes.Checked += ActualizarFiltro;
+        btnPrimeros.Checked += ActualizarFiltro;
+        btnSegundos.Checked += ActualizarFiltro;
+        btnPostres.Checked += ActualizarFiltro;
+        btnBebidas.Checked += ActualizarFiltro;
+
+        btnEntrantes.Unchecked += ActualizarFiltro;
+        btnPrimeros.Unchecked += ActualizarFiltro;
+        btnSegundos.Unchecked += ActualizarFiltro;
+        btnPostres.Unchecked += ActualizarFiltro;
+        btnBebidas.Unchecked += ActualizarFiltro;
+
+        // Subcategorías
+        btnEnsaladas.Checked += ActualizarFiltro;
+        btnHuevos.Checked += ActualizarFiltro;
+        btnArrocesYPastas.Checked += ActualizarFiltro;
+        btnPescados.Checked += ActualizarFiltro;
+
+        btnEnsaladas.Unchecked += ActualizarFiltro;
+        btnHuevos.Unchecked += ActualizarFiltro;
+        btnArrocesYPastas.Unchecked += ActualizarFiltro;
+        btnPescados.Unchecked += ActualizarFiltro;
+
+        // Estado inicial
         UpdateDomicilioState();
 
-
+        ActualizarTotal();
     }
 
-    private void TipoPedido_CheckedChanged(object? sender, RoutedEventArgs e)
+  
+
+
+    private void PlatosFiltrado(object sender, FilterEventArgs e)
     {
-        UpdateDomicilioState();
+        if (e.Item is Plato plato)
+        {
+            // Categoría
+            string categoria = btnEntrantes.IsChecked == true ? "Entrante" :
+                               btnPrimeros.IsChecked == true ? "Primero" :
+                               btnSegundos.IsChecked == true ? "Segundo" :
+                               btnPostres.IsChecked == true ? "Postre" :
+                               btnBebidas.IsChecked == true ? "Bebida" : null;
+
+            // Subcategoría
+            string subcategoria = null;
+            if (FilaSegundaCategoria.Visibility == Visibility.Visible)
+            {
+                subcategoria = btnEnsaladas.IsChecked == true ? "Ensalada" :
+                               btnHuevos.IsChecked == true ? "Carne" :
+                               btnArrocesYPastas.IsChecked == true ? "Arroces y Pastas" :
+                               btnPescados.IsChecked == true ? "Pescado" : null;
+            }
+
+            // Texto del buscador
+            string busqueda = TxtBuscarPlato.Text?.Trim().ToLower() ?? "";
+
+            // Evaluar coincidencias
+            bool coincideCategoria = categoria == null || plato.Categoria == categoria;
+            bool coincideSubcategoria = subcategoria == null || plato.Subcategoria == subcategoria;
+            bool coincideTexto = string.IsNullOrEmpty(busqueda) ||
+                                  plato.Nombre.ToLower().Contains(busqueda) ||
+                                  plato.Ingredientes.ToLower().Contains(busqueda);
+
+            e.Accepted = coincideCategoria && coincideSubcategoria && coincideTexto;
+        }
     }
+
+    private void ActualizarFiltro(object sender, RoutedEventArgs e)
+    {
+        PlatosViewSource.View.Refresh();
+    }
+
+    private void TipoPedido_CheckedChanged(object? sender, RoutedEventArgs e) => UpdateDomicilioState();
+
 
     private void UpdateDomicilioState()
     {
-        // Habilitar domicilio solo si "Teléfono" está seleccionado
         bool domicilioHabilitado = btntelfono.IsChecked == true;
 
-        // Activamos/desactivamos el contenedor y el textbox
         if (btnDomicilioContainer != null)
         {
             btnDomicilioContainer.IsEnabled = domicilioHabilitado;
             btnDomicilioContainer.Opacity = domicilioHabilitado ? 1.0 : 0.6;
-
-            // También cambiamos el borde para que se vea más atenuado cuando esté desactivado
             btnDomicilioContainer.BorderBrush = domicilioHabilitado
-                ? new SolidColorBrush(Color.FromRgb(204, 204, 204))   // #CCCCCC
-                : new SolidColorBrush(Color.FromRgb(220, 220, 220));  // más claro
+                ? new SolidColorBrush(Color.FromRgb(204, 204, 204))
+                : new SolidColorBrush(Color.FromRgb(220, 220, 220));
         }
 
         if (txtdomicilio != null)
         {
             txtdomicilio.IsEnabled = domicilioHabilitado;
             txtdomicilio.Foreground = domicilioHabilitado ? Brushes.Black : Brushes.Gray;
-            txtdomicilio.Text = domicilioHabilitado ? txtdomicilio.Text : txtdomicilio.Text; // no limpiamos el texto
         }
     }
 
@@ -141,53 +213,75 @@ public partial class MainWindow : Window
     private List<Plato> CargarContenidoXML()
     {
         List<Plato> listado = new List<Plato>();
+
+        // Ruta absoluta al XML dentro de la carpeta Datos
+        string rutaXml = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", "platos.xml");
+
+        if (!System.IO.File.Exists(rutaXml))
+        {
+            MessageBox.Show($"No se encontró el archivo XML en: {rutaXml}");
+            return listado;
+        }
+
         XmlDocument doc = new XmlDocument();
-        doc.Load("Datos/platos.xml");
+        doc.Load(rutaXml);
 
         foreach (XmlNode node in doc.DocumentElement.ChildNodes)
         {
             if (node.Attributes == null) continue;
 
-            Plato nuevoPlato = new Plato
+            Plato plato = new Plato
             {
-                Categoria = node.Attributes["Categoria"]?.Value ?? "",
-                Subcategoria = node.Attributes["Subcategoria"]?.Value ?? "",
-                Nombre = node.Attributes["Nombre"]?.Value ?? "",
-                Ingredientes = node.Attributes["Ingredientes"]?.Value ?? "",
-                Precio = int.Parse(node.Attributes["Precio"]?.Value ?? "0"),
-                Alergenos = node.Attributes["Alergenos"]?.Value ?? "",
-                Cantidad = int.Parse(node.Attributes["Cantidad"]?.Value ?? "0")
+                Nombre = node.Attributes["nombre"]?.Value ?? "",
+                Categoria = node.Attributes["categoria"]?.Value ?? "",
+                Subcategoria = node.Attributes["subcategoria"]?.Value ?? "",
+                Ingredientes = node.Attributes["ingredientes"]?.Value ?? "",
+                Precio = double.TryParse(node.Attributes["precio"]?.Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double precio) ? precio : 0,
+                Alergenos = node.Attributes["alergenos"]?.Value ?? "",
+                Cantidad = 1, // por defecto 1
+                Imagen = CargarImagen(node.Attributes["imagen"]?.Value)
             };
 
-            string img = node.Attributes["Imagen"]?.Value;
-            if (!string.IsNullOrEmpty(img))
-                nuevoPlato.Imagen = new Uri(img, UriKind.Relative);
-
-            listado.Add(nuevoPlato);
+            listado.Add(plato);
         }
 
         return listado;
     }
+
+    // Función para cargar imágenes correctamente
+    private Uri CargarImagen(string ruta)
+    {
+        if (string.IsNullOrWhiteSpace(ruta))
+            return new Uri("imagenes/logo.png", UriKind.Relative);
+
+        try
+        {
+            return new Uri(ruta, UriKind.Relative);
+        }
+        catch
+        {
+            return new Uri("imagenes/logo.png", UriKind.Relative);
+        }
+    }
+
+
+
 
     private void PlatosListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (PlatosListView.SelectedItem is Plato prodSeleccionado)
         {
             var existente = productosActuales.FirstOrDefault(p => p.Nombre == prodSeleccionado.Nombre);
-            if (existente != null)
-            {
-                existente.Cantidad++;
-            }
+            if (existente != null) existente.Cantidad++;
             else
-            {
                 productosActuales.Add(new Plato
                 {
                     Nombre = prodSeleccionado.Nombre,
                     Precio = prodSeleccionado.Precio,
-                    Imagen = prodSeleccionado.Imagen,
+                    Imagen = prodSeleccionado.Imagen ?? new Uri("imagenes/logo.png", UriKind.Relative),
                     Cantidad = 1
                 });
-            }
+
             ActualizarTotal();
             PlatosListView.SelectedItem = null;
         }
@@ -196,7 +290,6 @@ public partial class MainWindow : Window
     private void AgregarPedidoAFase(Pedido p)
     {
         var card = CrearCardPedido(p);
-
         switch (p.Estado)
         {
             case 1: listaPendientesPago.Children.Add(card); break;
@@ -204,7 +297,6 @@ public partial class MainWindow : Window
             case 3: listaListos.Children.Add(card); break;
             case 4: listaHistorial.Children.Add(card); break;
         }
-
         ActualizarContadores();
     }
 
@@ -324,25 +416,7 @@ public partial class MainWindow : Window
             Color.FromRgb(200, 200, 200),
             (s, e) =>
             {
-                // Mensaje de advertencia
-                var aviso = MessageBox.Show(
-                    "Se va a utilizar la sección de 'Pedido Actual'. Todo lo que esté escrito se borrará.",
-                    "Atención",
-                    MessageBoxButton.OKCancel,
-                    MessageBoxImage.Information
-                );
-
-                if (aviso == MessageBoxResult.OK)
-                {
-                    // Cargar los datos del pedido en Pedido Actual
-                    CargarPedidoActual(p);
-
-                    // Cambiar a Tab de Productos
-                    MainTabControl.SelectedItem = TabProductos;
-
-                    // Eliminar pedido original para evitar duplicados
-                    EliminarPedido(p, card);
-                }
+                BtnEditarPedido_Click(s, e,p);
             }
         );
 
@@ -1076,5 +1150,22 @@ public partial class MainWindow : Window
             
         }
     }
+    private void BtnInformacion_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+    private void MostrarSegundaCategoria(object sender, RoutedEventArgs e)
+    {
+        if (btnPrimeros.IsChecked == true || btnSegundos.IsChecked == true)
+            FilaSegundaCategoria.Visibility = Visibility.Visible;
+    }
+
+    private void OcultarSegundaCategoriaSiNoHaySeleccion(object sender, RoutedEventArgs e)
+    {
+        if (btnPrimeros.IsChecked != true && btnSegundos.IsChecked != true)
+            FilaSegundaCategoria.Visibility = Visibility.Collapsed;
+    }
+
+    
 
 }

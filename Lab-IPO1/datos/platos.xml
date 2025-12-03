@@ -20,27 +20,27 @@
 		   ingredientes="Cebolla, caldo, pan gratinado"
 		   precio="5.90"
 		   alergenos="Gluten, Lactosa"
-		   imagen ="imagenes/sopa-de-cebolla.jpg"/>
+		   imagen ="imagenes/sopa-de-cebolla-receta.jpg"/>
 
 	<!-- ============== PRIMEROS ============== -->
-	<Plato categoria="Primero" subcategoria="Arroz"
+	<Plato categoria="Primero" subcategoria="Arroces y Pastas"
 		   nombre="Paella Valenciana"
 		   ingredientes="Arroz, conejo, pollo, verduras"
 		   precio="12.50"
 		   alergenos="Ninguno"
-		   imagen ="imagenes/Paellavalenciana.jpg"/>
-	<Plato categoria="Primero" subcategoria="Pasta"
+		   imagen ="imagenes/Paellavalenciana-4.jpg"/>
+	<Plato categoria="Primero" subcategoria="Arroces y Pastas"
 		   nombre="Espaguetis Carbonara"
 		   ingredientes="Pasta, huevo, panceta, queso"
 		   precio="10.90"
 		   alergenos="Gluten, Huevo, Lactosa"/>
-
+		   imagen ="imagenes/espaguetis-a-la-carbonara-1.jpg"/>
 	<Plato categoria="Primero" subcategoria="Ensalada"
 		   nombre="Ensalada Mediterránea"
 		   ingredientes="Tomate, pepino, cebolla, queso feta"
 		   precio="8.20"
 		   alergenos="Lactosa"
-		   imagen ="imagenes/Ensalada-Mediterranea-de-Hierbas-Provenzales.jpeg"/>
+		   imagen ="imagenes/ensalada_mediterranea_de_atun_32697_orig.jpg"/>
 
 	<!-- ============== SEGUNDOS ============== -->
 	<Plato categoria="Segundo" subcategoria="Carne"
@@ -48,7 +48,7 @@
 		   ingredientes="Ternera, patatas, sal"
 		   precio="16.90"
 		   alergenos="Ninguno"
-		   imagen ="imagenes/entrecot.jpg"/>
+		   imagen ="imagenes/entrecot-a-la-plancha-poco-hecho-receta.jpg"/>
 
 	<Plato categoria="Segundo" subcategoria="Pescado"
 		   nombre="Salmón al Horno"
@@ -62,14 +62,14 @@
 		   ingredientes="Ternera, vino tinto, patatas, zanahoria"
 		   precio="13.80"
 		   alergenos="Sulfitos"
-		   imagen ="imagenes/estofado de ternera.jpeg"/>
+		   imagen ="imagenes/estofado.jpeg"/>
 
-	<Plato categoria="Segundo" subcategoria="Pasta"
+	<Plato categoria="Segundo" subcategoria="Arroces y Pastas"
 		   nombre="Lasaña Boloñesa"
 		   ingredientes="Pasta, salsa de tomate, carne picada, queso"
 		   precio="11.50"
 		   alergenos="Gluten, Lactosa"
-		   imagen ="imagenes/lasaña a la boloñesa.jpg"/>
+		   imagen ="imagenes/lasania.jpg"/>
 
 	<!-- ============== POSTRES ============== -->
 	<Plato categoria="Postre" subcategoria="Tarta"
@@ -84,14 +84,14 @@
 		   ingredientes="Leche, azúcar, vainilla"
 		   precio="3.20"
 		   alergenos="Lactosa"
-		   imagen ="imagenes/helado de vainilla.jpg"/>
+		   imagen ="imagenes/helado-de-vainilla.jpg"/>
 
 	<Plato categoria="Postre" subcategoria="Casero"
 		   nombre="Arroz con Leche"
 		   ingredientes="Arroz, leche, azúcar, canela"
 		   precio="3.80"
 		   alergenos="Lactosa"
-		   imagen ="imagenes/arroz con leche.png"/>
+		   imagen ="imagenes/arroz-con-leche.jpg"/>
 
 	<!-- ============== BEBIDAS ============== -->
 	<Plato categoria="Bebida" subcategoria="Refresco"
@@ -106,7 +106,7 @@
 		   ingredientes="Uva, fermentación"
 		   precio="3.50"
 		   alergenos="Sulfitos"
-		   imagen ="imagenes/rioja-vega-crianza.png"/>
+		   imagen ="/imagenes/rioja-vega-crianza.png"/>
 
 	<Plato categoria="Bebida" subcategoria="Cerveza"
 		   nombre="Cerveza Artesanal"

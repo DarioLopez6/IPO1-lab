@@ -12,7 +12,7 @@ namespace Lab_IPO1
         public string Subcategoria { get; set; }
         public string Nombre { get; set; }
         public string Ingredientes { get; set; }
-        public int Precio { get; set; }
+        public double Precio { get; set; }
         public string Alergenos { get; set; }
         public Uri Imagen { get; set; }
 
@@ -32,7 +32,7 @@ namespace Lab_IPO1
 
         public Plato() { }
 
-        public Plato(string categoria, string subcategoria, string nombre, string ingredientes, int precio, string alergenos, Uri imagen, int cantidad)
+        public Plato(string categoria, string subcategoria, string nombre, string ingredientes, double precio, string alergenos, Uri imagen, int cantidad)
         {
             Categoria = categoria;
             Subcategoria = subcategoria;
@@ -43,9 +43,26 @@ namespace Lab_IPO1
             Imagen = imagen;
             Cantidad = cantidad;
         }
+        public List<string> ListaAlergenos
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Alergenos))
+                    return new List<string>();
+
+                return Alergenos
+                    .Split(',')
+                    .Select(a => a.Trim())
+                    .Where(a => a.Length > 0)
+                    .ToList();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    
+
 }

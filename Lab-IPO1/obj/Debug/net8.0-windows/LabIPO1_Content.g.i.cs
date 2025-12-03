@@ -9,5 +9,21 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datos/platos.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/arroz-con-leche.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/cerveza.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/cocacola.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/croquetasjamon.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/ensalada-cesar-con-pasta-3.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/espaguetis-a-la-carbonara-1.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/ensalada_mediterranea_de_atun_32697_orig.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/entrecot-a-la-plancha-poco-hecho-receta.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/estofado.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/helado-de-vainilla.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/lasania.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/paellavalenciana-4.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/rioja-vega-crianza.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/salmon-horno-patatas-scaled.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/sopa-de-cebolla-receta.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/tarta-de-queso-de-la-vina.jpg")]
 
 

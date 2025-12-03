@@ -11,11 +11,22 @@
 
   <ItemGroup>
     <None Remove="datos\platos.xml" />
+    <None Remove="imagenes\arroz-con-leche.jpg" />
+    <None Remove="imagenes\cerveza.jpg" />
     <None Remove="imagenes\cobrarIcon.png" />
+    <None Remove="imagenes\cocacola.jpg" />
     <None Remove="imagenes\contrasenaIcono.png" />
+    <None Remove="imagenes\CroquetasJamon.jpg" />
     <None Remove="imagenes\cross.png" />
+    <None Remove="imagenes\Ensalada-cesar-con-pasta-3.jpg" />
+    <None Remove="imagenes\ensalada_mediterranea_de_atun_32697_orig.jpg" />
+    <None Remove="imagenes\entrecot-a-la-plancha-poco-hecho-receta.jpg" />
+    <None Remove="imagenes\espaguetis-a-la-carbonara-1.jpg" />
+    <None Remove="imagenes\estofado.jpeg" />
+    <None Remove="imagenes\helado-de-vainilla.jpg" />
     <None Remove="imagenes\help.png" />
     <None Remove="imagenes\iconoTPV.png" />
+    <None Remove="imagenes\lasania.jpg" />
     <None Remove="imagenes\logo.png" />
     <None Remove="imagenes\logout.png" />
     <None Remove="imagenes\menuCLientesOff.png" />
@@ -27,7 +38,13 @@
     <None Remove="imagenes\nuevoPedido.png" />
     <None Remove="imagenes\ojoOff.png" />
     <None Remove="imagenes\ojoOn.png" />
+    <None Remove="imagenes\Paellavalenciana-4.jpg" />
     <None Remove="imagenes\perfil.png" />
+    <None Remove="imagenes\productos.png" />
+    <None Remove="imagenes\rioja-vega-crianza.png" />
+    <None Remove="imagenes\salmon-horno-patatas-scaled.jpg" />
+    <None Remove="imagenes\sopa-de-cebolla-receta.jpg" />
+    <None Remove="imagenes\tarta-de-queso-de-la-vina.jpg" />
     <None Remove="imagenes\tick.png" />
     <None Remove="imagenes\usuarioIcono.png" />
   </ItemGroup>
@@ -43,21 +60,54 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="imagenes\arroz-con-leche.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\cerveza.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\cobrarIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\cocacola.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\contrasenaIcono.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\CroquetasJamon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\cross.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\Ensalada-cesar-con-pasta-3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\espaguetis-a-la-carbonara-1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\ensalada_mediterranea_de_atun_32697_orig.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\entrecot-a-la-plancha-poco-hecho-receta.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\estofado.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\helado-de-vainilla.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\help.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\iconoTPV.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\lasania.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -91,9 +141,27 @@
     <Resource Include="imagenes\ojoOn.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\Paellavalenciana-4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\perfil.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="imagenes\productos.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="imagenes\rioja-vega-crianza.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\salmon-horno-patatas-scaled.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\sopa-de-cebolla-receta.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\tarta-de-queso-de-la-vina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\tick.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
