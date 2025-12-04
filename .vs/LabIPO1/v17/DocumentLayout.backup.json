@@ -65,7 +65,7 @@
               "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml.cs",
               "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAywE8AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAHMEAAAAAAAAAAAkwIUEAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T15:40:26.724Z",
               "IsPinned": true,
@@ -88,8 +88,7 @@
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\EditarPlato.xaml",
               "RelativeToolTip": "Lab-IPO1\\EditarPlato.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-03T16:17:31.578Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-03T16:17:31.578Z"
             },
             {
               "$type": "Document",
@@ -149,8 +148,7 @@
               "RelativeToolTip": "Lab-IPO1\\datos\\platos.xml",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAEIAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2025-12-03T16:30:12.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-03T16:30:12.124Z"
             }
           ]
         }

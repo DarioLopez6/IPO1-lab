@@ -43,13 +43,10 @@ public partial class MainWindow : Window
 
         // Cargar datos de platos desde XML
         listadoPlatos = CargarContenidoXML();
-        PlatosListView.ItemsSource = listadoPlatos;
-
-        listadoPlatos = CargarContenidoXML();
         PlatosViewSource = new CollectionViewSource { Source = listadoPlatos };
         PlatosViewSource.Filter += PlatosFiltrado;
-
         PlatosListView.ItemsSource = PlatosViewSource.View;
+
 
         // Cargar pedidos de prueba
         CargarPedidos();
@@ -67,6 +64,13 @@ public partial class MainWindow : Window
         clientesBase = misClientes;
         clientesFiltrados = new ObservableCollection<Cliente>(clientesBase);
         cbBuscarCliente.ItemsSource = clientesFiltrados;
+        
+
+
+
+        TxtTotalClientes.Inlines.Clear();
+        TxtTotalClientes.Inlines.Add(new Run($"{clientesFiltrados.Count} clientes registrados"));
+
 
         listaProductos.ItemsSource = productosActuales;
 
@@ -109,8 +113,9 @@ public partial class MainWindow : Window
 
         // Estado inicial
         UpdateDomicilioState();
-
+        ActualizarClientes();
         ActualizarTotal();
+
     }
 
   
