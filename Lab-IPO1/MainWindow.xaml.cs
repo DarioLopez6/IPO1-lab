@@ -1267,9 +1267,6 @@ public partial class MainWindow : Window
         CollectionViewSource.GetDefaultView(listaProductos.ItemsSource).Refresh();
     }
 
-
-
-
     private void MostrarSegundaCategoria(object sender, RoutedEventArgs e)
     {
         if (btnPrimeros.IsChecked == true || btnSegundos.IsChecked == true)
@@ -1282,6 +1279,25 @@ public partial class MainWindow : Window
             FilaSegundaCategoria.Visibility = Visibility.Collapsed;
     }
 
-    
+    private void BtnCrearPlato_Click(object sender, RoutedEventArgs e)
+    {
+        // Abrir la ventana de creación
+        CrearPlato ventana = new CrearPlato();
+        bool? resultado = ventana.ShowDialog();
+
+        // Si el usuario creó un plato
+        if (resultado == true && ventana.PlatoCreado != null)
+        {
+            // Añadir el plato a la lista principal
+            listadoPlatos.Add(ventana.PlatoCreado);
+
+            // Refrescar interfaz (productos)
+            CollectionViewSource.GetDefaultView(PlatosListView.ItemsSource).Refresh();
+
+        }
+    }
+
+
+
 
 }
