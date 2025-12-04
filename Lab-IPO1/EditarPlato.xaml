@@ -40,20 +40,34 @@
                         <!-- Nombre -->
                         <TextBlock Text="Nombre:" FontWeight="Bold"/>
                         <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
-                            <TextBox x:Name="TxtNombre" BorderThickness="0" Padding="4" Background="Transparent"/>
+                            <TextBox x:Name="TxtNombre" BorderThickness="0" Padding="4" Background="Transparent" BorderBrush="#00ABADB3"/>
                         </Border>
 
                         <!-- Categoría -->
                         <TextBlock Text="Categoría:" FontWeight="Bold"/>
-                        <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
-                            <TextBox x:Name="TxtCategoria" BorderThickness="0" Padding="4" Background="Transparent"/>
+                        <Border  BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
+                            <ComboBox x:Name="CmbCategoria" BorderThickness="0" Padding="4" Background="Transparent" BorderBrush="#00ACACAC">
+                                <ComboBoxItem Content="Entrante"/>
+                                <ComboBoxItem Content="Primero"/>
+                                <ComboBoxItem Content="Segundo"/>
+                                <ComboBoxItem Content="Postre"/>
+                                <ComboBoxItem Content="Bebida"/>
+                                <ComboBoxItem Content="Otro"/>
+                            </ComboBox>
                         </Border>
 
                         <!-- Subcategoría -->
                         <TextBlock Text="Subcategoría:" FontWeight="Bold"/>
-                        <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
-                            <TextBox x:Name="TxtSubcategoria" BorderThickness="0" Padding="4" Background="Transparent"/>
+                        <Border  BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
+                            <ComboBox x:Name="CmbSubcategoria" BorderThickness="0" Padding="4" Background="Transparent">
+                                <ComboBoxItem Content="Ensalada"/>
+                                <ComboBoxItem Content="Carne"/>
+                                <ComboBoxItem Content="Arroces y Pastas"/>
+                                <ComboBoxItem Content="Pescado"/>
+                                <ComboBoxItem Content="Otro"/>
+                            </ComboBox>
                         </Border>
+
 
                         <!-- Ingredientes -->
                         <TextBlock Text="Ingredientes:" FontWeight="Bold"/>

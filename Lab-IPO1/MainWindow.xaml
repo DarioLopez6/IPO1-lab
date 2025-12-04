@@ -1072,10 +1072,23 @@ Padding="15" Width="400">
                                                                 <TextBlock FontSize="15" Text="{Binding Nombre}" VerticalAlignment="Center"/>
                                                             </StackPanel>
 
-                                                            <!-- Cantidad, precio y botón eliminar -->
+                                                            <!-- Cantidad, precio y botones -->
                                                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
+                                                                <!-- Botón restar -->
+                                                                <Button Width="22" Height="22" Click="RestarCantidad_Click" Cursor="Hand" Margin="0,0,5,0">
+                                                                    <Button.Template>
+                                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                                            <Border CornerRadius="5" BorderThickness="1" BorderBrush="#AAAAAA" Background="#EEEEEE">
+                                                                                <TextBlock VerticalAlignment="Center" Text="-" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black"/>
+                                                                            </Border>
+                                                                        </ControlTemplate>
+                                                                    </Button.Template>
+                                                                </Button>
+
                                                                 <TextBlock FontSize="14" Text="{Binding Cantidad, StringFormat=x{0}}" Margin="0,0,5,0"/>
                                                                 <TextBlock Width="58" Text="{Binding PrecioTexto}" FontSize="14" FontWeight="Bold" Margin="0,0,5,0"/>
+
+                                                                <!-- Botón eliminar -->
                                                                 <Button Width="22" Height="22" Click="EliminarProducto_Click" Cursor="Hand">
                                                                     <Button.Template>
                                                                         <ControlTemplate TargetType="{x:Type Button}">
@@ -1090,6 +1103,7 @@ Padding="15" Width="400">
                                                     </Border>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
+
                                         </ItemsControl>
 
 

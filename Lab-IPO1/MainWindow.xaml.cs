@@ -117,8 +117,26 @@ public partial class MainWindow : Window
         ActualizarTotal();
 
     }
+    private void RestarCantidad_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button btn && btn.DataContext is Plato plato)
+        {
+            if (plato.Cantidad > 1)
+            {
+                plato.Cantidad--;
+            }
+            else
+            {
+                // Si la cantidad llega a 0, puedes optar por eliminarlo completamente:
+                productosActuales.Remove(plato);
+            }
 
-  
+            ActualizarTotal();
+        }
+    }
+
+
+
 
 
     private void PlatosFiltrado(object sender, FilterEventArgs e)
@@ -1108,7 +1126,7 @@ public partial class MainWindow : Window
 
     private void txthora_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (Regex.IsMatch(txthora.Text, @"^\d{1,2}:\d{2}$"))
+        if (Regex.IsMatch(txthora.Text, @"^\d{1,2}:\d{2}$") || txthora.Text == "")
             txterrorletras.Visibility = Visibility.Collapsed;
         else
             txterrorletras.Visibility = Visibility.Visible;
@@ -1157,36 +1175,100 @@ public partial class MainWindow : Window
     }
     private void BtnInformacion_Click(object sender, RoutedEventArgs e)
     {
-        // Obtener el botón que fue clicado
-        Button btn = sender as Button;
-        if (btn == null) return;
-
-        // El plato está en el DataContext del botón (o del contenedor)
-        Plato platoSeleccionado = btn.DataContext as Plato;
-
-        if (platoSeleccionado == null)
+        // Obtener el plato seleccionado
+        if (sender is not Button btn || btn.DataContext is not Plato platoSeleccionado)
         {
             MessageBox.Show("No se pudo cargar el plato seleccionado.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
-        // Crear y abrir la ventana EditarPlatoWindow
+        // Abrir ventana de edición
         EditarPlato ventana = new EditarPlato(platoSeleccionado);
         bool? resultado = ventana.ShowDialog();
 
-        if (resultado == true)
+        if (resultado != true) return;
+
+        // Si se eliminó el plato
+        if (ventana.PlatoEliminado != null)
         {
-            if (ventana.PlatoEliminado != null)
+            var eliminado = ventana.PlatoEliminado;
+
+            // 1️⃣ Eliminar del listado principal
+            listadoPlatos.Remove(eliminado);
+
+            // 2️⃣ Eliminar del pedido actual
+            var enPedidoActual = productosActuales.FirstOrDefault(p => p.Imagen == eliminado.Imagen);
+            if (enPedidoActual != null)
             {
-                // Eliminar de la lista de platos
-                listadoPlatos.Remove(ventana.PlatoEliminado);
+                productosActuales.Remove(enPedidoActual);
+                ActualizarTotal();
             }
 
-            // Refrescar la pantalla
+            // 3️⃣ Eliminar de todos los pedidos existentes
+            foreach (var p in pedidos.ToList())
+            {
+                var platosAEliminar = p.Platos.Where(pl => pl.Imagen == eliminado.Imagen).ToList();
+                foreach (var pl in platosAEliminar)
+                    p.Platos.Remove(pl);
+
+                // Si un pedido queda sin platos, eliminarlo
+                if (!p.Platos.Any())
+                {
+                    pedidos.Remove(p);
+                    // También remover de la UI según estado
+                    switch (p.Estado)
+                    {
+                        case 1: listaPendientesPago.Children.Clear(); break;
+                        case 2: listaEnElaboracion.Children.Clear(); break;
+                        case 3: listaListos.Children.Clear(); break;
+                        case 4: listaHistorial.Children.Clear(); break;
+                    }
+                }
+            }
+
+            // Refrescar vista de UI
             PlatosViewSource.View.Refresh();
+            FiltrarYBuscarPedidos();
+            return;
         }
 
+        // Si se editó el plato
+        var edited = platoSeleccionado;
+
+        // 1️⃣ Actualizar pedido actual
+        foreach (var p in productosActuales.Where(p => p.Imagen == edited.Imagen))
+        {
+            p.Nombre = edited.Nombre;
+            p.Precio = edited.Precio;
+            p.Categoria = edited.Categoria;
+            p.Subcategoria = edited.Subcategoria;
+            p.Ingredientes = edited.Ingredientes;
+            p.Alergenos = edited.Alergenos;
+        }
+
+        // 2️⃣ Actualizar todos los pedidos existentes
+        foreach (var pedido in pedidos)
+        {
+            foreach (var pl in pedido.Platos.Where(pl => pl.Imagen == edited.Imagen))
+            {
+                pl.Nombre = edited.Nombre;
+                pl.Precio = edited.Precio;
+                pl.Categoria = edited.Categoria;
+                pl.Subcategoria = edited.Subcategoria;
+                pl.Ingredientes = edited.Ingredientes;
+                pl.Alergenos = edited.Alergenos;
+            }
+        }
+
+        // Refrescar UI
+        PlatosViewSource.View.Refresh();
+        FiltrarYBuscarPedidos();
+        ActualizarTotal();
+        CollectionViewSource.GetDefaultView(listaProductos.ItemsSource).Refresh();
     }
+
+
+
 
     private void MostrarSegundaCategoria(object sender, RoutedEventArgs e)
     {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Lab_IPO1
@@ -27,11 +29,19 @@ namespace Lab_IPO1
 
             // Información
             TxtNombre.Text = platoOriginal.Nombre;
-            TxtCategoria.Text = platoOriginal.Categoria;
-            TxtSubcategoria.Text = platoOriginal.Subcategoria;
             TxtIngredientes.Text = platoOriginal.Ingredientes;
             TxtAlergenos.Text = platoOriginal.Alergenos;
             TxtPrecio.Text = platoOriginal.Precio.ToString("0.00");
+
+            // Categoría
+            CmbCategoria.SelectedItem = CmbCategoria.Items
+                .Cast<ComboBoxItem>()
+                .FirstOrDefault(i => i.Content.ToString() == platoOriginal.Categoria);
+
+            // Subcategoría
+            CmbSubcategoria.SelectedItem = CmbSubcategoria.Items
+                .Cast<ComboBoxItem>()
+                .FirstOrDefault(i => i.Content.ToString() == platoOriginal.Subcategoria);
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
@@ -47,8 +57,8 @@ namespace Lab_IPO1
 
             // Guardar cambios en el objeto Plato
             platoOriginal.Nombre = TxtNombre.Text;
-            platoOriginal.Categoria = TxtCategoria.Text;
-            platoOriginal.Subcategoria = TxtSubcategoria.Text;
+            platoOriginal.Categoria = (CmbCategoria.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Otro";
+            platoOriginal.Subcategoria = (CmbSubcategoria.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Otro";
             platoOriginal.Ingredientes = TxtIngredientes.Text;
             platoOriginal.Alergenos = TxtAlergenos.Text;
             platoOriginal.Precio = precio;
@@ -60,10 +70,14 @@ namespace Lab_IPO1
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            var resultado = MessageBox.Show($"¿Está seguro de que desea eliminar el plato '{platoOriginal.Nombre}'?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var resultado = MessageBox.Show(
+                $"¿Está seguro de que desea eliminar el plato '{platoOriginal.Nombre}'?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
             if (resultado == MessageBoxResult.Yes)
             {
-                // Marcar objeto como eliminado mediante un flag opcional o lo manejas en la lista principal
                 PlatoEliminado = platoOriginal;
                 this.DialogResult = true;
                 this.Close();
@@ -75,7 +89,12 @@ namespace Lab_IPO1
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow("• Editar/Eliminar producto", "Observa la informacion del producto(puedes editarla), tamién puedes eliminarlo") { Owner = this };
+            HelpWindow help = new HelpWindow(
+                "• Editar/Eliminar producto",
+                "Observa la información del producto (puedes editarla), también puedes eliminarlo")
+            {
+                Owner = this
+            };
             help.ShowDialog();
         }
     }
