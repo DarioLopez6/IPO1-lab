@@ -1157,8 +1157,37 @@ public partial class MainWindow : Window
     }
     private void BtnInformacion_Click(object sender, RoutedEventArgs e)
     {
+        // Obtener el botón que fue clicado
+        Button btn = sender as Button;
+        if (btn == null) return;
+
+        // El plato está en el DataContext del botón (o del contenedor)
+        Plato platoSeleccionado = btn.DataContext as Plato;
+
+        if (platoSeleccionado == null)
+        {
+            MessageBox.Show("No se pudo cargar el plato seleccionado.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Crear y abrir la ventana EditarPlatoWindow
+        EditarPlato ventana = new EditarPlato(platoSeleccionado);
+        bool? resultado = ventana.ShowDialog();
+
+        if (resultado == true)
+        {
+            if (ventana.PlatoEliminado != null)
+            {
+                // Eliminar de la lista de platos
+                listadoPlatos.Remove(ventana.PlatoEliminado);
+            }
+
+            // Refrescar la pantalla
+            PlatosViewSource.View.Refresh();
+        }
 
     }
+
     private void MostrarSegundaCategoria(object sender, RoutedEventArgs e)
     {
         if (btnPrimeros.IsChecked == true || btnSegundos.IsChecked == true)

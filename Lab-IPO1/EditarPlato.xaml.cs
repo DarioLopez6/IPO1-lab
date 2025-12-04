@@ -1,78 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Lab_IPO1
 {
-    /// <summary>
-    /// Lógica de interacción para VentanaPlato.xaml
-    /// </summary>
     public partial class EditarPlato : Window
     {
-        private List<Plato> _listaPlatos;
+        private Plato platoOriginal;
 
-        // Constructor para AÑADIR un plato nuevo
-        public EditarPlato(List<Plato> listaPlatos)
+        public EditarPlato(Plato plato)
         {
             InitializeComponent();
-            _listaPlatos = listaPlatos; // guardamos la referencia
+            platoOriginal = plato;
+            CargarDatosPlato();
         }
 
-        // Constructor vacío opcional (si lo necesitas)
-        public EditarPlato()
+        private void CargarDatosPlato()
         {
-            InitializeComponent();
+            if (platoOriginal == null) return;
+
+            // Imagen
+            if (platoOriginal.Imagen != null)
+                ImgPlato.Source = new BitmapImage(platoOriginal.Imagen);
+            else
+                ImgPlato.Source = new BitmapImage(new Uri("/imagenes/logo.png", UriKind.Relative));
+
+            // Información
+            TxtNombre.Text = platoOriginal.Nombre;
+            TxtCategoria.Text = platoOriginal.Categoria;
+            TxtSubcategoria.Text = platoOriginal.Subcategoria;
+            TxtIngredientes.Text = platoOriginal.Ingredientes;
+            TxtAlergenos.Text = platoOriginal.Alergenos;
+            TxtPrecio.Text = platoOriginal.Precio.ToString("0.00");
         }
 
-        // Cargar un plato existente para modificarlo
-        public void CargarPlatoParaModificar(Plato p)
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            txtNombre.Text = p.Nombre;
-            txtPrecio.Text = p.Precio.ToString();
-            txtIngredientes.Text = p.Ingredientes;
-            txtImagen.Text = p.Imagen?.ToString();
-            txtCategoria.Text = p.Categoria;
-            txtSubcategoria.Text = p.Subcategoria;
-        }
-
-        private void BtnAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            try
+            // Validaciones básicas
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) ||
+                string.IsNullOrWhiteSpace(TxtPrecio.Text) ||
+                !double.TryParse(TxtPrecio.Text, out double precio))
             {
-                // Si estamos modificando, PlatoCreado ya apunta al objeto
-                if (PlatoCreado == null) PlatoCreado = new Plato();
+                MessageBox.Show("Nombre y precio válidos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-                PlatoCreado.Nombre = txtNombre.Text;
-                PlatoCreado.Categoria = txtCategoria.Text;
-                PlatoCreado.Subcategoria = txtSubcategoria.Text;
-                PlatoCreado.Ingredientes = txtIngredientes.Text;
-                PlatoCreado.Alergenos = txtAlergenos.Text;
-                PlatoCreado.Precio = int.Parse(txtPrecio.Text);
-                PlatoCreado.Cantidad = int.Parse(txtCantidad.Text);
+            // Guardar cambios en el objeto Plato
+            platoOriginal.Nombre = TxtNombre.Text;
+            platoOriginal.Categoria = TxtCategoria.Text;
+            platoOriginal.Subcategoria = TxtSubcategoria.Text;
+            platoOriginal.Ingredientes = TxtIngredientes.Text;
+            platoOriginal.Alergenos = TxtAlergenos.Text;
+            platoOriginal.Precio = precio;
 
+            // Cerrar ventana indicando éxito
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var resultado = MessageBox.Show($"¿Está seguro de que desea eliminar el plato '{platoOriginal.Nombre}'?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (resultado == MessageBoxResult.Yes)
+            {
+                // Marcar objeto como eliminado mediante un flag opcional o lo manejas en la lista principal
+                PlatoEliminado = platoOriginal;
                 this.DialogResult = true;
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar el plato: " + ex.Message);
-            }
         }
 
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        // Propiedad pública para saber si se eliminó
+        public Plato PlatoEliminado { get; private set; }
+
+        private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();   // cierra la ventana
+            HelpWindow help = new HelpWindow("• Editar/Eliminar producto", "Observa la informacion del producto(puedes editarla), tamién puedes eliminarlo") { Owner = this };
+            help.ShowDialog();
         }
-        public Plato PlatoCreado { get; set; }
     }
 }
