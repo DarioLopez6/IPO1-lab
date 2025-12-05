@@ -40,12 +40,16 @@ public partial class MainWindow : Window
     private int puntosCliente = 0; // se asigna al seleccionar cliente
     private double envioBase = 3.00;
     private double totalBase = 0;
+    private double envioFinal = 0;
+    private double totalFinal = 0;
 
 
 
     public MainWindow()
     {
         InitializeComponent();
+
+
 
         // Cargar datos de platos desde XML
         listadoPlatos = CargarContenidoXML();
@@ -61,10 +65,10 @@ public partial class MainWindow : Window
         // Inicializar clientes
         misClientes = new List<Cliente>
             {
-                new Cliente("imagenes/perfil.png", 1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 0, 0),
-                new Cliente("imagenes/perfil.png", 2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 0, 0),
-                new Cliente("imagenes/perfil.png", 3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0),
-                new Cliente("imagenes/perfil.png", 4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 0, 0)
+                new Cliente("imagenes/perfil.png", 1, "Juan", "Pérez", new List<string> { "Calle Falsa 123" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.EFECTIVO, 10, 0),
+                new Cliente("imagenes/perfil.png", 2, "Ana", "García", new List<string> { "Avenida Siempre Viva 45" }, new List<string> { "699 111 222" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.TARGETA, 10, 0),
+                new Cliente("imagenes/perfil.png", 3, "Juan", "Pérez", new List<string> { "Calle Mayor 12" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 10, 0),
+                new Cliente("imagenes/perfil.png", 4, "Juan", "Pérez", new List<string> { "Calle Luna 7" }, new List<string> { "666 555 444" }, new List<string>(), new List<string>(), new List<string>(), FORMAPAGO.BIZUM, 10, 0)
             };
 
         clientesBase = misClientes;
@@ -367,10 +371,14 @@ public partial class MainWindow : Window
 
     private void ActualizarTotal()
     {
-        double total = productosActuales.Sum(p => p.Precio * p.Cantidad);
-        txttotal.Text = total.ToString("0.00") + "€";
+        // Recalcular los totales base
+        totalBase = productosActuales.Sum(p => p.Precio * p.Cantidad);
+        envioBase = 3;
 
+        // Y AHORA aplicar puntos correctamente usando los valores base
+        AplicarPuntos();
     }
+
 
     private Border CrearCardPedido(Pedido p)
     {
@@ -782,10 +790,14 @@ public partial class MainWindow : Window
         txterrorPago.Visibility = Visibility.Hidden;
         txtpedidoVacio.Visibility = Visibility.Hidden;
         txterrorPedido.Visibility = Visibility.Hidden;
+        productosActuales.Clear();
+        txttotal.Text = "0.00€";
+        
     }
 
     private void Button_Click_3(object sender, RoutedEventArgs e)
     {
+        expander.IsExpanded = true;
         Button_Click_2(sender, e);
     }
 
@@ -815,7 +827,7 @@ public partial class MainWindow : Window
             if (btntelfono.IsChecked == true && string.IsNullOrEmpty(domicilio)) txterrorDomicilio.Visibility = Visibility.Visible; else txterrorDomicilio.Visibility = Visibility.Hidden;
             if (string.IsNullOrWhiteSpace(cliente)) txterrorCliente.Visibility = Visibility.Visible; else txterrorCliente.Visibility = Visibility.Hidden;
             if (!btntarjeta.IsChecked.Value && !btnefectivo.IsChecked.Value && !btnbizum.IsChecked.Value) txterrorPago.Visibility = Visibility.Visible; else txterrorPago.Visibility = Visibility.Hidden;
-            if (total == 0) txtpedidoVacio.Visibility = Visibility.Visible; else txtpedidoVacio.Visibility = Visibility.Hidden;
+            if (productosActuales.Count == 0) txtpedidoVacio.Visibility = Visibility.Visible; else txtpedidoVacio.Visibility = Visibility.Hidden;
             if (txterrorTipoPedido.Visibility == Visibility.Visible ||
                 txterrorHora.Visibility == Visibility.Visible ||
                 txterrorCliente.Visibility == Visibility.Visible ||
@@ -853,6 +865,30 @@ public partial class MainWindow : Window
                 FichaClienteBorder.Visibility=Visibility.Collapsed;
             }
 
+            if (clienteSeleccionadoBox != null)
+            {
+                // 1️⃣ Restar puntos usados (solo si se usaron)
+                if (puntosUsados > 0)
+                {
+                    clienteSeleccionadoBox.puntosAcumulados -= puntosUsados;
+                    if (clienteSeleccionadoBox.puntosAcumulados < 0)
+                        clienteSeleccionadoBox.puntosAcumulados = 0;
+                }
+
+                // 2️⃣ Calcular lo que realmente pagó sin puntos
+                double totalSinPuntos = totalBase + envioBase;
+                double totalPagadoReal = totalSinPuntos - puntosUsados;
+
+                // 3️⃣ Si ha pagado 20€ o más → gana +3 puntos
+                if (totalPagadoReal >= 20)
+                    clienteSeleccionadoBox.puntosAcumulados += 3;
+
+                // 4️⃣ Ocultar el panel de puntos
+                borderPuntos.Visibility = Visibility.Hidden;
+
+                // 5️⃣ Guardar y refrescar los puntos en pantalla
+                TxtPuntosAcumulados.Text = clienteSeleccionadoBox.puntosAcumulados.ToString();
+            }
 
             // Limpiar pedido actual
             productosActuales.Clear();
@@ -1129,71 +1165,53 @@ public partial class MainWindow : Window
     private void cbBuscarCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         clienteSeleccionadoBox = (Cliente)cbBuscarCliente.SelectedItem;
-        puntosCliente = clienteSeleccionado.puntosAcumulados;
-        puntosUsados = 0; // reset
-        ActualizarPrecioConPuntos();
 
+        if (clienteSeleccionadoBox != null)
+        {
+            borderPuntos.Visibility = Visibility.Visible;
+            puntosCliente = clienteSeleccionadoBox.puntosAcumulados;
+            puntosUsados = 0;
+            AplicarPuntos();
+        }
+        else
+        {
+            borderPuntos.Visibility = Visibility.Hidden;
+            puntosUsados = 0;
+            AplicarPuntos();
+        }
     }
+
     private void SumarPuntos_Click(object sender, MouseButtonEventArgs e)
     {
         if (clienteSeleccionadoBox == null) return;
 
-        // Calcular total actual aplicando los puntos adicionales
-        double totalRestante = totalBase + envioBase - (puntosUsados + 1);
+        // Precio FINAL actual
+        double precioActual = envioFinal + totalFinal;
 
-        if (puntosUsados >= puntosCliente || totalRestante < 0)
-        {
-            MessageBox.Show("No puedes usar más puntos, el precio ya está a 0 o se ha alcanzado el límite de puntos del cliente.");
+        // No dejar sumar puntos si ya no hay nada que descontar
+        if (precioActual <= 0)
             return;
-        }
+
+        // No permitir más puntos que el cliente tiene
+        if (puntosUsados >= puntosCliente)
+            return;
 
         puntosUsados++;
-        ActualizarPrecioConPuntos();
+        AplicarPuntos();
     }
+
+
+
     private void RestarPuntos_Click(object sender, MouseButtonEventArgs e)
     {
-        if (puntosUsados <= 0)
-            return;
+        if (puntosUsados > 0)
+        {
+            puntosUsados--;
 
-        puntosUsados--;
-        ActualizarPrecioConPuntos();
+            // Recalcular SIEMPRE en base al precio actual
+            AplicarPuntos();
+        }
     }
-    private void ActualizarPrecioConPuntos()
-    {
-        double envio = envioBase;
-        double total = totalBase;
-
-        int puntos = puntosUsados;
-
-        // Aplicar puntos al envío primero
-        if (puntos >= envio)
-        {
-            puntos -= (int)envio;
-            envio = 0;
-        }
-        else
-        {
-            envio -= puntos;
-            puntos = 0;
-        }
-
-        // Luego aplicar al total
-        if (puntos >= total)
-        {
-            total = 0;
-        }
-        else
-        {
-            total -= puntos;
-        }
-
-        // Actualizar UI
-        txtPuntosUsados.Text = puntosUsados.ToString();
-        txtEnvio.Text = $"+{envio:0.00}€";
-        txttotal.Text = $"{total:0.00}€";
-    }
-
-
 
     private void txthora_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -1205,6 +1223,54 @@ public partial class MainWindow : Window
         txterrorletras.Text = "Formato válido: HH:mm";
         
     }
+    private void AplicarPuntos()
+    {
+        double envio = envioBase;
+        double total = totalBase;
+
+        // Precio total actual
+        double precioTotal = envio + total;
+
+        // Si no hay cliente, no tocar nada
+        if (clienteSeleccionadoBox == null)
+        {
+            envioFinal = envio;
+            totalFinal = total;
+            txtEnvio.Text = envioFinal.ToString("0.00") + "€";
+            txttotal.Text = totalFinal.ToString("0.00") + "€";
+            return;
+        }
+
+        // 🔥 Ajustar puntos usados para no malgastarlos
+        if (puntosUsados > precioTotal)
+            puntosUsados = (int)Math.Floor(precioTotal);
+
+        if (puntosUsados > puntosCliente)
+            puntosUsados = puntosCliente;
+
+        int puntos = puntosUsados;
+
+        // 1) Descontar del envío
+        double restarEnvio = Math.Min(envio, puntos);
+        envio -= restarEnvio;
+        puntos -= (int)restarEnvio;
+
+        // 2) Descontar del total
+        double restarTotal = Math.Min(total, puntos);
+        total -= restarTotal;
+        puntos -= (int)restarTotal;
+
+        // Evitar negativos
+        envioFinal = Math.Max(0, envio);
+        totalFinal = Math.Max(0, total);
+
+        // Actualizar interfaz
+        txtPuntosUsados.Text = puntosUsados.ToString();
+        txtEnvio.Text = envioFinal.ToString("0.00") + "€";
+        txttotal.Text = totalFinal.ToString("0.00") + "€";
+    }
+
+
 
     private void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
     {

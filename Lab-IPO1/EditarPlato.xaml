@@ -42,6 +42,8 @@
                         <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
                             <TextBox x:Name="TxtNombre" BorderThickness="0" Padding="4" Background="Transparent" BorderBrush="#00ABADB3"/>
                         </Border>
+                        <TextBlock x:Name="ErrNombre" Text="El nombre es obligatorio" Foreground="Red" Visibility="Hidden" Margin="0,2,0,5"/>
+
 
                         <!-- Categoría -->
                         <TextBlock Text="Categoría:" FontWeight="Bold"/>
@@ -55,6 +57,7 @@
                                 <ComboBoxItem Content="Otro"/>
                             </ComboBox>
                         </Border>
+                        <TextBlock x:Name="ErrCategoria" Text="La categoría es obligatoria" Foreground="Red" Visibility="Hidden" Margin="0,2,0,5"/>
 
                         <!-- Subcategoría -->
                         <TextBlock Text="Subcategoría:" FontWeight="Bold"/>
@@ -67,6 +70,7 @@
                                 <ComboBoxItem Content="Otro"/>
                             </ComboBox>
                         </Border>
+                        <TextBlock x:Name="ErrSubcategoria" Text="La subcategoría es obligatoria" Foreground="Red" Visibility="Hidden" Margin="0,2,0,5"/>
 
 
                         <!-- Ingredientes -->
@@ -87,6 +91,8 @@
                         <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
                             <TextBox x:Name="TxtPrecio" BorderThickness="0" Padding="4" Background="Transparent"/>
                         </Border>
+                        <TextBlock x:Name="ErrPrecio" Text="El precio es obligatorio" Foreground="Red" Visibility="Hidden" Margin="0,2,0,5"/>
+
                     </StackPanel>
                 </ScrollViewer>
 
