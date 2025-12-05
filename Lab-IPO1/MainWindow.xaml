@@ -1135,7 +1135,7 @@ Padding="15" Width="400">
 
                                         <!-- BORDER USAR PUNTOS -->
                                         <!-- BORDER USAR PUNTOS -->
-                                        <Border x:Name="borderPuntos" Grid.Column="1"
+                                        <Border x:Name="borderPuntos" Grid.Column="1" ToolTip="Gastar un punto ahorra un euro(1P = 1€)"
         Background="#F0F0F0"
         BorderBrush="#C0C0C0"
         BorderThickness="1"

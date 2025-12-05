@@ -1305,6 +1305,20 @@ public partial class MainWindow : Window
             // Eliminamos al cliente de la lista principal
             misClientes.Remove(clienteSeleccionado);
 
+            foreach (var pedido in pedidos.ToList())
+            {
+                if (pedido.Cliente == $"{clienteSeleccionado.Nombre}")
+                {
+                    pedidos.Remove(pedido);
+                    switch (pedido.Estado)
+                    {
+                        case 1: listaPendientesPago.Children.Clear(); break;
+                        case 2: listaEnElaboracion.Children.Clear(); break;
+                        case 3: listaListos.Children.Clear(); break;
+                        case 4: listaHistorial.Children.Clear(); break;
+                    }
+                }
+            }
             // Actualizamos la lista visible de clientes
             ActualizarClientes();
 
@@ -1315,6 +1329,9 @@ public partial class MainWindow : Window
             
         }
         ActualizarContadorClientes();
+        ActualizarContadores();
+
+        
     }
     private void BtnInformacion_Click(object sender, RoutedEventArgs e)
     {
