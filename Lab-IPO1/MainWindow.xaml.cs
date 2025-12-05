@@ -74,12 +74,12 @@ public partial class MainWindow : Window
         clientesBase = misClientes;
         clientesFiltrados = new ObservableCollection<Cliente>(clientesBase);
         cbBuscarCliente.ItemsSource = clientesFiltrados;
-        
 
 
+        ActualizarContadorClientes();
 
         TxtTotalClientes.Inlines.Clear();
-        TxtTotalClientes.Inlines.Add(new Run($"{clientesFiltrados.Count} clientes registrados"));
+        TxtTotalClientes.Inlines.Add(new Run($"{clientesFiltrados.Count}"));
 
 
         listaProductos.ItemsSource = productosActuales;
@@ -182,6 +182,11 @@ public partial class MainWindow : Window
 
             e.Accepted = coincideCategoria && coincideSubcategoria && coincideTexto;
         }
+    }
+    private void ActualizarContadorClientes()
+    {
+        TxtTotalClientes.Inlines.Clear();
+        TxtTotalClientes.Inlines.Add(new Run($"{misClientes.Count}"));
     }
 
     private void ActualizarFiltro(object sender, RoutedEventArgs e)
@@ -913,7 +918,7 @@ public partial class MainWindow : Window
             ActualizarClientes();
         }
         FichaClienteBorder.Visibility = Visibility.Collapsed;
-        
+        ActualizarContadorClientes();
     }
     private void ActualizarClientes()
     {
@@ -1309,6 +1314,7 @@ public partial class MainWindow : Window
 
             
         }
+        ActualizarContadorClientes();
     }
     private void BtnInformacion_Click(object sender, RoutedEventArgs e)
     {
