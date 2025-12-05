@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
@@ -29,6 +30,8 @@ namespace Lab_IPO1
             txtDireccionSecundaria.Text = cliente.Direccion.Count > 1 ? cliente.Direccion[1] : "";
             txtAlergias.Text = string.Join(", ", cliente.Alergias);
             txtIntolerancias.Text = string.Join(", ", cliente.Intolerancias);
+            txtPuntosActuales.Text = cliente.puntosAcumulados.ToString();
+
 
             // Cargar imagen
             if (!string.IsNullOrEmpty(rutaFotoCliente))
@@ -94,6 +97,10 @@ namespace Lab_IPO1
             ClienteEditado.Alergias = txtAlergias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
             ClienteEditado.Intolerancias = txtIntolerancias.Text.Split(',').Select(s => s.Trim()).Where(s => s != "").ToList();
 
+            if (int.TryParse(txtPuntosActuales.Text, out int puntos))
+                ClienteEditado.puntosAcumulados = puntos;
+
+
             // Forma de pago
             if (rbTarjeta.IsChecked == true) ClienteEditado.pago = FORMAPAGO.TARGETA;
             else if (rbEfectivo.IsChecked == true) ClienteEditado.pago = FORMAPAGO.EFECTIVO;
@@ -126,5 +133,17 @@ namespace Lab_IPO1
                 imgFotoCliente.Source = new BitmapImage(new Uri(rutaFotoCliente));
             }
         }
+        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+
     }
 }

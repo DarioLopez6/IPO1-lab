@@ -79,7 +79,6 @@ namespace Lab_IPO1
 
             // Generar ID
             int nuevoID = new Random().Next(100000, 999999);
-
             // Crear cliente (puedes guardar la alternativa en otra propiedad si quieres)
             NuevoCliente = new Cliente(
                 rutaFotoCliente,
@@ -92,7 +91,7 @@ namespace Lab_IPO1
                 alergias,
                 intolerancias,
                 formaPagoPrincipal,
-                0,
+                int.TryParse(txtPuntosActuales.Text, out int puntosActuales) ? puntosActuales : 0,
                 0
             );
 
@@ -155,6 +154,18 @@ namespace Lab_IPO1
             // El botón crear solo se habilita si TODO es válido
             btnCrear.IsEnabled = nombreCorrecto && apellidosCorrectos && telefonoCorrecto;
         }
+        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
 
     }
+
 }

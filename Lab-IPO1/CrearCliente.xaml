@@ -106,7 +106,7 @@
                         </Button.Template>
                         <TextBlock Text="Seleccionar foto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Button>
-                        <Image x:Name="imgFotoCliente"  Width="50" Height="50" Margin="10,0,0,0" Stretch="UniformToFill"/>
+                    <Image x:Name="imgFotoCliente"  Width="50" Height="50" Margin="10,0,0,0" Stretch="UniformToFill"/>
                 </StackPanel>
 
 
@@ -123,10 +123,8 @@
                          PreviewTextInput="SoloLetras_PreviewTextInput"
                          TextChanged="ValidarCampos_TextChanged"/>
                 </Border>
-
                 <TextBlock x:Name="lblErrorNombre" Text="El nombre solo puede contener letras"
-                   Visibility="Collapsed"
-                   Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5"/>
+                   Foreground="Red" FontWeight="Bold" FontSize="12" Margin="0,-5,0,5" Visibility="Collapsed"/>
 
 
                 <!-- APELLIDOS -->
@@ -211,6 +209,18 @@
                              BorderThickness="0" Foreground="#333" FontSize="14"/>
                 </Border>
 
+                <!-- PUNTOS ACTUALES -->
+                <TextBlock Text="Puntos actuales:" FontWeight="Bold" Margin="0,5,0,0"/>
+
+                <Border CornerRadius="10" BorderBrush="#CCCCCC" BorderThickness="1"
+        Padding="8" Background="#FAFAFA" Margin="0 0 0 5">
+                    <TextBox x:Name="txtPuntosActuales"
+             Background="Transparent"
+             BorderThickness="0"
+             Foreground="#333" FontSize="14"
+             PreviewTextInput="SoloNumeros_PreviewTextInput"/>
+                </Border>
+
 
                 <!-- FORMA DE PAGO -->
                 <TextBlock Text="Forma de pago principal:" FontWeight="Bold" Margin="0,5,0,0"/>
@@ -224,7 +234,7 @@
                  x:Name="rbBizum" GroupName="MetodoPagoPrincipal" Content="Bizum"/>
                 </StackPanel>
 
-                
+
 
                 <!-- BOTONES -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">

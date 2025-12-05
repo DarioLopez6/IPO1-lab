@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|solutionrelative:lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|solutionrelative:lab-ipo1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\crearplato.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|solutionrelative:lab-ipo1\\crearplato.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\crearplato.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|solutionrelative:lab-ipo1\\crearplato.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|solutionrelative:lab-ipo1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AAC16F0-3B2F-41CE-BA76-9BDA297D0FC2}|Lab-IPO1\\LabIPO1.csproj|c:\\users\\dar\u00EDo l\u00F3pez\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\visual studio code\\ipo1-lab\\lab-ipo1\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 282,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml",
@@ -59,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Lab-IPO1\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\MainWindow.xaml.cs",
               "RelativeToolTip": "Lab-IPO1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAPcEAAAAAAAAAAAAABIFAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGQEAAAAAAAAAAAjwGsEAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T15:40:26.724Z",
               "IsPinned": true,
@@ -81,44 +73,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CrearPlato.xaml",
-              "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\CrearPlato.xaml",
-              "RelativeDocumentMoniker": "Lab-IPO1\\CrearPlato.xaml",
-              "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\CrearPlato.xaml",
-              "RelativeToolTip": "Lab-IPO1\\CrearPlato.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T20:50:26.917Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CrearPlato.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\CrearPlato.xaml.cs",
-              "RelativeDocumentMoniker": "Lab-IPO1\\CrearPlato.xaml.cs",
-              "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\CrearPlato.xaml.cs",
-              "RelativeToolTip": "Lab-IPO1\\CrearPlato.xaml.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAASwCMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T20:50:30.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Cliente.cs",
               "RelativeDocumentMoniker": "Lab-IPO1\\Cliente.cs",
               "ToolTip": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Cliente.cs",
               "RelativeToolTip": "Lab-IPO1\\Cliente.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAQwAwAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T15:54:51.037Z"
+              "WhenOpened": "2025-11-29T15:54:51.037Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Pedido.cs",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Pedido.cs",
               "RelativeDocumentMoniker": "Lab-IPO1\\Pedido.cs",
@@ -130,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Plato.cs",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\Plato.cs",
               "RelativeDocumentMoniker": "Lab-IPO1\\Plato.cs",
@@ -142,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "platos.xml",
               "DocumentMoniker": "C:\\Users\\Dar\u00EDo L\u00F3pez\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Visual Studio Code\\IPO1-lab\\Lab-IPO1\\datos\\platos.xml",
               "RelativeDocumentMoniker": "Lab-IPO1\\datos\\platos.xml",

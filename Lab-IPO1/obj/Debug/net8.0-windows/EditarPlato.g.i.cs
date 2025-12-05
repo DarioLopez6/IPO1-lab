@@ -124,7 +124,7 @@ namespace Lab_IPO1 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LabIPO1;V1.0.0.0;component/editarplato.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LabIPO1;component/editarplato.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\EditarPlato.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

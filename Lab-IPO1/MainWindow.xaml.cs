@@ -36,6 +36,12 @@ public partial class MainWindow : Window
     private Cliente clienteSeleccionadoBox;
     private CollectionViewSource PlatosViewSource;
 
+    private int puntosUsados = 0;
+    private int puntosCliente = 0; // se asigna al seleccionar cliente
+    private double envioBase = 3.00;
+    private double totalBase = 0;
+
+
 
     public MainWindow()
     {
@@ -363,6 +369,7 @@ public partial class MainWindow : Window
     {
         double total = productosActuales.Sum(p => p.Precio * p.Cantidad);
         txttotal.Text = total.ToString("0.00") + "€";
+
     }
 
     private Border CrearCardPedido(Pedido p)
@@ -1122,7 +1129,71 @@ public partial class MainWindow : Window
     private void cbBuscarCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         clienteSeleccionadoBox = (Cliente)cbBuscarCliente.SelectedItem;
+        puntosCliente = clienteSeleccionado.puntosAcumulados;
+        puntosUsados = 0; // reset
+        ActualizarPrecioConPuntos();
+
     }
+    private void SumarPuntos_Click(object sender, MouseButtonEventArgs e)
+    {
+        if (clienteSeleccionadoBox == null) return;
+
+        // Calcular total actual aplicando los puntos adicionales
+        double totalRestante = totalBase + envioBase - (puntosUsados + 1);
+
+        if (puntosUsados >= puntosCliente || totalRestante < 0)
+        {
+            MessageBox.Show("No puedes usar más puntos, el precio ya está a 0 o se ha alcanzado el límite de puntos del cliente.");
+            return;
+        }
+
+        puntosUsados++;
+        ActualizarPrecioConPuntos();
+    }
+    private void RestarPuntos_Click(object sender, MouseButtonEventArgs e)
+    {
+        if (puntosUsados <= 0)
+            return;
+
+        puntosUsados--;
+        ActualizarPrecioConPuntos();
+    }
+    private void ActualizarPrecioConPuntos()
+    {
+        double envio = envioBase;
+        double total = totalBase;
+
+        int puntos = puntosUsados;
+
+        // Aplicar puntos al envío primero
+        if (puntos >= envio)
+        {
+            puntos -= (int)envio;
+            envio = 0;
+        }
+        else
+        {
+            envio -= puntos;
+            puntos = 0;
+        }
+
+        // Luego aplicar al total
+        if (puntos >= total)
+        {
+            total = 0;
+        }
+        else
+        {
+            total -= puntos;
+        }
+
+        // Actualizar UI
+        txtPuntosUsados.Text = puntosUsados.ToString();
+        txtEnvio.Text = $"+{envio:0.00}€";
+        txttotal.Text = $"{total:0.00}€";
+    }
+
+
 
     private void txthora_TextChanged(object sender, TextChangedEventArgs e)
     {
