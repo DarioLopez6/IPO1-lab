@@ -1,0 +1,27 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ======== FUENTES GLOBALES ======== -->
+    <FontFamily x:Key="GlobalFontFamily">Arial</FontFamily>
+
+    <sys:Double x:Key="GlobalFontSize">20</sys:Double>
+    <sys:Double x:Key="GlobalFontSizeLarge">18</sys:Double>
+    <sys:Double x:Key="GlobalFontSizeSmall">12</sys:Double>
+
+    <!-- ======== COLORES GLOBALES ======== -->
+    <Color x:Key="PrimaryColor">#FF00AEEF</Color>
+    <Color x:Key="BackgroundColor">#FFF5F5F5</Color>
+    <Color x:Key="TextColor">#FF333333</Color>
+
+    <!-- Usa los colores como Brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+
+    <!-- ======== RADIOS Y ESPACIADOS ======== -->
+    <sys:Double x:Key="GlobalCornerRadius">10</sys:Double>
+    <Thickness x:Key="GlobalPadding">10</Thickness>
+    <Thickness x:Key="GlobalMargin">8</Thickness>
+
+</ResourceDictionary>

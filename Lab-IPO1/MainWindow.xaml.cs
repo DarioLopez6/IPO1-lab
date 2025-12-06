@@ -57,6 +57,7 @@ public partial class MainWindow : Window
         PlatosViewSource.Filter += PlatosFiltrado;
         PlatosListView.ItemsSource = PlatosViewSource.View;
 
+        productList.Add(new Plato("Paella", "Segundo", "Paella", "Arroz, mariscos, pollo", 12.50, "Gluten, Mariscos", new Uri("imagenes/paella.png", UriKind.Relative), 1));
 
         // Cargar pedidos de prueba
         CargarPedidos();
@@ -461,6 +462,7 @@ public partial class MainWindow : Window
             (s, e) =>
             {
                 BtnEditarPedido_Click(s, e,p);
+                EliminarPedido(p, card);
             }
         );
 
@@ -660,13 +662,13 @@ public partial class MainWindow : Window
 
     private void CargarEjemplosPedidos()
     {
-        var p1 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        var p1 = new Pedido(false, "12:12", "domicilio", "Ana", productList, 10.0, 10, 1, "No tiene puntos");
         pedidos.Add(p1); AgregarPedidoAFase(p1);
 
-        var p2 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        var p2 = new Pedido(false, "12:12", "domicilio", "Ana", productList, 10.0, 10, 1, "No tiene puntos");
         pedidos.Add(p2); AgregarPedidoAFase(p2);
 
-        var p3 = new Pedido(false, "hora", "domicilio", "cliente", productList, 10.0, 10, 1, "No tiene puntos");
+        var p3 = new Pedido(false, "12:12", "domicilio", "Ana", productList, 10.0, 10, 1, "No tiene puntos");
         pedidos.Add(p3); AgregarPedidoAFase(p3);
 
         ActualizarContadores();
@@ -825,8 +827,7 @@ public partial class MainWindow : Window
         string puntos = total > 20 ? "+3" : "";
 
         if ((btnenLocal.IsChecked == btntelfono.IsChecked) ||
-            (btntarjeta.IsChecked == btnefectivo.IsChecked && btntarjeta.IsChecked == btnbizum.IsChecked) ||
-            total == 0 || string.IsNullOrEmpty(hora) || string.IsNullOrWhiteSpace(cliente) ||
+            (btntarjeta.IsChecked == btnefectivo.IsChecked && btntarjeta.IsChecked == btnbizum.IsChecked) || string.IsNullOrEmpty(hora) || string.IsNullOrWhiteSpace(cliente) ||
             (btntelfono.IsChecked == true && string.IsNullOrEmpty(domicilio)))
         {
             if (!btnenLocal.IsChecked.Value && !btntelfono.IsChecked.Value) txterrorTipoPedido.Visibility = Visibility.Visible; else txterrorTipoPedido.Visibility = Visibility.Hidden;
@@ -1225,6 +1226,7 @@ public partial class MainWindow : Window
         }
     }
 
+    
     private void txthora_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (Regex.IsMatch(txthora.Text, @"^\d{1,2}:\d{2}$") || txthora.Text == "")
@@ -1464,7 +1466,58 @@ public partial class MainWindow : Window
         }
     }
 
+    private void btnenLocal_Checked(object sender, RoutedEventArgs e)
+    {
+        
+        RestarPuntos_Click();
+        RestarPuntos_Click();
+        RestarPuntos_Click();
+        txtEnvio.Text = "0.00€";
+        envioBase = 0;
+        ActualizarTotal();
+    }
+
+    private void btntelfono_Checked(object sender, RoutedEventArgs e)
+    {
+        txtEnvio.Text = "3.00€";
+        SumarPuntos_Click();
+        SumarPuntos_Click();
+        SumarPuntos_Click();
+        envioBase = 3;
+        RestarPuntos_Click();
+        RestarPuntos_Click();
+        RestarPuntos_Click();
+        ActualizarTotal();
+    }
+    private void SumarPuntos_Click()
+    {
+        if (clienteSeleccionadoBox == null) return;
+
+        // Precio FINAL actual
+        double precioActual = envioFinal + totalFinal;
+
+        // No dejar sumar puntos si ya no hay nada que descontar
+        if (precioActual <= 0)
+            return;
+
+        // No permitir más puntos que el cliente tiene
+        if (puntosUsados >= puntosCliente)
+            return;
+
+        puntosUsados++;
+        AplicarPuntos();
+    }
 
 
 
+    private void RestarPuntos_Click()
+    {
+        if (puntosUsados > 0)
+        {
+            puntosUsados--;
+
+            // Recalcular SIEMPRE en base al precio actual
+            AplicarPuntos();
+        }
+    }
 }

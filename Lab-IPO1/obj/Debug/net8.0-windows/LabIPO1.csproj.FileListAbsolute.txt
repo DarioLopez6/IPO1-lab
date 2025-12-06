@@ -109,3 +109,4 @@ C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Vis
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\tarta-de-queso-de-la-vina.jpg
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\CrearPlato.baml
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\CrearPlato.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\ThemeResources.baml
