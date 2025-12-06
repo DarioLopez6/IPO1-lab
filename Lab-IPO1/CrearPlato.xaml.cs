@@ -95,15 +95,16 @@ namespace Lab_IPO1
 
             // Crear el Plato
             PlatoCreado = new Plato(
-                TxtNombre.Text,
-                ComboCategoria.SelectedItem.ToString(),
-                ComboSubcategoria.SelectedItem.ToString(),
-                TxtIngredientes.Text,
-                precio,
-                TxtAlergenos.Text,
-                new Uri(rutaImagen, UriKind.Absolute),
-                1
+                ComboCategoria.SelectedItem.ToString(),     // Categoria
+                ComboSubcategoria.SelectedItem.ToString(),  // Subcategoria
+                TxtNombre.Text,                             // Nombre
+                TxtIngredientes.Text,                       // Ingredientes
+                precio,                                     // Precio
+                TxtAlergenos.Text,                           // Alergenos
+                new Uri(rutaImagen, UriKind.Absolute),       // Imagen
+                1                                            // Cantidad
             );
+
 
             DialogResult = true;
             Close();

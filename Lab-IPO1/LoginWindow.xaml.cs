@@ -26,8 +26,8 @@ namespace Lab_IPO1
             InitializeComponent();
 
             // Eventos de sincronización
-            PwdBox.PasswordChanged += PwdBox_PasswordChanged;
-            TxtPasswordVisible.TextChanged += TxtPasswordVisible_TextChanged;
+            /*PwdBox.PasswordChanged += PwdBox_PasswordChanged;
+            TxtPasswordVisible.TextChanged += TxtPasswordVisible_TextChanged;*/
         }
 
         // Usuario: Enter valida y enfoca password
@@ -49,16 +49,31 @@ namespace Lab_IPO1
                 BtnAcceder.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
+        private void TxtPasswordVisible_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ValidarContrasena();
+
+                if (TxtPasswordVisible.Text == password)
+                    BtnAcceder.Focus();
+            }
+        }
+
 
         private void PwdBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 ValidarContrasena();
-                if ((passwordVisible ? TxtPasswordVisible.Text : PwdBox.Password) == password)
+
+                string pwd = passwordVisible ? TxtPasswordVisible.Text : PwdBox.Password;
+
+                if (pwd == password)
                     BtnAcceder.Focus();
             }
         }
+
 
         private void TxtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -80,6 +95,13 @@ namespace Lab_IPO1
                 BorderUsuario.BorderBrush = Brushes.Gray;
                 ImgUsuarioIcon.Source = iconUser;
                 SetPasswordBoxEnabled(false);
+                if(txterrorUsuario.Visibility == Visibility.Visible)
+                {
+                    BorderUsuario.BorderBrush = Brushes.Red;
+                    BorderUsuario.Background = Brushes.LightCoral;
+                    ImgUsuarioIcon.Source = cross;
+                    SetPasswordBoxEnabled(false);
+                }
                 return;
             }
 
@@ -148,6 +170,7 @@ namespace Lab_IPO1
             }
         }
 
+
         // Mostrar/ocultar contraseña
         private void BtnShowPassword_Click(object sender, RoutedEventArgs e)
         {
@@ -191,23 +214,39 @@ namespace Lab_IPO1
             }
             else
             {
+                // Usuario correcto → error solo en contraseña
                 if (BorderUsuario.BorderBrush == Brushes.Green)
                 {
                     txterrorContrasena.Visibility = Visibility.Visible;
                     txterrorUsuario.Visibility = Visibility.Hidden;
+
+                    // ❗ Cambiar a error visual
+                    BorderContrasena.BorderBrush = Brushes.Red;
+                    BorderContrasena.Background = Brushes.LightCoral;
+                    imgContrasena.Source = cross;
                 }
                 else
                 {
+                    // Usuario incorrecto → error usuario
                     txterrorUsuario.Visibility = Visibility.Visible;
+                    txterrorContrasena.Visibility = Visibility.Hidden;
+
                     BorderContrasena.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
                     PwdBox.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
                     TxtPasswordVisible.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
                     PwdBox.Cursor = Cursors.No;
                     TxtPasswordVisible.Cursor = Cursors.No;
-                    txterrorContrasena.Visibility = Visibility.Hidden;
                 }
             }
+            if (txterrorUsuario.Visibility == Visibility.Visible)
+            {
+                BorderUsuario.BorderBrush = Brushes.Red;
+                BorderUsuario.Background = Brushes.LightCoral;
+                ImgUsuarioIcon.Source = cross;
+                SetPasswordBoxEnabled(false);
+            }
         }
+
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {

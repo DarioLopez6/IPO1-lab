@@ -178,7 +178,8 @@ public partial class MainWindow : Window
             bool coincideSubcategoria = subcategoria == null || plato.Subcategoria == subcategoria;
             bool coincideTexto = string.IsNullOrEmpty(busqueda) ||
                                   plato.Nombre.ToLower().Contains(busqueda) ||
-                                  plato.Ingredientes.ToLower().Contains(busqueda);
+                                  plato.Ingredientes.ToLower().Contains(busqueda)||
+                                  plato.Alergenos.ToLower().Contains(busqueda);
 
             e.Accepted = coincideCategoria && coincideSubcategoria && coincideTexto;
         }
@@ -613,6 +614,7 @@ public partial class MainWindow : Window
         btnbizum.IsChecked = false;
         btnenLocal.IsChecked = false;
         btntelfono.IsChecked = false;
+        borderPuntos.Visibility = Visibility.Visible;
         ActualizarTotal();
 
         // Rellenar con datos del pedido seleccionado
@@ -1164,7 +1166,12 @@ public partial class MainWindow : Window
             // Aquí puedes refrescar cualquier control que muestre al cliente
             ActualizarClientes();
             FichaClienteBorder.Visibility = Visibility.Collapsed;
+            if(clienteSeleccionado== clienteSeleccionadoBox)
+            {
+                cbBuscarCliente.SelectedItem = null;
+            }
         }
+
     }
 
     private void cbBuscarCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -477,6 +477,14 @@
 
                         <!-- Fases scroll horizontal -->
                         <ScrollViewer Margin="10,125,10,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PanningMode="HorizontalOnly">
+                            <ScrollViewer.Resources>
+
+                                <!-- Cambiar color del Thumb -->
+                                <Style TargetType="ScrollBar">
+                                    <Setter Property="Background" Value="Orange"/>
+                                </Style>
+
+                            </ScrollViewer.Resources>
                             <StackPanel Orientation="Horizontal">
                                 <!-- PENDIENTES -->
                                 <Border Width="320" Padding="12" Margin="0,0,20,0" CornerRadius="12" BorderBrush="#CCCCCC" BorderThickness="1" Background="#FAFAFA">
@@ -897,7 +905,7 @@ Padding="15" Width="400">
                                     <TextBlock
     Text="Pedido Actual" x:Name="txtpedidoActualTitulo" Margin="0,0,1,2" FontSize="20" FontWeight="Bold"/>
                                     <TextBlock
-    Width="159" Visibility="Hidden" VerticalAlignment="Center" TextWrapping="Wrap" x:Name="txterrorPedido" Margin="38,0,0,0" Height="27" HorizontalAlignment="Left" FontSize="11" FontWeight="Bold" Foreground="Red" Grid.Column="1"><Run
+    Width="159" VerticalAlignment="Top" TextWrapping="Wrap" x:Name="txterrorPedido" Margin="38,-5,0,0" Height="27" HorizontalAlignment="Left" FontSize="11" FontWeight="Bold" Foreground="Red" Grid.Column="1" Visibility="Hidden"><Run
     Text="Selecciona o rellena los campos"/><Run
     Language="es-es" Text=" "/><Run
     Text="marcados con *"/></TextBlock>
@@ -978,7 +986,7 @@ Padding="15" Width="400">
                                                 <TextBox
     Width="120" TextWrapping="Wrap" x:Name="txthora" BorderBrush="#00ABADB3" Background="Transparent" TextChanged="txthora_TextChanged"/>
                                             </Button>
-                                            <TextBox x:Name="txterrorletras" TextWrapping="Wrap" Text="TextBox" Width="158" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontWeight="Bold" Visibility="Hidden"/>
+                                            <TextBox x:Name="txterrorletras" TextWrapping="Wrap" Text="TextBox" Width="158" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontWeight="Bold" Visibility="Hidden" IsEnabled="False"/>
 
                                         </StackPanel>
                                         <!-- ESPACIO 3: Entrega a domicilio (reemplazar) -->

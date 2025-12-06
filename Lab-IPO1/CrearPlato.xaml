@@ -103,16 +103,16 @@
                 <TextBlock x:Name="ErrorSubcategoria" Text="Debes seleccionar una subcategoría."
                            Foreground="Red" FontSize="12" Visibility="Hidden"/>
             </StackPanel>
+            <TextBlock FontWeight="Bold"><Run Text="Ingredientes"/><Run Language="es-es" Text=" "/><Run Language="es-es" Text="(separados por comas)"/><Run Text=":"/></TextBlock>
 
             <!-- Ingredientes -->
-            <TextBlock Text="Ingredientes:" FontWeight="Bold"/>
             <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
                 <TextBox x:Name="TxtIngredientes" BorderThickness="0" Padding="4"
                          AcceptsReturn="True" TextWrapping="Wrap" Height="60" Background="Transparent"/>
             </Border>
 
             <!-- Alergenos -->
-            <TextBlock Text="Alergenos:" FontWeight="Bold"/>
+            <TextBlock FontWeight="Bold"><Run Text="Alergenos"/><Run Language="es-es" Text=" "/><Run Language="es-es" Text="(separados por comas)"/><Run Text=":"/></TextBlock>
             <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Background="#E0E0E0">
                 <TextBox x:Name="TxtAlergenos" BorderThickness="0" Padding="4" Background="Transparent"/>
             </Border>

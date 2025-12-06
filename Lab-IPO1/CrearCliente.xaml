@@ -106,7 +106,9 @@
                         </Button.Template>
                         <TextBlock Text="Seleccionar foto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Button>
-                    <Image x:Name="imgFotoCliente"  Width="50" Height="50" Margin="10,0,0,0" Stretch="UniformToFill"/>
+                    <Border Background="#FFD4D4D4" Width="79" Height="77" Margin="20,0,0,0">
+                        <Image x:Name="imgFotoCliente" Margin="-1,0,-1,-1" Stretch="UniformToFill"/>
+                    </Border>
                 </StackPanel>
 
 
