@@ -228,11 +228,24 @@
 
         <!-- Autoría + Acceder -->
         <DockPanel Grid.Row="4" LastChildFill="False" Margin="0,20,0,0">
-            <TextBlock Text="PRUEBA DE TEMA GLOBAL"
-           FontFamily="{DynamicResource GlobalFontFamily}"
-           FontSize="{DynamicResource GlobalFontSize}"
-           Foreground="{DynamicResource PrimaryBrush}"
-           Margin="20"/>
+            <Button Width="50" Height="50" 
+        Background="#FFFF6B35" 
+        BorderBrush="#FFB85C30" 
+        BorderThickness="1"
+        Cursor="Hand"
+        ToolTip="Abrir ajustes"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Top"
+        Padding="0"
+        Margin="10"
+        Click="BtnPRUEBA_Click">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Icono de engranaje -->
+                    <TextBlock Text="⚙" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
 
             <TextBlock Text="Autoría - v0.6" Cursor="Hand" Foreground="#999" FontSize="12" TextDecorations="Underline"
                        VerticalAlignment="Bottom" DockPanel.Dock="Left" MouseLeftButtonUp="Btnautoria_Click"/>

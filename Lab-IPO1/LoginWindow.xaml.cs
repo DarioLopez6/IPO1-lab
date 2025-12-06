@@ -264,6 +264,24 @@ namespace Lab_IPO1
         {
             MessageBox.Show("Aplicación desarrollada por Rubén, Víctor y Darío. \nFecha: 1/12/2025.\nPrimer prototipo(V0.6).", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+
+
+
+        private void BtnPRUEBA_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settings = new SettingsWindow();
+            settings.Owner = this;
+            settings.ShowDialog();
+        }
+
+
+
+
+
+
+
+
     }
 
 }

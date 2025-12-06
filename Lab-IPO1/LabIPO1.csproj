@@ -50,6 +50,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="ThemeResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="datos\platos.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -166,6 +170,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\usuarioIcono.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ThemeResources.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
