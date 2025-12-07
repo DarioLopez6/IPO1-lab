@@ -19,9 +19,11 @@ namespace Lab_IPO1
     /// </summary>
     public partial class HelpWindow : Window
     {
-        public HelpWindow(string texto, string subtetxo)
+        public HelpWindow(string texto, string subtetxo, FontFamily fontName, double fontSize)
         {
             InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
             subtitulo.Text = texto;
             textoSub.Text = subtetxo;
         }

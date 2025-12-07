@@ -21,13 +21,20 @@ namespace Lab_IPO1
 
         private bool passwordVisible = false;
 
+
+        public LoginWindow(FontFamily fontName, double fontSize)
+        {
+            InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
+
+
+        }
         public LoginWindow()
         {
             InitializeComponent();
 
-            // Eventos de sincronización
-            /*PwdBox.PasswordChanged += PwdBox_PasswordChanged;
-            TxtPasswordVisible.TextChanged += TxtPasswordVisible_TextChanged;*/
+
         }
 
         // Usuario: Enter valida y enfoca password
@@ -208,9 +215,11 @@ namespace Lab_IPO1
 
             if (BorderUsuario.BorderBrush == Brushes.Green && pwd == password)
             {
-                MainWindow main = new MainWindow();
+                // Crear la ventana pasando los parámetros
+                MainWindow main = new MainWindow(this.FontFamily, this.FontSize);
                 main.Show();
                 this.Close();
+
             }
             else
             {
@@ -250,7 +259,7 @@ namespace Lab_IPO1
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow("• Inicio de Sesión:", "Introduce tu usuario y contraseña proporcionados por el administrador del TPV.");
+            HelpWindow help = new HelpWindow("• Inicio de Sesión:", "Introduce tu usuario y contraseña proporcionados por el administrador del TPV.", this.FontFamily, this.FontSize);
             help.Owner = this;
             help.ShowDialog();
         }
@@ -268,12 +277,8 @@ namespace Lab_IPO1
 
 
 
-        private void BtnPRUEBA_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsWindow settings = new SettingsWindow();
-            settings.Owner = this;
-            settings.ShowDialog();
-        }
+        
+
 
 
 

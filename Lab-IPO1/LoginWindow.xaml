@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login - HomeMade TPV"
         Height="500" Width="400"
-        Background="{DynamicResource WindowBackground}"
+        Background="White"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -228,23 +228,7 @@
 
         <!-- Autoría + Acceder -->
         <DockPanel Grid.Row="4" LastChildFill="False" Margin="0,20,0,0">
-            <Button Width="50" Height="50" 
-        Background="#FFFF6B35" 
-        BorderBrush="#FFB85C30" 
-        BorderThickness="1"
-        Cursor="Hand"
-        ToolTip="Abrir ajustes"
-        HorizontalAlignment="Right"
-        VerticalAlignment="Top"
-        Padding="0"
-        Margin="10"
-        Click="BtnPRUEBA_Click">
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <!-- Icono de engranaje -->
-                    <TextBlock Text="⚙" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+            
 
 
             <TextBlock Text="Autoría - v0.6" Cursor="Hand" Foreground="#999" FontSize="12" TextDecorations="Underline"

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
@@ -12,9 +13,11 @@ namespace Lab_IPO1
         private string rutaFotoCliente; // Nueva propiedad para la foto
         public Cliente ClienteEditado { get; private set; }
 
-        public EditarCliente(Cliente cliente)
+        public EditarCliente(Cliente cliente, FontFamily fontName, double fontSize)
         {
             InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
 
             if (cliente == null) throw new ArgumentNullException(nameof(cliente));
 
@@ -115,7 +118,7 @@ namespace Lab_IPO1
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow("• Edición de cliente:", "Modifica los datos del cliente según sea necesario. Al menos el nombre es obligatorio.");
+            HelpWindow help = new HelpWindow("• Edición de cliente:", "Modifica los datos del cliente según sea necesario. Al menos el nombre es obligatorio.", this.FontFamily, this.FontSize);
             help.Owner = this;
             help.ShowDialog();
         }

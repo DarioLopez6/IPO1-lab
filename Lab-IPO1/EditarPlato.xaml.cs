@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Globalization;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Lab_IPO1
 {
@@ -14,9 +15,11 @@ namespace Lab_IPO1
     {
         private Plato platoOriginal;
 
-        public EditarPlato(Plato plato)
+        public EditarPlato(Plato plato, FontFamily fontName, double fontSize)
         {
             InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
             platoOriginal = plato;
             CargarDatosPlato();
 
@@ -132,7 +135,7 @@ namespace Lab_IPO1
         {
             HelpWindow help = new HelpWindow(
                 "• Editar/Eliminar producto",
-                "Observa la información del producto (puedes editarla), también puedes eliminarlo")
+                "Observa la información del producto (puedes editarla), también puedes eliminarlo", this.FontFamily, this.FontSize)
             {
                 Owner = this
             };

@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Lab_IPO1
@@ -11,9 +12,11 @@ namespace Lab_IPO1
         public Plato PlatoCreado { get; private set; }
         private string rutaImagen = null;
 
-        public CrearPlato()
+        public CrearPlato(FontFamily fontName, double fontSize)
         {
             InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
             CargarCategorias();
         }
 
@@ -120,7 +123,7 @@ namespace Lab_IPO1
         // ===================== AYUDA =======================
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow("• Crear plato", "Añade foto y datos del producto para crearlo") { Owner = this };
+            HelpWindow help = new HelpWindow("• Crear plato", "Añade foto y datos del producto para crearlo", this.FontFamily, this.FontSize) { Owner = this };
             help.ShowDialog();
         }
     }

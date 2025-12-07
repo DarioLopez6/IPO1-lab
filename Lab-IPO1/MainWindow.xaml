@@ -99,7 +99,7 @@
                     HorizontalAlignment="Right">
 
                     <!-- BOTÓN AYUDA -->
-                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81" Click="Button_Click_1" >
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="81" Click="Button_Click_1" Height="42" >
                         <Button.Template>
 
                             <ControlTemplate TargetType="{x:Type Button}">
@@ -118,7 +118,7 @@
                     </Button>
 
                     <!-- BOTÓN NUEVO PEDIDO -->
-                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="126" Click="Button_Click_3">
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="126" Click="Button_Click_3" Height="44">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="#FFFF6B35" 
@@ -136,7 +136,7 @@
                     </Button>
 
                     <!-- BOTÓN PERFIL -->
-                    <Button Padding="15,5" Margin="5" Width="226">
+                    <Button Padding="15,5" Margin="5" Width="226" Height="48">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="#E8E8E8" 
@@ -157,9 +157,33 @@
                             </StackPanel>
                         </StackPanel>
                     </Button>
+                    <Border CornerRadius="12"  BorderBrush="LightGray" BorderThickness="2" Background="#F0F0F0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                        <Button Width="50" Height="50"
+            Background="Transparent"
+            BorderThickness="0"
+            Cursor="Hand"
+            ToolTip="Abrir ajustes"
+            Padding="0"
+            Click="BtnPRUEBA_Click">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <!-- Icono de engranaje -->
+                                <TextBlock Text="⚙" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="46.319"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
 
                     <!-- BOTÓN CERRAR SESIÓN -->
-                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="106" Click="Button_Click">
+                    <Button Padding="15,5" Margin="5" Cursor="Hand" Width="106" Click="Button_Click" Height="48">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="#FFFFFF" 

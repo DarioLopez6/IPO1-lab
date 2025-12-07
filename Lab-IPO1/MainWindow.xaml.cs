@@ -45,9 +45,12 @@ public partial class MainWindow : Window
 
 
 
-    public MainWindow()
+    public MainWindow(FontFamily fontName, double fontSize)
     {
         InitializeComponent();
+        this.FontFamily = fontName;
+        this.FontSize = fontSize;
+
 
 
 
@@ -127,6 +130,30 @@ public partial class MainWindow : Window
         ActualizarClientes();
         ActualizarTotal();
 
+    }
+
+    private void BtnPRUEBA_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsWindow settings = new SettingsWindow(this.FontFamily, this.FontSize);
+        settings.Owner = this;
+
+        bool? result = settings.ShowDialog(); // Espera a que se cierre la ventana
+
+        if (result == true) // Si el usuario hizo clic en Guardar
+        {
+            // Leer los valores seleccionados
+            string font = settings.selectedFont;
+            double fontSize = settings.selectedFontSize;
+            string theme = settings.selectedTheme;
+
+            // Aquí puedes aplicarlos, por ejemplo a la ventana actual
+            this.FontFamily = new FontFamily(font);
+            this.FontSize = fontSize;
+
+            string selectedFont = font;
+            double selectedFontSize = fontSize;
+            string selectedTheme = theme;
+        }
     }
     private void RestarCantidad_Click(object sender, RoutedEventArgs e)
     {
@@ -771,14 +798,14 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        LoginWindow main = new LoginWindow();
+        LoginWindow main = new LoginWindow(this.FontFamily, this.FontSize);
         main.Show();
         this.Close();
     }
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        HelpWindow help = new HelpWindow("• Pestañas productos, pedidos y clientes:", "Gestiona cada cosa con la interfaz proporcionada") { Owner = this };
+        HelpWindow help = new HelpWindow("• Pestañas productos, pedidos y clientes:", "Gestiona cada cosa con la interfaz proporcionada", this.FontFamily, this.FontSize) { Owner = this };
         help.ShowDialog();
     }
 
@@ -909,7 +936,7 @@ public partial class MainWindow : Window
 
     private void btnanadirCliente_Click(object sender, RoutedEventArgs e)
     {
-        CrearCliente ventana = new CrearCliente();
+        CrearCliente ventana = new CrearCliente(this.FontFamily, this.FontSize);
 
         ventana.Owner = this;     // <-- IMPORTANTE para bloquear la ventana principal
         ventana.ShowInTaskbar = false;
@@ -1158,7 +1185,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        EditarCliente ventanaEditar = new EditarCliente(clienteSeleccionado);
+        EditarCliente ventanaEditar = new EditarCliente(clienteSeleccionado, this.FontFamily, this.FontSize);
         ventanaEditar.Owner = this;
         bool? resultado = ventanaEditar.ShowDialog();
 
@@ -1352,7 +1379,7 @@ public partial class MainWindow : Window
         }
 
         // Abrir ventana de edición
-        EditarPlato ventana = new EditarPlato(platoSeleccionado);
+        EditarPlato ventana = new EditarPlato(platoSeleccionado, this.FontFamily, this.FontSize);
         bool? resultado = ventana.ShowDialog();
 
         if (resultado != true) return;
@@ -1451,7 +1478,7 @@ public partial class MainWindow : Window
     private void BtnCrearPlato_Click(object sender, RoutedEventArgs e)
     {
         // Abrir la ventana de creación
-        CrearPlato ventana = new CrearPlato();
+        CrearPlato ventana = new CrearPlato(this.FontFamily, this.FontSize);
         bool? resultado = ventana.ShowDialog();
 
         // Si el usuario creó un plato

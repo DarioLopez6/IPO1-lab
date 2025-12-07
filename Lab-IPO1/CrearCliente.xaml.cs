@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Lab_IPO1
@@ -14,9 +15,11 @@ namespace Lab_IPO1
 
         public Cliente NuevoCliente { get; private set; }
 
-        public CrearCliente()
+        public CrearCliente(FontFamily fontName, double fontSize)
         {
             InitializeComponent();
+            this.FontFamily = fontName;
+            this.FontSize = fontSize;
         }
 
 
@@ -104,7 +107,7 @@ namespace Lab_IPO1
 
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow help = new HelpWindow("• Creación de cliente:", "Introduce los datos del nuevo cliente(como minimno el nombre)");
+            HelpWindow help = new HelpWindow("• Creación de cliente:", "Introduce los datos del nuevo cliente(como minimno el nombre)", this.FontFamily, this.FontSize);
             help.Owner = this;
             help.ShowDialog();
         }
