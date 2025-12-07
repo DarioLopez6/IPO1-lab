@@ -1,56 +1,13 @@
 ﻿<Window x:Class="Lab_IPO1.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Ajustes" Height="500" Width="400">
+        Title="Ajustes" Height="200" Width="300"
+        Background="{DynamicResource WindowBackground}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
 
-    <ScrollViewer>
-        <StackPanel Margin="20" VerticalAlignment="Top" >
-
-            <TextBlock Text="Configuración de la app" 
-                   FontSize="20" 
-                   FontWeight="Bold" 
-                   Foreground="{DynamicResource TextBrush}" 
-                   Margin="0,0,0,20"/>
-
-            <!-- COLOR PRIMARIO -->
-            <TextBlock Text="Color principal:" Margin="0,10,0,5"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txtPrimaryColor" Width="100" Text="#FFFF6B35"/>
-                <Button Style="{DynamicResource PrimaryButtonStyle}" Content="Aplicar" Margin="10,0,0,0" Click="BtnPrimaryColor_Click"/>
-            </StackPanel>
-
-            <!-- COLOR SECUNDARIO -->
-            <TextBlock Text="Color secundario:" Margin="0,10,0,5"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txtSecondaryColor" Width="100" Text="#F0F0F0"/>
-                <Button Style="{DynamicResource SecondaryButtonStyle}" Content="Aplicar" Margin="10,0,0,0" Click="BtnSecondaryColor_Click"/>
-            </StackPanel>
-
-            <!-- COLOR DE TEXTO -->
-            <TextBlock Text="Color de texto:" Margin="0,10,0,5"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txtTextColor" Width="100" Text="Black"/>
-                <Button Style="{DynamicResource SecondaryButtonStyle}" Content="Aplicar" Margin="10,0,0,0" Click="BtnTextColor_Click"/>
-            </StackPanel>
-
-            <!-- TAMAÑO DE FUENTE -->
-            <TextBlock Text="Tamaño de fuente:" Margin="0,10,0,5"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txtFontSize" Width="50" Text="14"/>
-                <Button Style="{DynamicResource SecondaryButtonStyle}" Content="Aplicar" Margin="10,0,0,0" Click="BtnFontSize_Click"/>
-            </StackPanel>
-
-            <!-- FUENTE -->
-            <TextBlock Text="Fuente:" Margin="0,10,0,5"/>
-            <ComboBox Name="cbFontFamily" Width="200" Style="{DynamicResource CustomComboBoxStyle}" SelectionChanged="CbFontFamily_SelectionChanged">
-                <ComboBoxItem>Segoe UI</ComboBoxItem>
-                <ComboBoxItem>Arial</ComboBoxItem>
-                <ComboBoxItem>Calibri</ComboBoxItem>
-                <ComboBoxItem>Verdana</ComboBoxItem>
-            </ComboBox>
-
-            <!-- BOTÓN RESET -->
-            <Button Style="{DynamicResource DeleteButtonStyle}" Content="Restablecer valores por defecto" Margin="0,30,0,0" Click="BtnReset_Click"/>
-        </StackPanel>
-    </ScrollViewer>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button x:Name="BtnLight" Content="Light" Width="100" Height="40" Click="BtnLight_Click"/>
+        <Button x:Name="BtnDark" Content="Dark" Width="100" Height="40" Click="BtnDark_Click"/>
+    </StackPanel>
 </Window>
