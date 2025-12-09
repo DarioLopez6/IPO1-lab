@@ -18,27 +18,34 @@
     <None Remove="imagenes\contrasenaIcono.png" />
     <None Remove="imagenes\CroquetasJamon.jpg" />
     <None Remove="imagenes\cross.png" />
+    <None Remove="imagenes\dinero-en-efectivo.png" />
+    <None Remove="imagenes\dinero.png" />
     <None Remove="imagenes\Ensalada-cesar-con-pasta-3.jpg" />
     <None Remove="imagenes\ensalada_mediterranea_de_atun_32697_orig.jpg" />
     <None Remove="imagenes\entrecot-a-la-plancha-poco-hecho-receta.jpg" />
+    <None Remove="imagenes\escoba.png" />
     <None Remove="imagenes\espaguetis-a-la-carbonara-1.jpg" />
     <None Remove="imagenes\estofado.jpeg" />
     <None Remove="imagenes\helado-de-vainilla.jpg" />
     <None Remove="imagenes\help.png" />
     <None Remove="imagenes\iconoTPV.png" />
     <None Remove="imagenes\lasania.jpg" />
+    <None Remove="imagenes\llamar.png" />
     <None Remove="imagenes\logo.png" />
     <None Remove="imagenes\logout.png" />
+    <None Remove="imagenes\lupaIcono.png" />
     <None Remove="imagenes\menuCLientesOff.png" />
     <None Remove="imagenes\menuClientesOn.png" />
     <None Remove="imagenes\menuPedidosOff.png" />
     <None Remove="imagenes\menuPedidosOn.png" />
     <None Remove="imagenes\menuProductosOff.png" />
     <None Remove="imagenes\menuProductosOn.png" />
+    <None Remove="imagenes\negocio-local.png" />
     <None Remove="imagenes\nuevoPedido.png" />
     <None Remove="imagenes\ojoOff.png" />
     <None Remove="imagenes\ojoOn.png" />
     <None Remove="imagenes\Paellavalenciana-4.jpg" />
+    <None Remove="imagenes\pago-con-tarjetas-de-credito.png" />
     <None Remove="imagenes\perfil.png" />
     <None Remove="imagenes\productos.png" />
     <None Remove="imagenes\rioja-vega-crianza.png" />
@@ -55,6 +62,9 @@
 
   <ItemGroup>
     <Content Include="datos\platos.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\usuarioIcono.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -103,6 +113,15 @@
     <Content Include="imagenes\helado-de-vainilla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="imagenes\dinero-en-efectivo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\dinero.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\fregar-los-platos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\help.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -112,12 +131,18 @@
     <Content Include="imagenes\lasania.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="imagenes\llamar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imagenes\logout.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\lupaIcono.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\menuCLientesOff.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -136,6 +161,9 @@
     <Resource Include="imagenes\menuProductosOn.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="imagenes\negocio-local.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\nuevoPedido.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -146,6 +174,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Content Include="imagenes\Paellavalenciana-4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\pago-con-tarjetas-de-credito.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="imagenes\perfil.png">
@@ -167,9 +198,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="imagenes\tick.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="imagenes\usuarioIcono.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ThemeResources.xaml">

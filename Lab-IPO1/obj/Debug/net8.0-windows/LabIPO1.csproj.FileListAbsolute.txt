@@ -111,3 +111,11 @@ C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Vis
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\CrearPlato.g.cs
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\SettingsWindow.baml
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\obj\Debug\net8.0-windows\SettingsWindow.g.cs
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\dinero-en-efectivo.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\dinero.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\llamar.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\lupaIcono.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\negocio-local.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\pago-con-tarjetas-de-credito.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\fregar-los-platos.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\usuarioIcono.png

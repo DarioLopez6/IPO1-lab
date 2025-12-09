@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datos/platos.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/usuarioicono.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/arroz-con-leche.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/cerveza.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/cocacola.jpg")]
@@ -19,8 +20,15 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/entrecot-a-la-plancha-poco-hecho-receta.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/estofado.jpeg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/helado-de-vainilla.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/dinero-en-efectivo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/dinero.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/fregar-los-platos.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/lasania.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/llamar.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/lupaicono.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/negocio-local.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/paellavalenciana-4.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/pago-con-tarjetas-de-credito.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/rioja-vega-crianza.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/salmon-horno-patatas-scaled.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/sopa-de-cebolla-receta.jpg")]

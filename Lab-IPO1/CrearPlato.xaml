@@ -16,7 +16,7 @@
         <Grid Grid.Column="0">
             <Border x:Name="ImgContainer"
                     Height="230" Width="230"
-                    BorderBrush="#FF7F00" BorderThickness="2"
+                    BorderBrush="#FFFF6B35" BorderThickness="2"
                     CornerRadius="10" HorizontalAlignment="Center"
                     VerticalAlignment="Top" Background="#FFE0E0E0">
                 <Image x:Name="ImgPlato" Stretch="UniformToFill" OpacityMask="#FFE0E0E0"/>
@@ -26,7 +26,7 @@
             <Button x:Name="BtnElegirImagen"
                     Content="Elegir imagen..."
                     Width="200" Height="35"
-                    Background="#FF7F00"
+                    Background="#FFFF6B35"
                     Foreground="#E0E0E0"
                     FontWeight="Bold"
                     Margin="0,250,0,0"
@@ -48,7 +48,7 @@
             <!-- Botón de ayuda -->
             <Button Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"
                     Margin="0,-18,-427,0" Background="Transparent" Click="BtnAyuda_Click" Cursor="Hand">
-                <Border CornerRadius="15" Background="#FF7F00">
+                <Border CornerRadius="15" Background="#FFFF6B35">
                     <TextBlock Text="   ?" Foreground="White" FontWeight="Bold"
                                Width="25" Height="25" VerticalAlignment="Center"
                                HorizontalAlignment="Center" Margin="0,6,0,0"/>
@@ -144,7 +144,7 @@
                 <!-- Crear -->
                 <Button x:Name="BtnCrear"
                         Width="140" Height="40"
-                        Background="#FF7F00"
+                        Background="#FFFF6B35"
                         Foreground="White"
                         BorderThickness="0"
                         FontWeight="Bold"

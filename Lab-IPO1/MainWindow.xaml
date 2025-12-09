@@ -251,8 +251,8 @@
                                 <!-- ========================= -->
                                 <Grid Margin="0,0,21,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="35*"/>
-                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="167*"/>
+                                        <ColumnDefinition Width="48"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Platos"
                                       FontSize="22"
@@ -261,20 +261,40 @@
                                       HorizontalAlignment="Left"
                                       Grid.Row="0" Width="63"/>
                                     <Border
-                                        CornerRadius="10"
-                                        BorderBrush="#FF7F00"
-                                        BorderThickness="2"
-                                        Background="#FF7F00" Margin="1,0,0,0" Grid.Column="1">
-                                        <Button Content="Crear Plato"
-                                            Padding="10,5"
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            Foreground="White"
-                                            FontWeight="Bold"
-                                            FontSize="14"
-                                            Cursor="Hand"
-                                            Click="BtnCrearPlato_Click" Margin="-2,0,0,0"/>
+    CornerRadius="10"
+    BorderBrush="#FFFF6B35"
+    BorderThickness="2"
+    Background="#FFFF6B35"
+    Margin="501,0,0,0" Grid.ColumnSpan="2"
+    Width="130">
+
+                                        <Button Padding="10,5"
+            Background="Transparent"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnCrearPlato_Click"
+            Margin="-2,0,0,0">
+
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                                                <!-- 🔸 IMAGEN DEL ICONO -->
+
+                                                <!-- 🔸 TEXTO -->
+                                                <!-- 🔸 IMAGEN DEL ICONO -->
+                                                <Image Source="/imagenes/fregar-los-platos.png"
+                   Width="28" Height="26"
+                   />
+
+                                                <!-- 🔸 TEXTO -->
+                                                <TextBlock Text="Crear Plato"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       FontSize="14" Height="21"/>
+                                            </StackPanel>
+
+                                        </Button>
                                     </Border>
+
 
                                 </Grid>
                                 <!-- ========================= -->
@@ -303,7 +323,7 @@
                       LastChildFill="True"
                       Margin="0 0 10 0">
 
-                                            <Image Source="/imagenes/logo.png"
+                                            <Image Source="/imagenes/lupaIcono.png"
                           Width="18" Height="18"
                           Margin="5,0"
                           VerticalAlignment="Center"/>
@@ -484,7 +504,7 @@
                                     <!-- Buscador + Combo -->
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
                                         <DockPanel Width="220" Height="32" Background="#F5F5F5" Margin="0,0,10,0">
-                                            <Image Width="18" Height="18" Margin="5,0" VerticalAlignment="Center" Source="/imagenes/logo.png"/>
+                                            <Image Width="18" Height="18" Margin="5,0" VerticalAlignment="Center" Source="/imagenes/lupaIcono.png"/>
                                             <TextBox x:Name="txtBuscador" TextChanged="txtBuscador_TextChanged" BorderThickness="0" Background="Transparent" Padding="10,0" FontSize="14" VerticalAlignment="Center"/>
                                         </DockPanel>
 
@@ -515,7 +535,7 @@
 
                                 <!-- Cambiar color del Thumb -->
                                 <Style TargetType="ScrollBar">
-                                    <Setter Property="Background" Value="Orange"/>
+                                    <Setter Property="Background" Value="#FFFF6B35"/>
                                 </Style>
 
                             </ScrollViewer.Resources>
@@ -647,7 +667,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Icono -->
-                                    <Image Source="imagenes/usuarioIcono.png"
+                                    <Image Source="imagenes/lupaIcono.png"
                        Height="22"
                        Width="25"
                        Margin="0,0,6,0"
@@ -981,14 +1001,48 @@ Padding="15" Width="400">
                                                 <TextBlock
     Width="28" Visibility="Hidden" Text="*" x:Name="txterrorTipoPedido" Margin="122,0,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="Red" Grid.ColumnSpan="2"/>
                                             </Grid>
-                                            <StackPanel
-    Orientation="Horizontal" Margin="0 5 0 10" Cursor="Hand">
+                                            <StackPanel Orientation="Horizontal" Margin="0 5 0 10" Cursor="Hand">
+
+                                                <!-- 🔸 RadioButton EN LOCAL -->
                                                 <RadioButton
-    Width="72" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnenLocal" Height="39" GroupName="TipoPedido" Content="En local" Checked="btnenLocal_Checked"/>
+        Width="86"
+        Height="39"
+        Style="{StaticResource RadioButtonButtonStyle}"
+        x:Name="btnenLocal"
+        GroupName="TipoPedido"
+        Checked="btnenLocal_Checked">
+
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Image Source="/imagenes/negocio-local.png"
+                   Width="14" Height="12"
+                   Margin="0,0,6,0"/>
+                                                        <TextBlock Text="En local"
+                       VerticalAlignment="Center"/>
+                                                    </StackPanel>
+
+                                                </RadioButton>
+
+                                                <!-- 🔸 RadioButton TELÉFONO -->
                                                 <RadioButton
-    Width="67" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btntelfono" GroupName="TipoPedido" Content="Teléfono" Checked="btntelfono_Checked"/>
+        Width="86"
+        Height="39"
+        Style="{StaticResource RadioButtonButtonStyle}"
+        x:Name="btntelfono"
+        GroupName="TipoPedido"
+        Checked="btntelfono_Checked">
+
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Image Source="/imagenes/llamar.png"
+                   Width="12" Height="12"
+                   Margin="0,0,6,0"/>
+                                                        <TextBlock Text="Teléfono"
+                       VerticalAlignment="Center"/>
+                                                    </StackPanel>
+
+                                                </RadioButton>
 
                                             </StackPanel>
+
 
                                         </StackPanel>
                                         <!-- ESPACIO 2: Hora de recogida/entrega -->
@@ -1284,15 +1338,67 @@ Padding="15" Width="400">
 
                                 <!-- Botones de pago -->
                                 <StackPanel
-    Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Left" Cursor="Hand">
+    Orientation="Horizontal"
+    Margin="0 10 0 10"
+    HorizontalAlignment="Left"
+    Cursor="Hand">
+
+                                    <!-- 🔸 TARJETA -->
                                     <RadioButton
-    Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btntarjeta" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Tarjeta"/>
+        Width="120"
+        Style="{StaticResource RadioButtonButtonStyle}"
+        x:Name="btntarjeta"
+        GroupName="MetodoPago"
+        HorizontalAlignment="Left">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/imagenes/pago-con-tarjetas-de-credito.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock Text="Tarjeta"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </RadioButton>
+
+                                    <!-- 🔸 EFECTIVO -->
                                     <RadioButton
-    Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnefectivo" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Efectivo"/>
+        Width="120"
+        Style="{StaticResource RadioButtonButtonStyle}"
+        x:Name="btnefectivo"
+        GroupName="MetodoPago"
+        HorizontalAlignment="Left">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/imagenes/dinero-en-efectivo.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock Text="Efectivo"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </RadioButton>
+
+                                    <!-- 🔸 BIZUM -->
                                     <RadioButton
-    Width="80" Style="{StaticResource RadioButtonButtonStyle}" x:Name="btnbizum" HorizontalAlignment="Left" GroupName="MetodoPago" Content="Bizum"/>
+        Width="120"
+        Style="{StaticResource RadioButtonButtonStyle}"
+        x:Name="btnbizum"
+        GroupName="MetodoPago"
+        HorizontalAlignment="Left">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/imagenes/dinero.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock Text="Bizum"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </RadioButton>
 
                                 </StackPanel>
+
                                 <!-- Texto informativo -->
                                 <TextBlock
     Text="Pedidos &gt;20$ acumulan 3 puntos. Puede canjearlos por envío gratis." TextWrapping="Wrap" Margin="0 0 0 10" FontSize="11" Foreground="Gray"/>
@@ -1308,22 +1414,35 @@ Padding="15" Width="400">
                                     </Grid.ColumnDefinitions>
                                     <!-- Botón Limpiar -->
                                     <Button
-                                        Width="70" Height="30" HorizontalAlignment="Left" Click="Button_Click_2" Cursor="Hand">
-                                        <Button.Template >
-                                            <ControlTemplate
-                                            TargetType="{x:Type Button}">
+    Width="70" Height="30"
+    HorizontalAlignment="Left"
+    Click="Button_Click_2"
+    Cursor="Hand">
+
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
                                                 <Border
-                                                CornerRadius="10" BorderThickness="1" BorderBrush="#CCCCCC" Background="#E0E0E0">
+                CornerRadius="10"
+                BorderThickness="1"
+                BorderBrush="#CCCCCC"
+                Background="#E0E0E0">
                                                     <ContentPresenter
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
                                                 </Border>
-
                                             </ControlTemplate>
-
                                         </Button.Template>
-                                        <TextBlock
-    HorizontalAlignment="Center" Text="Limpiar" VerticalAlignment="Center"/>
+
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Image
+            Source="/imagenes/escoba.png"
+            Width="16" Height="16"
+            Margin="0,0,5,0"/>
+                                            <TextBlock Text="Limpiar" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
                                     </Button>
+
                                     <StackPanel
     VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
                                         <TextBlock

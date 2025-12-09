@@ -8,7 +8,7 @@
 
     <Grid Margin="10">
         <!-- Border principal -->
-        <Border CornerRadius="15" BorderBrush="#FF7F00" BorderThickness="2" Background="White" Padding="15">
+        <Border CornerRadius="15" BorderBrush="#FFFF6B35" BorderThickness="2" Background="White" Padding="15">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -28,7 +28,7 @@
                     <!-- Botón de ayuda redondo sobre la imagen -->
                     <Button Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"
                             Margin="0,5,5,0" Background="Transparent" Click="BtnAyuda_Click" Cursor="Hand">
-                        <Border CornerRadius="15" Background="#FF7F00">
+                        <Border CornerRadius="15" Background="#FFFF6B35">
                             <TextBlock Text="   ?" Foreground="White" FontWeight="Bold" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,6,0,0"/>
                         </Border>
                     </Button>
@@ -105,7 +105,7 @@
                                 Click="BtnEliminar_Click" BorderBrush="#00707070"/>
                     </Border>
                     <!-- Guardar -->
-                    <Border CornerRadius="10" Background="#FF7F00">
+                    <Border CornerRadius="10" Background="#FFFF6B35">
                         <Button x:Name="BtnEditar" Content="Guardar" Width="120" Height="35" 
                                 Background="Transparent" Foreground="White" FontWeight="Bold"
                                 Click="BtnEditar_Click" BorderBrush="#00707070"/>

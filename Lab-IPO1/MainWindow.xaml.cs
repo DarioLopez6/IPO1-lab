@@ -474,7 +474,7 @@ public partial class MainWindow : Window
         // Botón "Siguiente fase" - Naranja
         var btnMover = CrearBoton(
             "Siguiente fase",
-            Color.FromRgb(255, 127, 0),
+            Color.FromRgb(255, 107, 53),
             Colors.White,
             null,
             (s, e) => MoverPedidoSiguiente(p, card)
