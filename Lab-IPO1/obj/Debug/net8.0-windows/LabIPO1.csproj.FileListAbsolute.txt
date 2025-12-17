@@ -119,3 +119,14 @@ C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Vis
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\pago-con-tarjetas-de-credito.png
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\fregar-los-platos.png
 C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\usuarioIcono.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\ajuste.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\productosOff.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\productosOn.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\menuCLientesOff.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\pedidosOff.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\pedidosOn.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\menuCLientesOff1.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\menuCLientesOn1.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\pedidosOn1.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\productosOff1.png
+C:\Users\Darío López\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\IPO1-lab\Lab-IPO1\bin\Debug\net8.0-windows\imagenes\productosOn1.png

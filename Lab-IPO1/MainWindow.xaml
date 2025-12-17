@@ -167,16 +167,7 @@
             Click="BtnPRUEBA_Click">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Icono de engranaje -->
-                                <TextBlock Text="⚙" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                                    <TextBlock.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform Angle="46.319"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
+                                <Image Source="/imagenes/ajuste.png" Stretch="UniformToFill" VerticalAlignment="Center" Height="32" Width="32" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </Border>
@@ -226,7 +217,7 @@
                 <TabItem x:Name="TabProductos" Background="Transparent">
                     <TabItem.Header>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <Image x:Name="ImgProductos" Height="64" Source="/imagenes/menuProductosOn.png"/>
+                            <Image x:Name="ImgProductos" Height="64" Source="/imagenes/productosOn1.png"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Grid Background="#FFFFFF" Margin="0,0,-12,0">
@@ -266,7 +257,7 @@
     BorderThickness="2"
     Background="#FFFF6B35"
     Margin="501,0,0,0" Grid.ColumnSpan="2"
-    Width="130">
+    Width="130" HorizontalAlignment="Right">
 
                                         <Button Padding="10,5"
             Background="Transparent"
@@ -356,121 +347,167 @@
                                     <RadioButton x:Name="btnSinFiltro2" Style="{StaticResource RadioButtonButtonStyle}" Content="Sin filtro" GroupName="SubTipoPlatos" Width="80" FontSize="12"/>
                                 </StackPanel>
 
-                                <Border BorderBrush="Gray" Background="#00808080" Grid.Row="4" CornerRadius="20">
-                                    <ListView x:Name="PlatosListView" 
-                                              ItemsSource="{Binding Platos}"
-                                              SelectionChanged="PlatosListView_SelectionChanged"
-                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                              ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#00E2E2E2" av:ItemsSource="{av:SampleData ItemCount=5}">
+                                <Border BorderBrush="Gray"
+        Background="#00808080"
+        Grid.Row="4"
+        CornerRadius="20"
+        Padding="10">
 
-                                        <!-- WrapPanel para organizar items en varias columnas -->
+                                    <ListView x:Name="PlatosListView"
+              ItemsSource="{Binding Platos}"
+              SelectionChanged="PlatosListView_SelectionChanged"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              Background="Transparent" av:ItemsSource="{av:SampleData ItemCount=5}">
+
+                                        <!-- ESTILO DEL CONTENEDOR -->
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="Margin" Value="0"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+
+                                        <!-- PANEL DE ITEMS: COLUMNAS LIMPIAS -->
                                         <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                                <!-- Cambia Columns a 2 o 3 según necesites -->
+                                                <UniformGrid Columns="3"/>
                                             </ItemsPanelTemplate>
                                         </ListView.ItemsPanel>
 
+                                        <!-- TEMPLATE DEL ITEM -->
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <Border Background="#F5F5F5"       
-            CornerRadius="12"
-            Padding="10"
-            Margin="8"
-            BorderBrush="#FFFF6B35"
-            BorderThickness="1"
-            SnapsToDevicePixels="True"
-            HorizontalAlignment="Stretch">
+
+                                                <!-- TARJETA -->
+                                                <Border Background="#F5F5F5"
+                        CornerRadius="14"
+                        Padding="12"
+                        Margin="8"
+                        BorderBrush="#FFFF6B35"
+                        BorderThickness="1"
+                        MinHeight="170"
+                        SnapsToDevicePixels="True">
 
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="130"/>
-                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
 
-                                                        <!-- Imagen -->
-                                                        <Border Grid.Column="0" CornerRadius="10" ClipToBounds="True">
-                                                            <Image Source="{Binding Imagen}" 
-                       Width="120" Height="100" 
-                       Stretch="UniformToFill"/>
+                                                        <!-- IMAGEN -->
+                                                        <Border Grid.Column="0"
+                                CornerRadius="10"
+                                ClipToBounds="True"
+                                Margin="0,0,8,0">
+                                                            <Image Source="{Binding Imagen}"
+                                   Width="120"
+                                   Height="100"
+                                   Stretch="UniformToFill"/>
                                                         </Border>
 
-                                                        <!-- Contenido -->
-                                                        <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Top">
-                                                            <!-- Nombre del plato y precio en la misma fila -->
-                                                            <DockPanel LastChildFill="True">
-                                                                <TextBlock Text="{Binding Nombre}" 
-                               FontWeight="Bold" 
-                               FontSize="16" 
-                               Foreground="#333"
-                               TextTrimming="CharacterEllipsis"
-                               TextWrapping="NoWrap"
-                               DockPanel.Dock="Left"/>
-                                                                <TextBlock Text="{Binding Precio, StringFormat=C}" 
-                               FontWeight="Bold"
-                               FontSize="16"
-                               Foreground="#FF6B35"
-                               HorizontalAlignment="Right"/>
-                                                            </DockPanel>
+                                                        <!-- CONTENIDO -->
+                                                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Top">
 
-                                                            <!-- Ingredientes -->
-                                                            <TextBlock Text="{Binding Ingredientes}" 
-                           FontSize="13" 
-                           Foreground="#666"
-                           TextWrapping="Wrap" 
-                           TextTrimming="CharacterEllipsis"
-                           MaxHeight="32"   
-                           Margin="0,4,0,6"/>
+                                                            <!-- NOMBRE + PRECIO -->
+                                                            <Grid Margin="0,0,0,4">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
 
-                                                            <!-- Alérgenos -->
+                                                                <!-- NOMBRE -->
+                                                                <TextBlock Grid.Column="0"
+                                           Text="{Binding Nombre}"
+                                           FontWeight="Bold"
+                                           FontSize="16"
+                                           Foreground="#333"
+                                           TextTrimming="CharacterEllipsis"
+                                           Margin="0,0,10,0"/>
+
+                                                                <!-- PRECIO -->
+                                                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Precio, StringFormat=C}"
+                                           FontWeight="Bold"
+                                           FontSize="20"
+                                           Foreground="#FF6B35"
+                                           VerticalAlignment="Top"/>
+                                                            </Grid>
+
+                                                            <!-- INGREDIENTES -->
+                                                            <TextBlock Text="{Binding Ingredientes}"
+                                       FontSize="13"
+                                       Foreground="#666"
+                                       TextWrapping="Wrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       MaxHeight="34"
+                                       Margin="0,2,0,6"/>
+
+                                                            <!-- ALÉRGENOS -->
                                                             <ItemsControl ItemsSource="{Binding ListaAlergenos}">
                                                                 <ItemsControl.ItemsPanel>
                                                                     <ItemsPanelTemplate>
-                                                                        <WrapPanel />
+                                                                        <WrapPanel/>
                                                                     </ItemsPanelTemplate>
                                                                 </ItemsControl.ItemsPanel>
+
                                                                 <ItemsControl.ItemTemplate>
                                                                     <DataTemplate>
-                                                                        <Border Background="#FFE5B4"  
-                                    CornerRadius="10"
-                                    Padding="4,2"
-                                    Margin="2">
-                                                                            <TextBlock Text="{Binding}" 
-                                           FontSize="11" 
-                                           Foreground="#333"
-                                           TextTrimming="CharacterEllipsis"/>
+                                                                        <Border Background="#FFE5B4"
+                                                CornerRadius="10"
+                                                Padding="5,2"
+                                                Margin="2">
+                                                                            <TextBlock Text="{Binding}"
+                                                       FontSize="11"
+                                                       Foreground="#333"/>
                                                                         </Border>
                                                                     </DataTemplate>
                                                                 </ItemsControl.ItemTemplate>
                                                             </ItemsControl>
 
-                                                            <!-- Botón Detalles -->
-                                                            <Border CornerRadius="8" Background="#FFFF6B35" HorizontalAlignment="Right" Margin="0,6,0,0">
-                                                                <Button Padding="5,2"
-                            Background="Transparent"
-                            Foreground="White"
-                            FontWeight="Bold"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            ToolTip="Ver detalles, modificar o eliminar este plato"
-                            Click="BtnInformacion_Click">
-                                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                                        <!-- Icono de información -->
-                                                                        <TextBlock Text="ℹ" FontSize="14" Margin="0,0,5,0"/>
-                                                                        <TextBlock Text="Detalles" FontSize="14"/>
+                                                            <!-- BOTÓN DETALLES -->
+                                                            <Border CornerRadius="8"
+                                    Background="#FFFF6B35"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,8,0,0">
+                                                                <Button Padding="6,2"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        FontWeight="Bold"
+                                        FontSize="14"
+                                        Cursor="Hand"
+                                        BorderThickness="0"
+                                        ToolTip="Ver detalles, modificar o eliminar este plato"
+                                        Click="BtnInformacion_Click">
+
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="ℹ"
+                                                   FontSize="14"
+                                                   Margin="0,0,5,0"/>
+                                                                        <TextBlock Text="Detalles"/>
                                                                     </StackPanel>
+
                                                                 </Button>
                                                             </Border>
 
                                                         </StackPanel>
+
                                                     </Grid>
                                                 </Border>
-                                            </DataTemplate>
 
+                                            </DataTemplate>
                                         </ListView.ItemTemplate>
 
                                     </ListView>
 
                                 </Border>
+
                             </Grid>
                         </Border>
                     </Grid>
@@ -480,7 +517,7 @@
                 <TabItem x:Name="TabPedidos" Background="Transparent">
                     <TabItem.Header>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <Image x:Name="ImgPedidos" Height="64" Source="/imagenes/menuPedidosOff.png"/>
+                            <Image x:Name="ImgPedidos" Height="64" Source="/imagenes/pedidosOff.png"/>
                         </StackPanel>
                     </TabItem.Header>
 
@@ -509,14 +546,14 @@
                                         </DockPanel>
 
                                         <ComboBox x:Name="cmbFiltroPedido" Width="140" SelectedItem="0"
-          SelectionChanged="cmbFiltroPedido_SelectionChanged">
+          SelectionChanged="cmbFiltroPedido_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                             <ComboBoxItem Content="Todos" IsSelected="True"/>
                                             <ComboBoxItem Content="Local"/>
                                             <ComboBoxItem Content="Teléfono"/>
                                         </ComboBox>
 
                                         <ComboBox x:Name="cmbFiltroPago" Width="140" SelectedItem="0"
-                                            SelectionChanged="cmbFiltroPago_SelectionChanged">
+                                            SelectionChanged="cmbFiltroPago_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                             <ComboBoxItem Content="Todos" IsSelected="True"/>
                                             <ComboBoxItem Content="Tarjeta"/>
                                             <ComboBoxItem Content="Efectivo"/>
@@ -625,7 +662,7 @@
                 <TabItem x:Name="TabClientes" Background="Transparent">
                     <TabItem.Header>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                            <Image x:Name="ImgClientes" Height="64" Source="/imagenes/menuClientesOff.png"/>
+                            <Image x:Name="ImgClientes" Height="64" Source="/imagenes/menuCLientesOff1.png"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Grid Background="#FFFFFF" Margin="10">

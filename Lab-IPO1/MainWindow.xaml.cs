@@ -471,9 +471,9 @@ public partial class MainWindow : Window
 
         var acciones = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 8, 0, 0), HorizontalAlignment = HorizontalAlignment.Left };
 
-        // Botón "Siguiente fase" - Naranja
+        // Botón "Siguiente etapa" - Naranja
         var btnMover = CrearBoton(
-            "Siguiente fase",
+            "Siguiente etapa",
             Color.FromRgb(255, 107, 53),
             Colors.White,
             null,
@@ -791,9 +791,9 @@ public partial class MainWindow : Window
     {
         if (!IsLoaded) return;
 
-        ImgProductos.Source = new BitmapImage(new Uri(TabProductos.IsSelected ? "/imagenes/menuProductosOn.png" : "/imagenes/menuProductosOff.png", UriKind.Relative));
-        ImgPedidos.Source = new BitmapImage(new Uri(TabPedidos.IsSelected ? "/imagenes/menuPedidosOn.png" : "/imagenes/menuPedidosOff.png", UriKind.Relative));
-        ImgClientes.Source = new BitmapImage(new Uri(TabClientes.IsSelected ? "/imagenes/menuClientesOn.png" : "/imagenes/menuClientesOff.png", UriKind.Relative));
+        ImgProductos.Source = new BitmapImage(new Uri(TabProductos.IsSelected ? "/imagenes/productosOn1.png" : "/imagenes/productosOff.png", UriKind.Relative));
+        ImgPedidos.Source = new BitmapImage(new Uri(TabPedidos.IsSelected ? "/imagenes/pedidosOn1.png" : "/imagenes/pedidosOff.png", UriKind.Relative));
+        ImgClientes.Source = new BitmapImage(new Uri(TabClientes.IsSelected ? "/imagenes/menuClientesOn1.png" : "/imagenes/menuClientesOff1.png", UriKind.Relative));
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

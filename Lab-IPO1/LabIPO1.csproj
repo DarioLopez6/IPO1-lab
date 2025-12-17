@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="datos\platos.xml" />
+    <None Remove="imagenes\ajuste.png" />
     <None Remove="imagenes\arroz-con-leche.jpg" />
     <None Remove="imagenes\cerveza.jpg" />
     <None Remove="imagenes\cobrarIcon.png" />
@@ -35,7 +36,9 @@
     <None Remove="imagenes\logout.png" />
     <None Remove="imagenes\lupaIcono.png" />
     <None Remove="imagenes\menuCLientesOff.png" />
+    <None Remove="imagenes\menuCLientesOff1.png" />
     <None Remove="imagenes\menuClientesOn.png" />
+    <None Remove="imagenes\menuCLientesOn1.png" />
     <None Remove="imagenes\menuPedidosOff.png" />
     <None Remove="imagenes\menuPedidosOn.png" />
     <None Remove="imagenes\menuProductosOff.png" />
@@ -46,8 +49,15 @@
     <None Remove="imagenes\ojoOn.png" />
     <None Remove="imagenes\Paellavalenciana-4.jpg" />
     <None Remove="imagenes\pago-con-tarjetas-de-credito.png" />
+    <None Remove="imagenes\pedidosOff.png" />
+    <None Remove="imagenes\pedidosOn.png" />
+    <None Remove="imagenes\pedidosOn1.png" />
     <None Remove="imagenes\perfil.png" />
     <None Remove="imagenes\productos.png" />
+    <None Remove="imagenes\productosOff.png" />
+    <None Remove="imagenes\productosOff1.png" />
+    <None Remove="imagenes\productosOn.png" />
+    <None Remove="imagenes\productosOn1.png" />
     <None Remove="imagenes\rioja-vega-crianza.png" />
     <None Remove="imagenes\salmon-horno-patatas-scaled.jpg" />
     <None Remove="imagenes\sopa-de-cebolla-receta.jpg" />
@@ -57,11 +67,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="ThemeResources.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="datos\platos.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\ajuste.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\menuCLientesOff1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\menuCLientesOn1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\pedidosOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\pedidosOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\pedidosOn1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\productosOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\productosOff1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\productosOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\productosOn1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="imagenes\usuarioIcono.png">
@@ -143,9 +179,9 @@
     <Content Include="imagenes\lupaIcono.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="imagenes\menuCLientesOff.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="imagenes\menuCLientesOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="imagenes\menuClientesOn.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -198,9 +234,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="imagenes\tick.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="ThemeResources.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
